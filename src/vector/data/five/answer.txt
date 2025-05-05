@@ -1,0 +1,9 @@
+Testing clear function...
+Before clear - size: 10, empty: 0
+After clear - size: 0, empty: 1
+After inserting new elements:
+20 21 22 23 24 25 
+After multiple clears - size: 0, empty: 1
+Before clearing large vector - size: 10000
+After clearing large vector - size: 0
+First element after clear and push_back: 42
