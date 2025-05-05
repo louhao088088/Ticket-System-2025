@@ -7,7 +7,7 @@ add_compile_options(-Wall)
 add_compile_options(-Ofast)
 
 add_executable(code 
-    src/exception.hpp
+    src/exceptions.hpp
     src/utility.hpp
     src/vector.hpp
     src/BPT.hpp
