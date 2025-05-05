@@ -3,9 +3,9 @@
 #include <cstring>
 #include <climits>
 #include <algorithm>
+#include <bits/stdc++.h>
 #include "vector.hpp"
 
-using vector=sjtu::vector
 using namespace std;
 
 const int BLOCK_SIZE = 4096;
@@ -187,12 +187,17 @@ private:
             write_block(leaf_block, leaf_data);
             return;
         }
-
+        
         if (path.empty()) {
+            
             if (leaf.num_keys == 0) {
                 header.root_block = 0;
                 header.first_leaf_block = 0;
                 write_header();
+            }
+            else{
+                serialize_leaf(leaf, leaf_data);
+                write_block(leaf_block, leaf_data);
             }
             return;
         }
@@ -240,7 +245,7 @@ private:
                 return;
             }
         }
-
+        
         if (right_sibling != -1) {
             LeafNode right;
             char right_data[BLOCK_SIZE];
@@ -266,7 +271,7 @@ private:
                 return;
             }
         }
-
+        cout<<left_sibling<<" "<<right_sibling<<endl;
         if (left_sibling != -1) {
             LeafNode left;
             char left_data[BLOCK_SIZE];
@@ -400,9 +405,9 @@ private:
 
 public:
     BPlusTree(fstream& file) : file(file) {
-        if (file) {
+        /*if (file) {
             read_header();
-        } else
+        } else*/ 
         
         {
             file.open("database.bin", ios::out | ios::binary);
