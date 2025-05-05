@@ -5,6 +5,7 @@
 #include <algorithm>
 #include "vector.hpp"
 
+using vector=sjtu::vector
 using namespace std;
 
 const int BLOCK_SIZE = 4096;
