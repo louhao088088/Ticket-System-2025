@@ -177,7 +177,7 @@ private:
             memcpy(leaf.keys[i], leaf.keys[i + 1], KEY_SIZE);
         }
         leaf.num_keys--;
-
+ 
 
         //cout<<leaf.num_keys<<" "<<MIN_LEAF_KEYS<<endl;
 
@@ -399,9 +399,9 @@ private:
 
 public:
     BPlusTree(fstream& file) : file(file) {
-        /*if (file) {
+        if (file) {
             read_header();
-        } else*/ 
+        } else
         
         {
             file.open("database.bin", ios::out | ios::binary);
