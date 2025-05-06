@@ -1,0 +1,16 @@
+15
+insert key_00001 22498
+insert key_00004 5391
+insert key_00000 313
+insert key_00003 321654
+insert key_00005 922825
+insert key_00005 496304
+insert key_00001 123404
+insert key_00001 229594
+insert key_00004 224107
+insert key_00000 144046
+delete key_00001 22498
+delete key_00004 224107
+delete key_00000 144046
+delete key_00003 321654
+delete key_00005 922825

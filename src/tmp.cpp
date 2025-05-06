@@ -15,7 +15,7 @@ const int KEY_SIZE = 68;
 const int MAX_LEAF_KEYS = (BLOCK_SIZE - 12) / KEY_SIZE - 1;
 const int MAX_INTERNAL_KEYS = (BLOCK_SIZE - 12) / (KEY_SIZE + 4);
 const int MIN_LEAF_KEYS = (MAX_LEAF_KEYS + 1) / 2 - 1;
-const int MIN_INTERNAL_KEYS = MAX_INTERNAL_KEYS / 2 - 1;
+const int MIN_INTERNAL_KEYS = MAX_INTERNAL_KEYS / 2;
 
 struct FileHeader {
     int root_block;
