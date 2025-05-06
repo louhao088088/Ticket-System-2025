@@ -17,9 +17,12 @@ int main() {
         string cmd(64, '\0'), index(64, '\0');
         int value;
         std::cin >> cmd;
-        // cout<<cmd<<endl;
+        // cout << n << endl;
+        // cout << cmd << endl;
+
         if (cmd == "insert") {
             std::cin >> index >> value;
+            // cout << index << " " << value << endl;
             char key[KEY_SIZE];
             memset(key, 0, 64);
             strncpy(key, index.c_str(), 64);
@@ -27,6 +30,7 @@ int main() {
             tree.insert(key);
         } else if (cmd == "delete") {
             std::cin >> index >> value;
+            // cout << index << " " << value << endl;
             char key[KEY_SIZE];
             memset(key, 0, 64);
             strncpy(key, index.c_str(), 64);
@@ -34,6 +38,7 @@ int main() {
             tree.remove(key);
         } else if (cmd == "find") {
             std::cin >> index;
+            // cout << index << " " << endl;
             vector<int> values = tree.find(index.c_str());
             if (values.empty()) {
                 cout << "null\n";
