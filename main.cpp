@@ -1,9 +1,10 @@
+#include "src/BPT.hpp"
+
+#include <algorithm>
+#include <cstring>
 #include <fstream>
 #include <iostream>
 #include <string>
-#include <algorithm>
-#include <cstring>
-#include "src/BPT.hpp"
 
 int main() {
     fstream file("database.bin", ios::in | ios::out | ios::binary);
@@ -11,12 +12,12 @@ int main() {
 
     int n;
     cin >> n;
-
+    // cout << n << endl;
     while (n--) {
         string cmd(64, '\0'), index(64, '\0');
         int value;
         std::cin >> cmd;
-        //cout<<cmd<<endl;
+        // cout<<cmd<<endl;
         if (cmd == "insert") {
             std::cin >> index >> value;
             char key[KEY_SIZE];
@@ -38,12 +39,14 @@ int main() {
                 cout << "null\n";
             } else {
                 for (size_t i = 0; i < values.size(); ++i) {
-                    if (i > 0) std::cout << ' ';
+                    if (i > 0)
+                        std::cout << ' ';
                     std::cout << values[i];
                 }
                 std::cout << '\n';
             }
         }
+        // tree.print_bptree_structure(file);
     }
 
     return 0;

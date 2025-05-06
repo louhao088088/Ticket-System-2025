@@ -1,9 +1,13 @@
-8
+12
 insert FlowersForAlgernon 1966
 insert CppPrimer 2012
 insert Dune 2021
 insert CppPrimer 2001
-find CppPrimer
-find Java
+insert Dune 2022
+insert Dune 2024
+insert FlowersForAlgernon 1911
+insert FlowersForAlgernon 1962
+insert ggaad 1233
+find Dune
 delete Dune 2021
 find Dune

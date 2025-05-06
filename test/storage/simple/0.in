@@ -1,0 +1,9 @@
+8
+insert FlowersForAlgernon 1966
+insert CppPrimer 2012
+insert Dune 2021
+insert CppPrimer 2001
+find CppPrimer
+find Java
+delete Dune 2021
+find Dune

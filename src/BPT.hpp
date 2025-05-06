@@ -1,19 +1,21 @@
-#include <iostream>
-#include <fstream>
-#include <cstring>
-#include <climits>
+#include "vector.hpp"
+
 #include <algorithm>
 #include <bits/stdc++.h>
-#include "vector.hpp"
+#include <climits>
+#include <cstring>
+#include <fstream>
+#include <iostream>
 
 using namespace std;
 
-const int BLOCK_SIZE = 4096;
-const int MAX_LEAF_KEYS = 59;
+const int BLOCK_SIZE = 256;
+const int KEY_SIZE = 68;
+
+const int MAX_LEAF_KEYS = (BLOCK_SIZE - 12) / KEY_SIZE;
+const int MAX_INTERNAL_KEYS = (BLOCK_SIZE - 8) / (KEY_SIZE + 4);
 const int MIN_LEAF_KEYS = (MAX_LEAF_KEYS + 1) / 2;
-const int MAX_INTERNAL_KEYS = 56;
 const int MIN_INTERNAL_KEYS = MAX_INTERNAL_KEYS / 2;
-const int KEY_SIZE = 68; // 64 bytes index + 4 bytes value
 
 struct FileHeader {
     int root_block;
@@ -36,26 +38,26 @@ struct LeafNode {
 };
 
 class BPlusTree {
-private:
-    fstream& file;
+  private:
+    fstream &file;
     FileHeader header;
 
     void write_header() {
         file.seekp(0);
-        file.write(reinterpret_cast<char*>(&header), sizeof(FileHeader));
+        file.write(reinterpret_cast<char *>(&header), sizeof(FileHeader));
     }
 
     void read_header() {
         file.seekg(0);
-        file.read(reinterpret_cast<char*>(&header), sizeof(FileHeader));
+        file.read(reinterpret_cast<char *>(&header), sizeof(FileHeader));
     }
 
-    void read_block(int block_num, char* data) {
+    void read_block(int block_num, char *data) {
         file.seekg(block_num * BLOCK_SIZE);
         file.read(data, BLOCK_SIZE);
     }
 
-    void write_block(int block_num, const char* data) {
+    void write_block(int block_num, const char *data) {
         file.seekp(block_num * BLOCK_SIZE);
         file.write(data, BLOCK_SIZE);
     }
@@ -68,44 +70,47 @@ private:
         return new_block;
     }
 
-    void parse_leaf(const char* data, LeafNode& leaf) {
+    void parse_leaf(const char *data, LeafNode &leaf) {
         memcpy(&leaf.type, data, sizeof(int));
         memcpy(&leaf.num_keys, data + sizeof(int), sizeof(int));
-        memcpy(&leaf.next_leaf, data + 2*sizeof(int), sizeof(int));
-        memcpy(leaf.keys, data + 3*sizeof(int), MAX_LEAF_KEYS * KEY_SIZE);
+        memcpy(&leaf.next_leaf, data + 2 * sizeof(int), sizeof(int));
+        memcpy(leaf.keys, data + 3 * sizeof(int), MAX_LEAF_KEYS * KEY_SIZE);
     }
 
-    void serialize_leaf(const LeafNode& leaf, char* data) {
+    void serialize_leaf(const LeafNode &leaf, char *data) {
         memcpy(data, &leaf.type, sizeof(int));
         memcpy(data + sizeof(int), &leaf.num_keys, sizeof(int));
-        memcpy(data + 2*sizeof(int), &leaf.next_leaf, sizeof(int));
-        memcpy(data + 3*sizeof(int), leaf.keys, leaf.num_keys * KEY_SIZE);
+        memcpy(data + 2 * sizeof(int), &leaf.next_leaf, sizeof(int));
+        memcpy(data + 3 * sizeof(int), leaf.keys, leaf.num_keys * KEY_SIZE);
     }
 
-    void parse_internal(const char* data, InternalNode& node) {
+    void parse_internal(const char *data, InternalNode &node) {
         memcpy(&node.type, data, sizeof(int));
         memcpy(&node.num_keys, data + sizeof(int), sizeof(int));
-        memcpy(node.children, data + 2*sizeof(int), (MAX_INTERNAL_KEYS + 1) * sizeof(int));
-        memcpy(node.keys, data + 2*sizeof(int) + (MAX_INTERNAL_KEYS + 1) * sizeof(int), MAX_INTERNAL_KEYS * KEY_SIZE);
+        memcpy(node.children, data + 2 * sizeof(int), (MAX_INTERNAL_KEYS + 1) * sizeof(int));
+        memcpy(node.keys, data + 2 * sizeof(int) + (MAX_INTERNAL_KEYS + 1) * sizeof(int),
+               MAX_INTERNAL_KEYS * KEY_SIZE);
     }
 
-    void serialize_internal(const InternalNode& node, char* data) {
+    void serialize_internal(const InternalNode &node, char *data) {
         memcpy(data, &node.type, sizeof(int));
         memcpy(data + sizeof(int), &node.num_keys, sizeof(int));
-        memcpy(data + 2*sizeof(int), node.children, (node.num_keys + 1) * sizeof(int));
-        memcpy(data + 2*sizeof(int) + (MAX_INTERNAL_KEYS + 1) * sizeof(int), node.keys, node.num_keys * KEY_SIZE);
+        memcpy(data + 2 * sizeof(int), node.children, (node.num_keys + 1) * sizeof(int));
+        memcpy(data + 2 * sizeof(int) + (MAX_INTERNAL_KEYS + 1) * sizeof(int), node.keys,
+               node.num_keys * KEY_SIZE);
     }
 
-    int compare_keys(const char* a, const char* b) {
+    int compare_keys(const char *a, const char *b) {
         int cmp = memcmp(a, b, 64);
-        if (cmp != 0) return cmp;
+        if (cmp != 0)
+            return cmp;
         int val_a, val_b;
         memcpy(&val_a, a + 64, sizeof(int));
         memcpy(&val_b, b + 64, sizeof(int));
         return (val_a < val_b) ? -1 : (val_a > val_b) ? 1 : 0;
     }
 
-    void insert_into_parent(const vector<int>& path, int child_block, const char* key) {
+    void insert_into_parent(const vector<int> &path, int child_block, const char *key) {
         if (path.empty()) {
             InternalNode new_root;
             new_root.type = 0;
@@ -118,7 +123,8 @@ private:
             serialize_internal(new_root, data);
             write_block(new_root_block, data);
             header.root_block = new_root_block;
-            header.first_leaf_block = (header.root_block == new_root_block) ? child_block : header.first_leaf_block;
+            header.first_leaf_block =
+                (header.root_block == new_root_block) ? child_block : header.first_leaf_block;
             write_header();
             return;
         }
@@ -148,7 +154,8 @@ private:
             new_node.num_keys = parent.num_keys - split - 1;
             parent.num_keys = split;
 
-            memcpy(new_node.children, parent.children + split + 1, (new_node.num_keys + 1) * sizeof(int));
+            memcpy(new_node.children, parent.children + split + 1,
+                   (new_node.num_keys + 1) * sizeof(int));
             memcpy(new_node.keys, parent.keys + split + 1, new_node.num_keys * KEY_SIZE);
 
             int new_block = allocate_block();
@@ -160,7 +167,8 @@ private:
             serialize_internal(parent, parent_data);
             write_block(parent_block, parent_data);
 
-            insert_into_parent(vector<int>(path.begin(), path.end() - 1), new_block, parent.keys[split]);
+            insert_into_parent(vector<int>(path.begin(), path.end() - 1), new_block,
+                               parent.keys[split]);
         } else {
             char data[BLOCK_SIZE];
             serialize_internal(parent, data);
@@ -168,7 +176,7 @@ private:
         }
     }
 
-    void remove_from_leaf(int leaf_block, int pos, vector<int>& path) {
+    void remove_from_leaf(int leaf_block, int pos, vector<int> &path) {
         LeafNode leaf;
         char leaf_data[BLOCK_SIZE];
         read_block(leaf_block, leaf_data);
@@ -178,24 +186,22 @@ private:
             memcpy(leaf.keys[i], leaf.keys[i + 1], KEY_SIZE);
         }
         leaf.num_keys--;
- 
 
-        //cout<<leaf.num_keys<<" "<<MIN_LEAF_KEYS<<endl;
+        // cout<<leaf.num_keys<<" "<<MIN_LEAF_KEYS<<endl;
 
         if (leaf.num_keys >= MIN_LEAF_KEYS) {
             serialize_leaf(leaf, leaf_data);
             write_block(leaf_block, leaf_data);
             return;
         }
-        
+
         if (path.empty()) {
-            
+
             if (leaf.num_keys == 0) {
                 header.root_block = 0;
                 header.first_leaf_block = 0;
                 write_header();
-            }
-            else{
+            } else {
                 serialize_leaf(leaf, leaf_data);
                 write_block(leaf_block, leaf_data);
             }
@@ -217,8 +223,10 @@ private:
         }
 
         int left_sibling = -1, right_sibling = -1;
-        if (parent_pos >= 0) left_sibling = parent.children[parent_pos];
-        if (parent_pos < parent.num_keys - 1) right_sibling = parent.children[parent_pos + 2];
+        if (parent_pos >= 0)
+            left_sibling = parent.children[parent_pos];
+        if (parent_pos < parent.num_keys - 1)
+            right_sibling = parent.children[parent_pos + 2];
 
         if (left_sibling != -1) {
             LeafNode left;
@@ -245,7 +253,7 @@ private:
                 return;
             }
         }
-        
+
         if (right_sibling != -1) {
             LeafNode right;
             char right_data[BLOCK_SIZE];
@@ -271,7 +279,7 @@ private:
                 return;
             }
         }
-        cout<<left_sibling<<" "<<right_sibling<<endl;
+        // cout << left_sibling << " " << right_sibling << endl;
         if (left_sibling != -1) {
             LeafNode left;
             char left_data[BLOCK_SIZE];
@@ -331,7 +339,7 @@ private:
         }
     }
 
-    void coalesce_internal_nodes(vector<int>& path, int node_block, int pos) {
+    void coalesce_internal_nodes(vector<int> &path, int node_block, int pos) {
         InternalNode node;
         char node_data[BLOCK_SIZE];
         read_block(node_block, node_data);
@@ -362,7 +370,8 @@ private:
             is_left = false;
         }
 
-        if (sibling_block == -1) return;
+        if (sibling_block == -1)
+            return;
 
         InternalNode sibling;
         char sibling_data[BLOCK_SIZE];
@@ -372,7 +381,8 @@ private:
         if (node.num_keys + sibling.num_keys + 1 <= MAX_INTERNAL_KEYS) {
             if (is_left) {
                 memcpy(node.keys + sibling.num_keys + 1, node.keys, node.num_keys * KEY_SIZE);
-                memcpy(node.children + sibling.num_keys + 1, node.children, (node.num_keys + 1) * sizeof(int));
+                memcpy(node.children + sibling.num_keys + 1, node.children,
+                       (node.num_keys + 1) * sizeof(int));
                 memcpy(node.keys, sibling.keys, sibling.num_keys * KEY_SIZE);
                 memcpy(node.children, sibling.children, (sibling.num_keys + 1) * sizeof(int));
                 memcpy(node.keys[sibling.num_keys], parent.keys[parent_pos], KEY_SIZE);
@@ -380,7 +390,8 @@ private:
             } else {
                 memcpy(node.keys + node.num_keys, parent.keys[parent_pos + 1], KEY_SIZE);
                 memcpy(node.keys + node.num_keys + 1, sibling.keys, sibling.num_keys * KEY_SIZE);
-                memcpy(node.children + node.num_keys + 1, sibling.children, (sibling.num_keys + 1) * sizeof(int));
+                memcpy(node.children + node.num_keys + 1, sibling.children,
+                       (sibling.num_keys + 1) * sizeof(int));
                 node.num_keys += sibling.num_keys + 1;
             }
 
@@ -403,12 +414,12 @@ private:
         }
     }
 
-public:
-    BPlusTree(fstream& file) : file(file) {
+  public:
+    BPlusTree(fstream &file) : file(file) {
         /*if (file) {
             read_header();
-        } else*/ 
-        
+        } else*/
+
         {
             file.open("database.bin", ios::out | ios::binary);
             file.close();
@@ -420,8 +431,8 @@ public:
         }
     }
 
-    void insert(const char* key) {
-        //cout<<header.root_block<<endl;
+    void insert(const char *key) {
+        // cout<<header.root_block<<endl;
         if (header.root_block == 0) {
             LeafNode root;
             root.type = 1;
@@ -440,12 +451,12 @@ public:
 
         vector<int> path;
         int current_block = header.root_block;
-        
+
         while (true) {
             char data[BLOCK_SIZE];
             read_block(current_block, data);
-            
-            if (reinterpret_cast<int*>(data)[0] == 1) {
+
+            if (reinterpret_cast<int *>(data)[0] == 1) {
                 break;
             } else {
                 InternalNode node;
@@ -475,6 +486,7 @@ public:
         leaf.num_keys++;
 
         if (leaf.num_keys > MAX_LEAF_KEYS) {
+
             LeafNode new_leaf;
             new_leaf.type = 1;
             new_leaf.num_keys = leaf.num_keys / 2;
@@ -498,7 +510,7 @@ public:
         }
     }
 
-    vector<int> find(const char* index) {
+    vector<int> find(const char *index) {
         vector<int> result;
         if (header.root_block == 0)
             return result;
@@ -507,35 +519,35 @@ public:
         memset(start_key, 0, 64);
         strncpy(start_key, index, 64);
         int min_val = INT_MIN;
+
         memcpy(start_key + 64, &min_val, sizeof(int));
 
         int current_block = header.root_block;
+        // cout << current_block << endl;
         while (true) {
             char data[BLOCK_SIZE];
             read_block(current_block, data);
-            if (reinterpret_cast<int*>(data)[0] == 1)
+            if (reinterpret_cast<int *>(data)[0] == 1)
                 break;
             InternalNode node;
             parse_internal(data, node);
             int pos = 0;
-            while (pos < node.num_keys && compare_keys(start_key, node.keys[pos]) > 0)
+            while (pos < node.num_keys && compare_keys(start_key, node.keys[pos]) >= 0)
                 pos++;
             current_block = node.children[pos];
         }
-        //cout<<"Find"<<current_block<<endl;
+
+        // cout << "Find" << current_block << endl;
+        bool F = true;
         while (current_block != 0) {
             char data[BLOCK_SIZE];
             read_block(current_block, data);
             LeafNode leaf;
             parse_leaf(data, leaf);
             bool found = false;
-            //cout<<leaf.num_keys<<endl;
+            // cout << leaf.num_keys << endl;
             for (int i = 0; i < leaf.num_keys; ++i) {
-                //cout<<leaf.keys[i]<<" "<<index<<" "<<
-                //memcmp(leaf.keys[i], index, 64)<<endl;
-                //for(int k=0;k<64;k++){
-                    //printf("[%d] %02x %02x\n", k, (unsigned char)leaf.keys[i][k], (unsigned char)index[k]);
-                //}
+
                 if (memcmp(leaf.keys[i], index, 64) == 0) {
                     int value;
                     memcpy(&value, leaf.keys[i] + 64, sizeof(int));
@@ -546,7 +558,9 @@ public:
                 }
             }
 
-            if (!found) break;
+            if (!found && !F)
+                break;
+            F = false;
             current_block = leaf.next_leaf;
         }
 
@@ -554,7 +568,7 @@ public:
         return result;
     }
 
-    void remove(const char* key) {
+    void remove(const char *key) {
         vector<int> path;
         int current_block = header.root_block;
 
@@ -562,8 +576,9 @@ public:
             path.push_back(current_block);
             char data[BLOCK_SIZE];
             read_block(current_block, data);
-            if (reinterpret_cast<int*>(data)[0] == 1) break;
-            
+            if (reinterpret_cast<int *>(data)[0] == 1)
+                break;
+
             InternalNode node;
             parse_internal(data, node);
             int pos = 0;
@@ -584,9 +599,104 @@ public:
             }
         }
 
-        if (pos == -1) return;
+        if (pos == -1) {
+            current_block = leaf.next_leaf;
+            if (current_block == 0)
+                return;
+            char leaf_data[BLOCK_SIZE];
+            read_block(current_block, leaf_data);
+            parse_leaf(leaf_data, leaf);
+            for (int i = 0; i < leaf.num_keys; i++) {
+                if (compare_keys(leaf.keys[i], key) == 0) {
+                    pos = i;
+                    break;
+                }
+            }
+
+            if (pos == -1)
+                return;
+        }
 
         path.pop_back();
         remove_from_leaf(current_block, pos, path);
+    }
+
+    const int PRINT_INDENT = 4;
+    const int KEY_WIDTH = 20;
+
+    // 辅助函数：递归打印B+树结构
+    void print_tree(int block_num, int level, fstream &file) {
+        char data[BLOCK_SIZE];
+        file.seekg(block_num * BLOCK_SIZE);
+        file.read(data, BLOCK_SIZE);
+
+        // 解析节点类型
+        int node_type;
+        memcpy(&node_type, data, sizeof(int));
+
+        // 根据节点类型处理
+        if (node_type == 1) { // 叶子节点
+            LeafNode leaf;
+            parse_leaf(data, leaf);
+
+            // 打印缩进
+            cout << string(level * PRINT_INDENT, ' ');
+
+            // 打印节点类型和指针信息
+            cout << "[L" << block_num << "]->" << leaf.next_leaf << ": ";
+
+            // 打印所有键值
+            for (int i = 0; i < leaf.num_keys; ++i) {
+                char index[65] = {0};
+                int value;
+                memcpy(index, leaf.keys[i], 64);
+                memcpy(&value, leaf.keys[i] + 64, sizeof(int));
+                cout << "[" << index << ":" << value << "] ";
+            }
+            cout << endl;
+        } else { // 内部节点
+            InternalNode node;
+            parse_internal(data, node);
+
+            // 打印缩进
+            cout << string(level * PRINT_INDENT, ' ');
+
+            // 打印节点类型和键信息
+            cout << "[N" << block_num << "]: ";
+            for (int i = 0; i < node.num_keys; ++i) {
+                char index[65] = {0};
+                int value;
+                memcpy(index, node.keys[i], 64);
+                memcpy(&value, node.keys[i] + 64, sizeof(int));
+                cout << "|" << setw(KEY_WIDTH) << left << (string(index) + ":" + to_string(value));
+            }
+            cout << "|" << endl;
+
+            // 递归打印子节点
+            for (int i = 0; i <= node.num_keys; ++i) {
+                print_tree(node.children[i], level + 1, file);
+            }
+        }
+    }
+
+    // 公开接口函数
+    void print_bptree_structure(fstream &file) {
+        FileHeader header;
+        file.seekg(0);
+        file.read(reinterpret_cast<char *>(&header), sizeof(FileHeader));
+
+        if (header.root_block == 0) {
+            cout << "Empty Tree" << endl;
+            return;
+        }
+
+        cout << "B+ Tree Structure (Block Size: " << BLOCK_SIZE
+             << ", Max Leaf Keys: " << MAX_LEAF_KEYS << ")" << endl
+             << string(80, '-') << endl;
+
+        print_tree(header.root_block, 0, file);
+
+        cout << string(80, '-') << endl;
+        // cout << "Legend: [Lx] = Leaf Block x, [Nx] = Internal Node x" << endl;
     }
 };
