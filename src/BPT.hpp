@@ -9,13 +9,13 @@
 
 using namespace std;
 
-const int BLOCK_SIZE = 512;
+const int BLOCK_SIZE = 4096;
 const int KEY_SIZE = 68;
 
 const int MAX_LEAF_KEYS = (BLOCK_SIZE - 12) / KEY_SIZE - 1;
 const int MAX_INTERNAL_KEYS = (BLOCK_SIZE - 12) / (KEY_SIZE + 4);
 const int MIN_LEAF_KEYS = max(1, (MAX_LEAF_KEYS + 1) / 2 - 1);
-const int MIN_INTERNAL_KEYS = max(1, MAX_INTERNAL_KEYS / 2);
+const int MIN_INTERNAL_KEYS = max(1, MAX_INTERNAL_KEYS / 2 - 1);
 
 struct FileHeader {
     int root_block;
@@ -192,8 +192,6 @@ class BPlusTree {
         }
         leaf.num_keys--;
 
-        // cout<<leaf.num_keys<<" "<<MIN_LEAF_KEYS<<endl;
-
         if (leaf.num_keys >= MIN_LEAF_KEYS) {
             serialize_leaf(leaf, leaf_data);
             write_block(leaf_block, leaf_data);
@@ -318,7 +316,7 @@ class BPlusTree {
                 coalesce_internal_nodes(path, parent_block, parent_pos);
             }
         } else if (right_sibling != -1) {
-            // puts("AAA");
+
             LeafNode right;
             char right_data[BLOCK_SIZE];
             read_block(right_sibling, right_data);
@@ -562,7 +560,7 @@ class BPlusTree {
                 InternalNode node;
                 parse_internal(data, node);
                 int pos = 0;
-                while (pos < node.num_keys && compare_keys(key, node.keys[pos]) > 0)
+                while (pos < node.num_keys && compare_keys(key, node.keys[pos]) >= 0)
                     pos++;
                 path.push_back(current_block);
                 current_block = node.children[pos];
