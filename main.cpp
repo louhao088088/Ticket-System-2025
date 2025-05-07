@@ -51,8 +51,8 @@ int main() {
                 std::cout << '\n';
             }
         }
-        // if (n <= 500)
-        // tree.print_bptree_structure(file);
+        // if (n <= 100)
+        //   tree.print_bptree_structure(file);
     }
 
     return 0;

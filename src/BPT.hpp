@@ -9,13 +9,13 @@
 
 using namespace std;
 
-const int BLOCK_SIZE = 8192;
+const int BLOCK_SIZE = 4096;
 const int KEY_SIZE = 68;
 
 const int MAX_LEAF_KEYS = (BLOCK_SIZE - 12) / KEY_SIZE - 1;
 const int MAX_INTERNAL_KEYS = (BLOCK_SIZE - 12) / (KEY_SIZE + 4);
-const int MIN_LEAF_KEYS = (MAX_LEAF_KEYS + 1) / 2 - 1;
-const int MIN_INTERNAL_KEYS = MAX_INTERNAL_KEYS / 2 - 1;
+const int MIN_LEAF_KEYS = max(1, (MAX_LEAF_KEYS + 1) / 2 - 1);
+const int MIN_INTERNAL_KEYS = max(1, MAX_INTERNAL_KEYS / 2);
 
 struct FileHeader {
     int root_block;
@@ -232,6 +232,9 @@ class BPlusTree {
             left_sibling = parent.children[parent_pos];
         if (parent_pos < parent.num_keys - 1)
             right_sibling = parent.children[parent_pos + 2];
+        // cout << left_sibling << " " << right_sibling << endl;
+        // cout << parent_pos << " " << parent.num_keys << " " << parent_block << " " << leaf_block
+        //      << endl;
 
         if (left_sibling != -1) {
             LeafNode left;
@@ -305,7 +308,6 @@ class BPlusTree {
                 parent.children[i + 1] = parent.children[i + 2];
             }
             parent.num_keys--;
-
             if (parent.num_keys >= MIN_INTERNAL_KEYS || path.size() == 1) {
                 serialize_internal(parent, parent_data);
                 write_block(parent_block, parent_data);
@@ -316,6 +318,7 @@ class BPlusTree {
                 coalesce_internal_nodes(path, parent_block, parent_pos);
             }
         } else if (right_sibling != -1) {
+            // puts("AAA");
             LeafNode right;
             char right_data[BLOCK_SIZE];
             read_block(right_sibling, right_data);
@@ -349,7 +352,7 @@ class BPlusTree {
     }
 
     void coalesce_internal_nodes(vector<int> &path, int node_block, int pos) {
-        return;
+
         if (path.empty())
             return;
         InternalNode node;
@@ -370,7 +373,7 @@ class BPlusTree {
                 break;
             }
         }
-
+        // cout << node_block << " " << parent.num_keys << " " << endl;
         int left_sibling = -1, right_sibling = -1;
 
         if (parent_pos >= 0) {
@@ -388,14 +391,18 @@ class BPlusTree {
             parse_internal(left_data, left);
 
             if (left.num_keys > MIN_INTERNAL_KEYS) {
+
+                node.children[node.num_keys + 1] = node.children[node.num_keys];
                 for (int i = node.num_keys; i > 0; i--) {
                     memcpy(node.keys[i], node.keys[i - 1], KEY_SIZE);
+                    node.children[i] = node.children[i - 1];
                 }
-                memcpy(node.keys[0], left.keys[left.num_keys - 1], KEY_SIZE);
-                node.num_keys++;
-                left.num_keys--;
+                memcpy(node.keys[0], parent.keys[parent_pos], KEY_SIZE);
+                memcpy(parent.keys[parent_pos], left.keys[left.num_keys - 1], KEY_SIZE);
+                node.children[0] = left.children[left.num_keys];
 
-                memcpy(parent.keys[parent_pos], node.keys[0], KEY_SIZE);
+                left.num_keys--;
+                node.num_keys++;
 
                 serialize_internal(left, left_data);
                 write_block(left_sibling, left_data);
@@ -414,14 +421,17 @@ class BPlusTree {
             parse_internal(right_data, right);
 
             if (right.num_keys > MIN_INTERNAL_KEYS) {
-                memcpy(node.keys[node.num_keys], right.keys[0], KEY_SIZE);
-                node.num_keys++;
+                memcpy(node.keys[node.num_keys], parent.keys[parent_pos + 1], KEY_SIZE);
+                memcpy(parent.keys[parent_pos + 1], right.keys[0], KEY_SIZE);
+                node.children[node.num_keys + 1] = right.children[0];
                 for (int i = 0; i < right.num_keys - 1; i++) {
                     memcpy(right.keys[i], right.keys[i + 1], KEY_SIZE);
+                    right.children[i] = right.children[i + 1];
                 }
-                right.num_keys--;
+                right.children[right.num_keys - 1] = right.children[right.num_keys];
 
-                memcpy(parent.keys[parent_pos + 1], right.keys[0], KEY_SIZE);
+                right.num_keys--;
+                node.num_keys++;
 
                 serialize_internal(right, right_data);
                 write_block(right_sibling, right_data);
@@ -434,11 +444,13 @@ class BPlusTree {
         }
 
         if (left_sibling != -1) {
+
             InternalNode left;
             char left_data[BLOCK_SIZE];
             read_block(left_sibling, left_data);
             parse_internal(left_data, left);
-
+            // cout << parent_block << " " << parent.num_keys << " " << left.num_keys << " "
+            //  << node.num_keys << " " << MAX_INTERNAL_KEYS << endl;
             memcpy(node.keys + left.num_keys + 1, node.keys, node.num_keys * KEY_SIZE);
             memcpy(node.children + left.num_keys + 1, node.children,
                    (node.num_keys + 1) * sizeof(int));
@@ -446,18 +458,20 @@ class BPlusTree {
             memcpy(node.children, left.children, (left.num_keys + 1) * sizeof(int));
             memcpy(node.keys[left.num_keys], parent.keys[parent_pos], KEY_SIZE);
             node.num_keys += left.num_keys + 1;
-
+            // cout << parent.num_keys << "A" << parent_pos - 1 << endl;
             for (int i = parent_pos - 1; i < parent.num_keys - 1; i++) {
-                memcpy(parent.keys[i], parent.keys[i + 1], KEY_SIZE);
+                if (i != parent_pos - 1)
+                    memcpy(parent.keys[i], parent.keys[i + 1], KEY_SIZE);
                 parent.children[i + 1] = parent.children[i + 2];
             }
+
             parent.num_keys--;
 
             serialize_internal(node, node_data);
             write_block(node_block, node_data);
             serialize_internal(parent, parent_data);
             write_block(parent_block, parent_data);
-
+            // cout << parent.num_keys << "A" << endl;
             if (parent.num_keys >= MIN_INTERNAL_KEYS || path.size() == 1) {
                 return;
             } else {
@@ -467,6 +481,7 @@ class BPlusTree {
         }
         if (right_sibling != -1) {
             InternalNode right;
+
             char right_data[BLOCK_SIZE];
             read_block(right_sibling, right_data);
             parse_internal(right_data, right);
@@ -488,7 +503,7 @@ class BPlusTree {
             write_block(node_block, node_data);
             serialize_internal(parent, parent_data);
             write_block(parent_block, parent_data);
-
+            // cout << parent.num_keys << endl;
             if (parent.num_keys >= MIN_INTERNAL_KEYS || path.size() == 1) {
                 return;
             } else {
@@ -500,9 +515,9 @@ class BPlusTree {
 
   public:
     BPlusTree(fstream &file) : file(file) {
-        // if (file) {
-        //     read_header();
-        // } else
+        if (file) {
+            read_header();
+        } else
 
         {
             file.open("database.bin", ios::out | ios::binary);
@@ -598,6 +613,7 @@ class BPlusTree {
 
     vector<int> find(const char *index) {
         vector<int> result;
+
         if (header.root_block == 0)
             return result;
 
@@ -609,8 +625,9 @@ class BPlusTree {
         memcpy(start_key + 64, &min_val, sizeof(int));
 
         int current_block = header.root_block;
-        // cout << current_block << endl;
+
         while (true) {
+
             char data[BLOCK_SIZE];
             read_block(current_block, data);
             if (reinterpret_cast<int *>(data)[0] == 1)
@@ -631,7 +648,6 @@ class BPlusTree {
             LeafNode leaf;
             parse_leaf(data, leaf);
             bool found = false;
-            // cout << leaf.num_keys << endl;
             for (int i = 0; i < leaf.num_keys; ++i) {
 
                 if (memcmp(leaf.keys[i], index, 64) == 0) {
@@ -698,21 +714,7 @@ class BPlusTree {
         }
 
         if (pos == -1) {
-            current_block = leaf.next_leaf;
-            if (current_block == 0)
-                return;
-            char leaf_data[BLOCK_SIZE];
-            read_block(current_block, leaf_data);
-            parse_leaf(leaf_data, leaf);
-            for (int i = 0; i < leaf.num_keys; i++) {
-                if (compare_keys(leaf.keys[i], key) == 0) {
-                    pos = i;
-                    break;
-                }
-            }
-
-            if (pos == -1)
-                return;
+            return;
         }
 
         path.pop_back();
