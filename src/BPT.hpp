@@ -188,8 +188,6 @@ class BPlusTree {
         read_block(leaf_block, leaf_data);
         parse_leaf(leaf_data, leaf);
 
-        // assert(leaf.type == 1);
-
         for (int i = pos; i < leaf.num_keys - 1; i++) {
             memcpy(leaf.keys[i], leaf.keys[i + 1], KEY_SIZE);
         }
@@ -224,7 +222,10 @@ class BPlusTree {
 
             serialize_leaf(leaf, leaf_data);
             write_block(leaf_block, leaf_data);
-
+            if (path.size() == 1) {
+                header.root_block = leaf_block;
+                write_header();
+            }
             return;
         }
         int parent_pos = -1;
@@ -241,8 +242,6 @@ class BPlusTree {
             left_sibling = parent.children[parent_pos];
         if (parent_pos < parent.num_keys - 1)
             right_sibling = parent.children[parent_pos + 2];
-
-        // assert(left_sibling != -1 || right_sibling != -1);
 
         if (left_sibling != -1) {
             LeafNode left;
@@ -369,15 +368,16 @@ class BPlusTree {
         read_block(node_block, node_data);
         parse_internal(node_data, node);
 
-        // assert(node.type == 0);
-
         int parent_block = path.back();
         InternalNode parent;
         char parent_data[BLOCK_SIZE];
         read_block(parent_block, parent_data);
         parse_internal(parent_data, parent);
-        // assert(parent.type == 0);
-
+        if (path.size() == 1 && parent.num_keys == 0) {
+            header.root_block = node_block;
+            write_header();
+            return;
+        }
         int parent_pos = -1;
         for (int i = 0; i <= parent.num_keys; i++) {
             if (parent.children[i] == node_block) {
@@ -393,8 +393,6 @@ class BPlusTree {
         } else if (parent_pos < parent.num_keys - 1) {
             right_sibling = parent.children[parent_pos + 2];
         }
-
-        // assert(left_sibling != -1 || right_sibling != -1);
 
         if (left_sibling != -1) {
             InternalNode left;
@@ -486,6 +484,7 @@ class BPlusTree {
             write_block(parent_block, parent_data);
 
             if (parent.num_keys >= MIN_INTERNAL_KEYS || path.size() == 1) {
+
                 return;
             } else {
                 path.pop_back();
