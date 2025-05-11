@@ -533,9 +533,9 @@ class BPlusTree {
   public:
     BPlusTree(fstream &file) : file(file) {
 
-        // if (file) {
-        //     read_header();
-        // } else
+        if (file) {
+            read_header();
+        } else
 
         {
             file.open("database.bin", ios::out | ios::binary);
