@@ -9,11 +9,11 @@
 
 using namespace std;
 
-const int BLOCK_SIZE = 512;
+const int BLOCK_SIZE = 1024;
 const int KEY_SIZE = 68;
 
 const int MAX_LEAF_KEYS = (BLOCK_SIZE - 12) / KEY_SIZE - 1;
-const int MAX_INTERNAL_KEYS = (BLOCK_SIZE - 12) / (KEY_SIZE + 4);
+const int MAX_INTERNAL_KEYS = (BLOCK_SIZE - 12) / (KEY_SIZE + 4) - 1;
 const int MIN_LEAF_KEYS = max(1, (MAX_LEAF_KEYS + 1) / 2 - 1);
 const int MIN_INTERNAL_KEYS = max(1, MAX_INTERNAL_KEYS / 2 - 1);
 
@@ -136,7 +136,7 @@ class BPlusTree {
         read_block(parent_block, parent_data);
         parse_internal(parent_data, parent);
 
-       // assert(parent.type == 0);
+        // assert(parent.type == 0);
 
         int pos = 0;
         while (pos < parent.num_keys && compare_keys(parent.keys[pos], key) < 0)
@@ -188,7 +188,7 @@ class BPlusTree {
         read_block(leaf_block, leaf_data);
         parse_leaf(leaf_data, leaf);
 
-        //assert(leaf.type == 1);
+        // assert(leaf.type == 1);
 
         for (int i = pos; i < leaf.num_keys - 1; i++) {
             memcpy(leaf.keys[i], leaf.keys[i + 1], KEY_SIZE);
@@ -235,7 +235,7 @@ class BPlusTree {
         if (parent_pos < parent.num_keys - 1)
             right_sibling = parent.children[parent_pos + 2];
 
-        //assert(left_sibling != -1 || right_sibling != -1);
+        // assert(left_sibling != -1 || right_sibling != -1);
 
         if (left_sibling != -1) {
             LeafNode left;
@@ -362,14 +362,14 @@ class BPlusTree {
         read_block(node_block, node_data);
         parse_internal(node_data, node);
 
-        //assert(node.type == 0);
+        // assert(node.type == 0);
 
         int parent_block = path.back();
         InternalNode parent;
         char parent_data[BLOCK_SIZE];
         read_block(parent_block, parent_data);
         parse_internal(parent_data, parent);
-        //assert(parent.type == 0);
+        // assert(parent.type == 0);
 
         int parent_pos = -1;
         for (int i = 0; i <= parent.num_keys; i++) {
@@ -387,7 +387,7 @@ class BPlusTree {
             right_sibling = parent.children[parent_pos + 2];
         }
 
-        //assert(left_sibling != -1 || right_sibling != -1);
+        // assert(left_sibling != -1 || right_sibling != -1);
 
         if (left_sibling != -1) {
             InternalNode left;
@@ -523,7 +523,7 @@ class BPlusTree {
 
   public:
     BPlusTree(fstream &file) : file(file) {
-        // file.open("database.bin", ios::in | ios::out | ios::binary);
+
         if (file) {
             read_header();
         } else
