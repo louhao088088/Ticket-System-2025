@@ -1,501 +1,5005 @@
-500
-insert 1 -566163
-insert 1 -130945
-delete 1 -130945
-insert 4 -388751
-delete 1 -566163
-insert 2 53550
-insert 4 321797
-insert 3 -996205
-insert 2 -84685
-insert 1 51236
-delete 4 -388751
-insert 3 -767710
-insert 5 -903927
-delete 4 321797
-delete 3 -767710
-delete 1 51236
-insert 1 -288014
-insert 3 121882
-insert 4 873186
+5000
+insert 2 254250
+insert 5 274337
+delete 5 274337
+insert 2 42880
+insert 1 -89700
+delete 2 42880
+insert 3 -368875
 find 2
-insert 5 76149
-delete 4 873186
-delete 5 76149
-delete 3 121882
-insert 2 -437461
-delete 2 53550
-insert 4 -795564
-insert 2 947071
-insert 3 -577256
-insert 3 954196
-insert 1 -27115
-delete 2 -437461
-insert 4 573998
-insert 1 -352495
-insert 3 -651159
-insert 5 418783
-find 1
-delete 3 954196
+insert 4 -607245
+insert 1 998691
+insert 4 708370
 find 3
-delete 4 573998
-find 3
-insert 1 289057
-find 5
-insert 2 186491
-insert 3 -178709
-insert 2 -759009
-insert 5 -791967
-insert 3 412458
-insert 3 216651
-insert 3 827752
-insert 5 -914762
-insert 3 206945
-insert 2 -560857
-delete 3 -651159
-insert 2 324792
-insert 1 -989628
-insert 4 -196700
-insert 4 769641
-insert 1 -310232
-insert 2 -873084
-delete 4 -196700
-insert 3 812154
-insert 5 626633
-find 1
-insert 4 805766
-insert 4 22676
-find 3
-delete 1 289057
-insert 5 553430
-delete 2 947071
-insert 4 -167013
-insert 3 911783
-insert 5 693723
-insert 1 -825460
-find 5
-insert 1 314491
-insert 5 725991
-insert 2 -855800
-insert 5 756056
-insert 2 -988480
-insert 4 534596
-insert 5 -104617
-delete 4 22676
-delete 5 756056
-insert 4 -264660
-insert 5 367267
-insert 3 370368
-insert 4 706151
-delete 1 -989628
-insert 4 96032
-find 586
-insert 2 -885118
-insert 2 100262
-insert 4 340696
-insert 1 698791
-find 5
-insert 3 -832028
-delete 2 -855800
-find 1
-find 3
-insert 5 937706
-insert 4 -220778
-insert 1 198560
-find 4
-insert 2 36800
-delete 1 -288014
-insert 5 571799
-insert 2 -336175
-insert 3 -643917
-insert 1 -431695
-insert 3 -957950
-insert 1 205572
-insert 5 -514456
-insert 1 941541
-insert 4 -846474
-insert 5 342524
-find 5
-insert 2 809644
-insert 4 416853
-insert 2 456814
-insert 3 -849658
-insert 2 922312
-insert 5 938929
-insert 3 245265
-insert 3 -630058
-delete 5 938929
-insert 1 -48427
-insert 3 717633
-find 4
-insert 2 409076
-delete 2 186491
-insert 2 690469
-find 683
-delete 3 206945
-find 1
-find 3
-insert 2 392544
-insert 3 24797
-insert 5 615463
-insert 4 483241
-insert 2 754292
-insert 3 763761
-insert 1 569330
-insert 4 -177578
-insert 5 -330762
-insert 4 553942
-insert 2 -657042
-insert 5 -760582
-insert 4 -317670
-find 1
-insert 4 -121338
-delete 4 416853
-insert 1 -491363
-insert 2 623534
+insert 4 -215524
+insert 3 -297487
+insert 3 780406
+insert 5 -250976
+insert 2 -220511
+delete 3 -368875
+insert 1 -164910
 find 2
-insert 4 792049
-insert 4 -265840
-delete 2 -84685
-insert 3 222352
-find 3
-insert 2 -378546
-insert 1 239915
-delete 1 941541
-find 5
-insert 4 -739294
-insert 1 -869721
-insert 1 831839
-insert 4 686106
-insert 1 -563408
-find 4
-insert 5 430355
-delete 4 686106
-insert 5 -583871
-insert 2 -54887
-find 103
-insert 1 -687137
-insert 1 846706
-insert 5 -769599
-insert 1 597617
-insert 3 -785090
-delete 4 483241
-insert 4 915316
-find 1
-insert 5 360430
-insert 5 -121175
-insert 3 -863674
+insert 2 575491
+insert 2 8316
 find 2
-insert 2 883760
-delete 3 412458
-insert 3 105996
-insert 2 38846
-insert 1 -952350
-insert 4 750535
-find 526
-insert 2 -500002
-insert 4 165796
-insert 2 -414846
-insert 4 -508699
-delete 2 36800
-find 1
-insert 5 503498
-insert 1 -311731
-delete 4 -167013
-insert 2 -5573
-insert 3 61367
-insert 1 327468
-insert 1 -13333
-insert 2 859641
-insert 2 367364
-insert 4 822658
-find 1
-insert 1 92458
-find 1
-delete 5 430355
-insert 5 -740213
-insert 1 -572452
-find 5
-insert 3 283564
-find 5
-find 5
-insert 5 -183796
-delete 1 -825460
-insert 5 338764
-insert 5 108423
-insert 4 -104013
-insert 2 -326394
-delete 2 -414846
-find 1
-insert 4 243583
-delete 2 754292
-find 5
-insert 1 742541
-find 3
-insert 5 632241
-find 5
-insert 4 -470771
-insert 5 -359621
-insert 1 -46709
-insert 1 379217
-insert 2 335547
-insert 5 -185134
-delete 5 632241
-insert 5 -366272
-find 1
-insert 3 -665521
-insert 4 -855484
-insert 1 -171861
-insert 2 -779335
-insert 2 -242843
-insert 4 145969
-insert 2 -310129
-insert 4 -955277
-find 1
-insert 2 803216
-insert 2 -229451
-insert 5 141293
-insert 2 -934140
-insert 5 176166
-find 4
-insert 3 -884277
-delete 2 100262
-delete 3 105996
-delete 1 -311731
-insert 1 -606277
-delete 5 -769599
-delete 4 145969
-find 5
-find 5
-find 4
-insert 4 14298
-insert 3 -833683
-insert 3 592122
-delete 5 725991
-insert 4 -251852
-insert 1 -288425
-insert 4 -230220
-delete 5 693723
-insert 4 965387
-insert 1 974367
-delete 2 -229451
-insert 1 -4696
-delete 2 -560857
-insert 3 958176
-insert 5 717454
-insert 4 -621082
-insert 5 653987
-delete 1 -171861
-insert 1 502722
 find 2
-insert 3 470628
-insert 3 -320498
-insert 2 187304
-insert 5 684649
-insert 2 -621925
-insert 3 -69045
-insert 4 704621
-delete 1 -431695
-insert 3 -8340
-insert 1 -139361
-find 1
+insert 5 869490
+delete 1 -164910
+delete 4 708370
+insert 4 735339
+insert 3 227800
+insert 3 -623677
+find 2
+insert 5 15507
 find 4
-delete 4 340696
-find 3
-delete 5 717454
-delete 4 -470771
-delete 4 -230220
-delete 3 24797
-delete 2 -326394
-delete 2 -621925
-delete 2 883760
+insert 3 178073
 find 1
+find 1
+insert 4 686220
+insert 4 764379
+delete 3 -297487
+find 2
+find 4
+insert 1 -300801
+insert 4 -476627
+insert 4 64435
+delete 1 -89700
+insert 3 -404103
+insert 2 941789
+insert 2 48283
+insert 1 551020
+insert 5 -608316
+insert 4 581496
+insert 3 -731610
+delete 3 780406
+delete 1 998691
+delete 3 -731610
+insert 4 -243551
+insert 3 427489
+delete 2 575491
+delete 5 869490
+delete 2 254250
+insert 3 358936
+insert 3 -850243
+insert 3 -618675
+find 3
+insert 4 -197882
+insert 1 -79399
+insert 2 -715821
+find 1
+insert 5 984730
+insert 5 -590987
+insert 2 747365
+insert 3 815542
+find 1
+insert 1 -363612
+insert 1 -637949
+insert 5 -618107
+delete 1 -637949
+insert 5 -329605
+insert 5 -485259
+insert 4 216456
+insert 2 878975
+insert 1 -74482
+find 4
+insert 3 20478
+insert 5 196864
+find 2
+insert 2 563627
+delete 5 -485259
+delete 1 -300801
+insert 3 -278219
+insert 3 -371776
+delete 3 -371776
+insert 5 771272
+insert 2 163128
+find 3
+insert 5 -83074
+delete 3 -618675
+find 4
+insert 5 824918
+find 3
+insert 1 674407
+insert 3 784324
+insert 5 -482242
+insert 2 -339073
+insert 1 -529288
+insert 1 699967
+insert 1 695942
+insert 2 946323
+insert 4 -535950
+insert 5 128573
+insert 5 -905260
+delete 2 941789
+insert 2 -363796
+insert 4 -297855
+insert 3 -67697
+insert 2 -653403
+find 4
+insert 1 957370
+insert 4 983752
+delete 2 747365
+insert 2 -486591
+insert 2 -813240
+delete 1 -79399
+insert 5 -473606
+delete 3 -850243
+insert 5 -790247
+insert 4 -87185
+insert 5 320595
+insert 3 -644207
+delete 1 -529288
+insert 1 757568
+find 4
+insert 5 -749431
+insert 3 626033
+insert 4 840718
+insert 4 402494
+insert 4 -741773
+find 1
+insert 5 -565960
+delete 5 -565960
+insert 3 -144884
+delete 4 64435
+insert 1 528943
+delete 4 840718
+delete 3 -144884
+insert 4 705132
+insert 3 854362
+insert 2 -367942
+find 4
+insert 1 -33469
+delete 4 -243551
+delete 2 -813240
+insert 2 -651817
+delete 4 705132
+insert 2 -388165
+find 1
+insert 3 -340024
+insert 1 -215581
+insert 4 273971
+delete 2 -363796
+insert 1 498215
+find 1
+insert 1 -638084
+insert 4 -332235
+insert 4 -650267
+insert 1 -81541
+insert 2 -635008
+insert 5 -885791
+insert 4 414058
+insert 5 868557
+find 4
+insert 4 -175739
+insert 1 -161959
+insert 1 -127521
+delete 4 -175739
+delete 5 -885791
+find 1
+insert 2 -459161
 find 5
-insert 3 -941606
-delete 4 792049
-delete 2 456814
-delete 1 239915
-delete 5 684649
-delete 3 717633
-delete 2 -779335
-insert 5 -19389
-delete 4 822658
-insert 4 -908760
-insert 4 511748
-delete 3 -577256
-delete 5 -366272
-delete 5 -914762
+insert 3 780264
+delete 3 780264
+insert 5 480358
+insert 1 -490192
+insert 4 85371
+delete 1 -81541
+insert 5 -653987
+insert 4 485070
+insert 1 263085
+delete 1 -33469
+delete 2 946323
+insert 4 -819583
+insert 4 -411615
+insert 3 -271646
+insert 1 182927
+insert 4 -457517
+insert 2 -55775
+insert 5 709788
+find 3
+delete 5 -590987
+find 2
+find 2
 find 5
-delete 1 -606277
-delete 2 623534
+insert 4 -300739
+insert 1 -242449
+find 5
+insert 5 816178
+delete 1 551020
+insert 5 -206972
+delete 4 -87185
+insert 5 -588309
+insert 3 428243
+insert 3 91372
+delete 4 -607245
+insert 4 500490
+insert 3 -881598
+delete 4 -197882
+delete 5 984730
+insert 4 -410100
+delete 3 358936
+insert 2 422098
+insert 3 -481422
+find 2
+insert 2 -951115
+insert 4 -814818
+insert 2 967511
+insert 1 -374372
+insert 1 175805
+insert 4 981453
+insert 5 -310629
+find 597
+insert 1 -479124
+insert 1 -470613
+insert 1 880592
+insert 1 -499482
+insert 1 878302
+insert 4 -353240
+insert 2 -537259
+insert 2 57463
+insert 1 -297516
+insert 2 -798998
+insert 4 651948
+delete 3 854362
+find 1
+insert 3 213311
+delete 5 -206972
+insert 5 146241
+insert 5 -605492
+find 5
+delete 1 -161959
+insert 1 -967547
+insert 3 500648
+insert 3 -860017
+delete 3 91372
+delete 3 500648
+delete 4 -819583
+delete 1 528943
+insert 5 540430
+insert 4 -97457
+insert 3 -699636
+insert 3 417814
+delete 4 -300739
+delete 5 -618107
+find 4
+delete 2 -653403
+insert 4 903341
+insert 3 632127
+insert 2 252376
+insert 4 931529
+insert 2 930058
+insert 5 293722
+insert 5 -357396
+find 4
+insert 5 -527015
+insert 1 431351
+insert 2 -648317
+insert 4 313435
+delete 5 816178
+insert 1 -386747
+insert 4 87242
+insert 5 422440
+insert 1 -575651
+delete 4 -476627
+insert 1 121768
+insert 1 -896701
+find 3
+insert 1 -540521
+insert 1 -210051
+delete 1 -242449
+insert 3 -262881
+insert 1 204615
+insert 3 743489
 find 4
 find 1
-delete 1 974367
+insert 5 597483
+insert 4 -815921
+insert 3 -602385
+insert 4 217272
+insert 2 -242345
+insert 4 -814269
+insert 2 -310678
+find 1
+insert 4 105117
+insert 4 476347
+insert 5 20495
+insert 2 115286
+insert 4 -705359
+insert 1 394896
+delete 5 -473606
+insert 5 288381
 find 3
-delete 5 -19389
-delete 3 -884277
-delete 2 -759009
-insert 3 -206841
-delete 1 -27115
-insert 3 -465937
-delete 1 698791
-delete 1 379217
-delete 4 -251852
-insert 3 -696393
-find 2
-find 5
+find 1
 find 3
+insert 2 -543323
+insert 2 766383
+insert 4 -923207
+insert 4 704187
+insert 2 -91711
+insert 4 -496699
+insert 2 724
+delete 2 163128
+insert 5 528576
+insert 4 729323
+insert 4 -366924
+insert 5 -919262
+insert 2 376289
+insert 5 830673
+insert 2 281424
+insert 1 -419687
+insert 5 638161
 find 2
-insert 1 -680135
-delete 2 -378546
-delete 2 -885118
-find 5
-delete 1 198560
-delete 2 859641
-delete 5 141293
+insert 5 -63516
 find 4
-delete 3 -832028
-delete 4 965387
-delete 1 205572
-delete 5 -183796
-delete 3 -957950
-delete 5 937706
-insert 5 494436
-delete 4 -121338
-insert 1 61816
-find 3
-insert 3 86361
-delete 1 -352495
-delete 5 503498
-delete 5 -330762
-delete 3 86361
-insert 3 982689
-delete 5 494436
-delete 5 418783
+delete 5 -310629
+delete 3 -271646
 find 4
-delete 4 -621082
-insert 2 -375479
-delete 4 769641
-delete 5 -791967
-delete 2 -336175
-find 1
-delete 3 -665521
+insert 1 674163
+delete 3 -860017
+delete 2 766383
+delete 4 581496
+insert 5 -814637
+delete 1 -386747
 find 2
-delete 5 571799
-insert 2 -223242
-insert 2 -553385
-insert 1 558401
-delete 1 -4696
-delete 2 -553385
-insert 1 -921794
+insert 5 -890632
+insert 3 -172032
+find 4
+insert 3 -897678
+delete 3 417814
+insert 1 -981591
+delete 5 830673
+insert 2 796676
+insert 3 215423
+insert 3 542123
+delete 3 213311
+insert 3 682088
+insert 1 818415
+insert 2 -975232
+insert 1 393626
+insert 4 553268
+insert 5 943769
+insert 5 -326908
+delete 4 -496699
+insert 2 -575668
+insert 5 161834
+insert 5 306708
+find 2
+insert 5 980911
 find 1
-insert 5 933760
-delete 2 367364
-insert 1 643949
-delete 4 -955277
-insert 1 37616
-delete 5 626633
-insert 5 649177
-find 1
-delete 3 827752
-delete 4 553942
-insert 3 -579301
-delete 1 314491
+insert 5 604958
+insert 3 306594
+delete 2 563627
+find 5
+insert 2 125047
+insert 5 -372486
+insert 4 372320
+insert 3 -136356
+insert 1 -344483
+insert 1 924361
+insert 2 991449
+insert 3 830965
+insert 4 564850
+insert 4 -435221
+delete 2 -975232
+find 5
+insert 4 85868
+insert 2 -770277
+insert 4 282147
+insert 1 -66025
+delete 4 -435221
+insert 5 465023
+insert 5 -877576
+insert 2 -236501
+insert 4 -582696
+insert 4 353912
+insert 2 -130922
+insert 1 105930
+insert 3 -601425
+find 4
+insert 4 -527845
+insert 5 -982905
+delete 1 121768
+find 5
+find 5
+delete 1 -215581
+insert 3 -509169
+delete 5 20495
+insert 3 -774847
+delete 3 -623677
+insert 3 -531880
+delete 5 -588309
+insert 1 -938349
+insert 3 535847
+insert 5 739656
+insert 5 -243168
+insert 3 -938801
+delete 2 967511
 find 3
-delete 5 338764
+insert 1 107912
+find 5
+delete 2 -651817
+delete 2 -798998
+insert 5 -249107
+delete 4 564850
+insert 1 -934532
+insert 5 324168
+delete 5 -982905
+delete 3 427489
+insert 4 412487
+delete 3 -644207
+find 2
+insert 3 55226
+insert 5 177876
+find 5
+insert 3 46074
+delete 2 115286
+find 3
+insert 3 -684334
+delete 2 -388165
+insert 2 -903718
+insert 4 -671292
+insert 5 296002
+delete 3 -684334
+insert 3 -11781
+find 5
+insert 4 656761
+delete 1 695942
+insert 4 -389080
+insert 2 -785428
+delete 1 878302
+delete 5 528576
+delete 2 724
+insert 1 519315
+insert 5 499039
+delete 5 -372486
+insert 5 674462
+delete 2 -903718
+insert 2 -216081
+insert 5 -978936
+insert 5 903746
+insert 4 -109396
+find 5
+insert 2 -462015
+insert 1 -50596
+insert 2 -567559
+insert 4 151831
+find 4
+find 4
+insert 4 577613
+insert 4 -1875
+insert 2 760715
+delete 2 760715
+insert 5 481122
+insert 2 -439648
+insert 4 871338
+insert 2 831402
+insert 5 -587033
+insert 4 695522
+insert 5 -376287
+delete 2 -339073
+insert 2 -514220
+delete 4 651948
+insert 4 527395
+delete 4 871338
+insert 2 -117751
+insert 1 589449
 find 5
 find 4
-insert 4 61301
-delete 4 534596
-insert 4 -389567
-delete 3 592122
-insert 5 -509217
-delete 5 615463
-delete 4 -389567
-delete 1 -491363
-delete 1 327468
+insert 1 169533
+insert 3 -242165
+find 4
+insert 1 153652
+delete 5 739656
+insert 4 964846
+insert 5 389200
 find 5
-insert 4 913475
-insert 2 -285240
+insert 5 135803
+find 5
+insert 3 -468542
+insert 3 -556289
+delete 5 943769
+insert 5 736867
+delete 2 -459161
+delete 2 -130922
+delete 2 -575668
+insert 3 12444
+delete 3 -242165
+find 4
+find 1
+find 4
+delete 4 686220
+delete 4 983752
+delete 5 -919262
+insert 5 -715927
+delete 1 -938349
+delete 4 -109396
+delete 1 169533
+insert 4 -118636
+delete 2 -117751
 find 2
+delete 1 674407
+insert 3 985743
+delete 3 632127
+delete 3 -404103
+delete 5 135803
+delete 1 -638084
+find 5
+insert 5 -704439
+delete 5 480358
+insert 4 87277
+insert 3 -525595
+delete 1 -66025
+delete 1 699967
+delete 2 878975
+delete 2 796676
+delete 2 -242345
+delete 1 -575651
+insert 5 -50046
+delete 3 -278219
+delete 4 87242
+delete 1 -499482
+insert 5 649871
+delete 5 868557
+delete 5 -243168
+insert 2 -821753
+delete 5 177876
+delete 2 -310678
+insert 4 648530
+delete 5 -326908
+insert 5 631818
+delete 5 -83074
+delete 2 -462015
+delete 4 -411615
+delete 3 178073
+delete 5 540430
+delete 4 500490
+delete 1 107912
+delete 1 -967547
+delete 5 771272
+delete 3 -938801
+delete 3 -136356
+delete 4 -457517
+delete 1 589449
+delete 5 -790247
+delete 4 273971
+delete 3 -262881
+insert 5 -216479
+insert 1 436367
+insert 1 -710678
+delete 2 -785428
+delete 2 8316
+delete 5 324168
+insert 4 162146
+delete 4 -815921
+delete 3 12444
+insert 4 555384
+delete 5 -249107
+delete 5 604958
+delete 4 402494
+delete 2 -648317
+delete 4 764379
+insert 1 224078
+delete 5 -704439
 find 3
-delete 4 511748
+delete 5 824918
+delete 1 224078
+insert 1 -268924
+delete 5 196864
+delete 5 597483
+delete 3 -881598
+find 4
+find 3
+insert 4 125203
+delete 3 535847
+delete 1 957370
+insert 5 229546
+insert 2 -342981
+delete 1 -127521
+delete 4 476347
+delete 1 -934532
+delete 1 436367
+delete 5 146241
+delete 4 -582696
+delete 1 153652
+delete 4 931529
+delete 1 175805
+insert 3 -159224
+delete 4 151831
+find 1
+delete 1 -50596
+insert 3 704260
+delete 5 -357396
+delete 2 125047
+delete 4 -118636
+delete 1 -268924
+delete 3 985743
+delete 4 216456
+delete 4 -671292
+delete 3 815542
+find 4
+delete 5 499039
+delete 1 498215
+delete 2 -951115
+delete 5 674462
+delete 3 -172032
+insert 5 827820
+delete 4 964846
+delete 4 -389080
+delete 4 412487
+insert 4 -523594
+delete 2 422098
+delete 4 313435
+delete 5 -890632
+delete 1 -344483
+delete 5 128573
+delete 5 827820
+delete 5 638161
+delete 2 930058
+insert 4 -247758
+delete 2 281424
+delete 1 924361
+insert 1 -82871
+delete 4 -332235
+delete 5 293722
+delete 1 818415
+insert 4 514239
+delete 3 -11781
+delete 3 215423
+find 5
+insert 2 892633
+delete 1 -82871
+delete 5 296002
+find 2
+find 2
+delete 2 -486591
+delete 5 -978936
+delete 3 704260
+find 5
+delete 5 -877576
+insert 4 938335
+delete 5 -63516
+find 5
+insert 2 369984
+delete 5 -250976
+delete 4 282147
+delete 5 -50046
+delete 1 -540521
+delete 4 -410100
+delete 1 -490192
+delete 5 15507
+delete 5 306708
+find 2
+delete 1 -297516
+delete 4 87277
+delete 3 743489
+delete 5 -216479
+delete 4 -650267
+insert 2 -764874
+delete 1 -74482
+delete 3 306594
+delete 4 -814818
+find 4
+find 3
+insert 3 -757073
+delete 5 736867
+find 4
+insert 1 731212
+insert 4 -878057
+find 1
+insert 3 -988896
+insert 1 696031
+delete 5 -653987
+insert 5 -425130
+delete 4 527395
+delete 2 -55775
+insert 1 -646236
+delete 4 -297855
+delete 4 648530
+delete 5 161834
+insert 2 -762063
+delete 1 -896701
+delete 1 -374372
+find 4
+find 4
+delete 5 -814637
+delete 3 -602385
+delete 4 -527845
+insert 2 -916533
+delete 3 55226
+delete 4 162146
+delete 2 -91711
+delete 3 -525595
+find 662
+delete 3 -67697
+find 5
+delete 5 465023
+delete 4 735339
+delete 1 -710678
+delete 4 -215524
+delete 2 -342981
+delete 1 -981591
+delete 5 -376287
+delete 3 -774847
+delete 3 227800
+delete 1 731212
+insert 1 613594
+delete 5 -329605
+delete 1 -479124
+insert 2 978120
+insert 4 773868
+delete 2 -514220
+delete 4 -741773
+delete 4 903341
+insert 5 307122
+insert 3 550461
+insert 1 -516806
+insert 2 -401078
+delete 1 204615
+find 2
+delete 2 -401078
+delete 5 481122
+delete 2 892633
+delete 2 -715821
+delete 2 -635008
+delete 4 938335
+insert 3 -254701
+delete 5 631818
+delete 4 414058
+delete 5 -605492
+delete 5 649871
+insert 3 4608
+delete 2 48283
+delete 3 4608
+delete 5 -608316
+delete 4 -1875
+delete 3 682088
+find 1
+delete 3 -481422
+delete 4 577613
+delete 4 729323
+delete 2 -764874
+delete 4 -705359
+delete 2 831402
+find 1
+delete 1 394896
+delete 4 -923207
+find 1
+delete 5 389200
+delete 2 991449
+insert 2 449208
+delete 3 -699636
+delete 3 -556289
+delete 5 -425130
+delete 3 -340024
+delete 4 704187
+insert 5 -777220
+delete 2 -770277
+delete 2 369984
+delete 3 -601425
+delete 1 105930
+delete 2 978120
+delete 1 696031
+delete 3 46074
+delete 2 -220511
+delete 1 757568
+delete 1 263085
+find 338
+delete 5 -905260
+delete 1 -419687
+find 2
+insert 2 -157303
+find 3
+delete 3 -468542
+insert 5 811915
+insert 5 166116
+delete 2 -543323
+find 3
+delete 5 -777220
+delete 4 217272
+delete 5 -482242
+find 2
+delete 5 -715927
+find 3
+find 2
+delete 3 20478
+insert 4 -395648
+delete 2 376289
+delete 3 542123
+delete 4 555384
+delete 3 -159224
+delete 1 431351
+delete 1 880592
+delete 5 307122
+delete 4 -395648
+find 4
+find 3
+delete 5 288381
+insert 3 -507457
+delete 5 709788
+insert 5 -864697
+delete 1 -646236
+delete 1 613594
+delete 5 -587033
+delete 3 626033
+delete 4 485070
+insert 5 722413
+insert 1 -194232
+delete 4 -814269
+delete 4 -523594
+delete 3 550461
+find 2
+delete 5 980911
+delete 3 -988896
+delete 2 57463
+delete 1 519315
+delete 5 -864697
+insert 3 -576465
+delete 3 -254701
+delete 3 -757073
+find 3
+find 4
+delete 4 125203
+find 4
+insert 2 593500
+delete 5 -749431
+find 2
+insert 2 -980616
+delete 1 393626
+delete 5 722413
+find 4
+delete 4 85371
+delete 3 -509169
+delete 4 514239
+find 4
+delete 4 -535950
+find 5
+insert 4 -87354
+delete 5 166116
+delete 1 182927
+delete 2 -916533
+delete 4 695522
+find 4
+delete 4 773868
+insert 1 -350475
+delete 3 784324
+delete 1 674163
+find 3
+delete 2 593500
+delete 4 105117
+find 564
+delete 2 -236501
+delete 3 428243
+insert 2 108127
+delete 4 -353240
+insert 1 -560423
+insert 4 -737999
+delete 2 -821753
+delete 5 422440
+delete 3 -507457
+insert 2 -743067
+find 2
+delete 3 -897678
+delete 4 656761
+delete 4 85868
+find 4
+delete 2 -743067
+insert 5 609907
+delete 1 -470613
+delete 4 -87354
+delete 5 229546
+delete 4 -97457
+delete 1 -350475
+delete 2 -762063
+delete 4 553268
+delete 3 830965
+delete 5 609907
+delete 3 -531880
+delete 2 -537259
+delete 1 -363612
+insert 3 -518719
+delete 4 -737999
+delete 5 -527015
+delete 4 981453
+delete 2 -216081
+delete 5 320595
+insert 1 230045
+delete 1 230045
+find 1
+find 4
+find 2
+delete 2 252376
+delete 5 903746
+delete 1 -560423
+insert 4 769111
+delete 1 -516806
+delete 2 -567559
+delete 2 -367942
+delete 4 -366924
+find 2
+delete 3 -576465
+insert 3 402585
+delete 4 -247758
+delete 2 449208
+delete 2 -439648
+delete 3 -518719
+insert 4 -229908
+insert 1 576502
+delete 4 -878057
 find 2
 find 1
-delete 2 809644
-delete 2 38846
-delete 5 -583871
-delete 5 342524
-delete 3 216651
+delete 2 -157303
+delete 1 -210051
+delete 4 769111
+delete 3 402585
+delete 4 372320
+insert 1 -751903
+delete 1 -194232
+delete 2 -980616
+insert 4 459984
 find 1
-delete 2 -5573
-delete 2 -375479
-delete 1 -680135
-delete 5 553430
+insert 2 688455
+insert 1 -436900
+delete 4 459984
 find 2
-delete 4 704621
-delete 1 -572452
-insert 1 250700
-delete 2 -988480
-delete 5 108423
-delete 3 61367
-find 3
-delete 5 -185134
-delete 4 -265840
-delete 5 -359621
-insert 5 71510
-delete 2 -873084
-insert 2 -585626
-insert 5 -739636
-delete 3 -833683
-delete 1 92458
-insert 2 555009
-delete 4 706151
-delete 5 -514456
-delete 3 812154
+delete 2 108127
+delete 4 353912
 find 1
-delete 1 846706
-delete 2 -310129
-delete 2 690469
-delete 3 -643917
-delete 2 -242843
-insert 3 -399510
-insert 2 -740232
-delete 3 -178709
-delete 3 -206841
-delete 3 -849658
-find 3
-delete 5 -509217
-delete 2 -740232
-delete 4 -795564
-find 1
-insert 5 -745425
-find 3
-insert 2 -61907
-insert 4 -990578
-delete 4 -908760
-delete 5 -121175
-insert 5 291385
-delete 5 -745425
-insert 2 688393
-insert 1 -42477
-delete 1 -42477
-delete 5 71510
-delete 1 250700
+delete 1 -436900
+delete 1 576502
+delete 2 688455
+delete 4 -229908
+delete 5 811915
+delete 1 -751903
+find 802
+find 323
+insert 2 319574
 find 2
-insert 3 -247565
-delete 2 -657042
-insert 4 -392969
-delete 4 -508699
-delete 4 -104013
-delete 2 -934140
-delete 3 -863674
-insert 5 532530
-insert 1 501579
-find 3
-delete 5 933760
-insert 2 -400656
-find 2
-delete 5 367267
+
+
+
+
+delete 2 319574
+insert 2 512143
+delete 2 512143
+insert 3 411134
+delete 3 411134
+insert 2 77710
+delete 2 77710
+find 951
+insert 5 -560297
+delete 5 -560297
+insert 1 712281
+delete 1 712281
+insert 1 70241
 find 1
-insert 5 -139428
+find 1
+delete 1 70241
+insert 5 -313896
+delete 5 -313896
+find 333
+insert 4 382566
+find 4
+delete 4 382566
+insert 3 689903
+insert 1 118716
+insert 4 205482
+find 1
+delete 4 205482
+delete 3 689903
+delete 1 118716
+insert 4 104396
+delete 4 104396
+insert 5 -756484
+insert 3 -885925
+insert 3 -160409
+delete 3 -160409
+delete 5 -756484
+delete 3 -885925
+insert 4 443736
+delete 4 443736
+insert 1 257534
+delete 1 257534
+insert 4 -180982
+delete 4 -180982
+insert 1 567284
+find 1
+insert 1 189890
+insert 5 961458
+find 980
+insert 1 -129961
+insert 5 -471042
+find 1
+insert 3 -892011
+insert 2 165425
+insert 5 210684
+insert 1 -189714
+find 5
+insert 1 -796985
+insert 4 -748240
+insert 2 702923
+insert 5 -444513
+insert 4 -192009
+insert 4 386958
+insert 4 464471
+insert 3 129677
+find 1
+insert 2 -579231
+find 5
+insert 5 -177634
+insert 2 943723
+insert 5 -973594
+insert 3 -397418
+insert 3 -474495
+insert 2 41266
+delete 2 702923
+insert 3 8144
+insert 2 -917285
+insert 2 457997
+insert 1 -590100
+find 2
+insert 5 349611
+insert 4 279424
+insert 2 943927
+insert 4 895554
+insert 2 -806904
+insert 4 433128
+insert 4 -335049
+insert 1 641390
+find 5
+insert 3 6277
+insert 5 185756
+insert 5 -186719
+insert 5 -365990
+insert 2 803932
+insert 4 -975880
+insert 3 520616
+insert 2 869407
+insert 4 954929
+insert 2 -641414
+insert 2 -15371
+insert 1 -943467
+insert 2 593707
+insert 3 784268
+insert 4 -614731
+insert 3 374561
+insert 2 762410
+insert 4 264049
+insert 3 571248
+insert 3 776340
+find 3
+insert 4 -413748
+insert 2 -316467
+insert 5 -448885
+insert 1 805546
+find 2
+insert 3 359481
+insert 2 -96208
+insert 2 -922292
+insert 5 -360601
+delete 2 -316467
+insert 1 768981
+delete 3 776340
+delete 3 -892011
+delete 2 457997
+insert 1 -226159
+insert 5 960910
+insert 3 -70141
+insert 4 161145
+insert 1 -807918
+delete 2 -641414
+delete 3 374561
+insert 1 -297772
+delete 2 803932
+delete 5 210684
+insert 5 245621
+insert 1 -204247
+insert 4 898015
+insert 2 -142924
+insert 2 378886
+find 5
+insert 3 -325336
+insert 1 -458115
+insert 1 506524
+insert 3 -576529
+insert 1 -737911
+insert 2 964632
+insert 5 -931502
+find 4
+insert 4 -151957
+insert 1 -988761
+delete 2 943723
+insert 1 936863
+insert 4 712613
+insert 1 958966
+insert 5 -611578
+insert 4 376005
+insert 3 -509222
+insert 5 -375728
+insert 3 866261
+delete 1 189890
+insert 4 731509
+insert 3 223719
+insert 1 -846745
+insert 4 773911
+insert 1 -662785
+insert 2 -79384
+insert 4 -526893
+insert 1 696900
+delete 3 359481
+insert 5 190753
+insert 4 456424
+find 4
+insert 3 375280
+insert 2 -559185
+insert 3 161002
+insert 1 -442320
+insert 4 -42122
+insert 5 -3721
+insert 1 921257
+insert 4 410372
+insert 1 835800
+delete 5 349611
+insert 3 -360589
+insert 5 845908
+insert 4 -513967
+insert 3 -342159
+insert 5 -922400
+find 3
+insert 2 195843
+insert 4 -943738
+insert 2 801755
+insert 1 751880
+insert 5 -843197
+insert 4 250505
+insert 4 -167733
+insert 5 -13412
+delete 2 801755
+insert 2 -682540
+insert 4 -145653
+delete 1 751880
+insert 2 757092
+insert 3 -107523
+insert 1 453330
+insert 5 -119974
+insert 5 -314305
+insert 2 943586
+insert 3 900352
+insert 1 169259
+insert 3 -760080
+find 2
+insert 5 16871
+delete 2 -15371
+insert 2 -87361
+insert 1 -800484
+insert 3 -365405
+insert 3 -818441
+insert 3 257301
+delete 5 -314305
+delete 3 129677
+insert 3 59250
+insert 1 786906
+insert 4 -135069
+insert 4 -656610
+insert 3 873969
+insert 3 855099
+insert 1 564427
+insert 3 -878596
+insert 4 -502223
+insert 3 -820319
+insert 3 -452818
+find 3
+find 5
+delete 5 -365990
+insert 1 -760848
+insert 3 853274
+insert 2 22646
+insert 3 338135
+find 3
+insert 3 247353
+find 4
+find 1
+find 2
+find 4
+insert 1 -980015
+find 1
+insert 3 315076
+insert 3 -507049
+insert 4 200970
+find 4
+insert 3 279718
+insert 2 -525535
+insert 2 891599
+insert 5 832925
+find 3
+delete 1 -760848
+insert 1 -61589
+insert 5 563616
+delete 5 -973594
+delete 1 -980015
+insert 4 532394
+delete 1 -189714
+find 3
+insert 1 163570
+insert 3 104915
+delete 4 -943738
+delete 2 -525535
+find 4
+insert 1 221427
+insert 4 -265111
+insert 4 8351
+insert 5 -775119
+insert 2 376657
+insert 3 -896096
+insert 1 -638283
+insert 3 614099
+find 3
+insert 4 -414173
+insert 5 -101699
+find 2
+insert 1 142255
+find 256
+insert 2 -924636
+insert 3 -789316
+delete 3 900352
+find 3
+delete 3 -820319
+insert 3 -54632
+insert 3 422923
+insert 1 -967926
+insert 5 -105963
+insert 5 -164756
+find 1
+delete 4 386958
+insert 4 533515
+insert 1 371867
+insert 3 921550
+insert 1 -655127
+insert 3 686996
+insert 3 -962315
+delete 5 -931502
+insert 4 745317
+insert 2 693989
+insert 4 -227292
+insert 5 -301319
+delete 2 -559185
+insert 3 -643840
+insert 2 -750649
+insert 5 733064
+find 1
+find 3
+insert 2 -125279
+find 4
+insert 2 334218
+insert 2 -917961
+insert 3 393064
+delete 2 -87361
+find 4
+insert 4 190671
+delete 1 -988761
+delete 2 -142924
+insert 3 219975
+find 3
+insert 2 337723
+insert 3 -731604
+insert 5 -792299
+find 1
+insert 2 -378756
+delete 5 733064
+insert 2 -483745
+insert 2 838269
+insert 1 153482
+insert 1 113683
+insert 5 409491
+insert 4 744144
+insert 1 946742
+insert 2 -188419
+insert 3 -131120
+insert 1 -997965
+insert 4 328895
+find 2
+find 3
+insert 5 -114818
+insert 2 407151
+find 5
+insert 1 812741
+insert 2 -440339
+insert 5 874566
+delete 2 869407
+insert 2 -141584
+insert 2 -410432
+insert 5 -951506
+insert 1 4675
+insert 3 -675153
+find 2
+insert 3 -236400
+insert 2 -402113
+insert 5 -860528
+insert 5 -663017
+insert 2 -314948
+delete 3 -576529
+insert 5 808976
+insert 3 708929
+insert 1 -351977
+insert 4 143134
+delete 2 -125279
+delete 4 -135069
+insert 3 929018
+insert 4 941192
+insert 1 -365606
+insert 1 615523
+insert 1 901179
+delete 4 745317
+insert 1 811818
+find 4
+insert 4 -297946
+insert 3 -892236
+delete 1 221427
+insert 4 40474
+insert 3 -449647
+insert 2 -923357
+insert 2 429436
+insert 2 -962226
+find 5
+insert 1 299450
+find 4
+insert 3 354708
+find 2
+insert 3 570864
+delete 5 -444513
+delete 1 -351977
+insert 3 -151179
+insert 4 612003
+find 5
+insert 2 -883489
+delete 1 901179
+insert 2 -708564
+insert 5 243395
+find 3
+insert 2 525613
+insert 2 431286
+insert 2 -818485
+insert 1 -422576
+insert 5 287981
+insert 2 -421544
+insert 4 -339498
+find 2
+delete 4 -167733
+insert 5 224276
+insert 3 -94950
+insert 2 29954
+insert 1 -621616
+delete 1 921257
+insert 1 -560395
+insert 4 153461
+insert 4 -205388
+insert 3 496371
+insert 3 573512
+insert 5 -174109
+insert 4 -85053
+insert 5 -187439
+insert 1 -164039
+insert 1 983569
+delete 4 -85053
+find 1
+insert 5 497977
+insert 1 986134
+find 1
+delete 2 -708564
+insert 3 -800513
+find 2
+insert 3 -918056
+insert 1 -347125
+delete 1 -347125
+insert 3 -748126
+insert 3 992525
+find 3
+insert 3 335826
+insert 4 -191536
+delete 2 838269
+insert 4 -535520
+find 5
+insert 5 -808076
+insert 4 -327488
+insert 4 223508
+insert 5 -633993
+insert 4 952384
+insert 5 -482689
+insert 1 -87651
+insert 2 -429642
+insert 5 -815529
+insert 4 -270812
+delete 2 -922292
+delete 1 -297772
+insert 4 -175156
+insert 2 124332
+insert 5 -123314
+delete 2 195843
+delete 1 -560395
+insert 4 -483276
+insert 3 -399294
+insert 5 34146
+insert 3 845538
+insert 4 -504527
+insert 3 757730
+insert 1 911083
+insert 1 -109870
+insert 5 -809266
+delete 3 -107523
+insert 1 584111
+insert 2 -510564
+insert 5 590274
+delete 3 -474495
+insert 3 -126942
+insert 1 -608106
+find 4
+insert 3 -601669
+insert 1 -877822
+insert 4 372738
+insert 4 653614
+insert 5 561259
+insert 1 -427253
+find 1
+delete 5 -843197
+insert 2 -345521
+insert 1 470763
+insert 5 372725
+insert 5 721915
+delete 2 334218
+insert 3 87861
+insert 4 365811
+find 5
+insert 3 -686510
+insert 5 773052
+insert 5 91665
+insert 2 977615
+delete 3 6277
+insert 2 -68075
+delete 1 641390
+insert 4 177204
+insert 3 391857
+find 4
+insert 3 661128
+insert 1 -139737
+insert 3 110782
+find 5
+insert 1 657953
+insert 5 -436898
+insert 5 35603
+insert 4 -156309
+insert 2 18752
+delete 5 -448885
+delete 1 -638283
+insert 1 -111766
+delete 4 -192009
+insert 3 729542
+insert 5 -979037
+insert 5 -41968
+insert 1 190827
+find 2
+insert 2 89709
+insert 1 159377
+find 5
+insert 4 648907
+insert 2 706600
+find 3
+insert 3 -643155
+insert 4 -214040
+find 2
+insert 2 -90647
+insert 3 709156
+find 4
+delete 1 696900
+delete 2 -141584
+find 2
+insert 2 -489400
+delete 4 456424
+insert 3 638133
+insert 2 928220
+insert 4 584929
+find 5
+insert 1 -352598
+insert 1 641488
+find 2
+insert 2 582051
+insert 2 -310321
+insert 2 -344814
+delete 5 -114818
+delete 3 375280
+insert 2 -811789
+insert 3 -387033
+find 3
+delete 3 661128
+insert 3 -985388
+delete 5 -663017
+insert 3 -929395
+delete 4 -175156
+delete 1 113683
+delete 1 -967926
+delete 4 584929
+insert 4 -51088
+delete 5 874566
+delete 4 612003
+insert 2 58634
+delete 1 -590100
+find 1
+find 2
+find 3
+insert 3 895451
+find 2
+delete 1 -427253
+insert 1 -307580
+insert 1 -894009
+delete 4 223508
+insert 5 -652532
+delete 3 570864
+find 4
+delete 4 279424
+insert 3 -556630
+find 3
+delete 2 977615
+delete 2 -923357
+delete 5 372725
+find 3
+find 3
+delete 4 -748240
+delete 4 -335049
+delete 2 407151
+insert 1 638145
+insert 5 -405063
+insert 1 212511
+delete 4 -614731
+insert 1 -580044
+find 5
+insert 4 579247
+find 3
+delete 1 163570
+delete 1 153482
+delete 4 533515
+delete 3 -643155
+find 4
+find 5
+delete 5 -405063
+delete 3 573512
+find 3
+find 5
+delete 5 721915
+delete 3 895451
+delete 5 -809266
+find 5
+delete 5 243395
+delete 3 257301
+delete 1 -442320
+insert 5 782701
+delete 1 -458115
+delete 5 -482689
+find 4
+delete 3 -70141
+delete 5 -101699
+delete 4 161145
+delete 1 -846745
+find 5
+find 3
+delete 4 -191536
+delete 4 744144
+delete 1 -662785
+delete 4 153461
+find 5
+insert 3 597301
+insert 1 792922
+find 5
+delete 4 -327488
+find 4
+find 3
+insert 1 882849
+delete 5 961458
+delete 2 89709
+delete 5 -164756
+delete 4 898015
+delete 5 -775119
+delete 3 992525
+find 5
+find 5
+delete 3 -556630
+find 4
+delete 2 928220
+find 2
+delete 3 -892236
+delete 1 805546
+find 3
+delete 2 593707
+delete 3 866261
+insert 1 -959735
+delete 2 -310321
+insert 5 -36073
+delete 2 41266
+delete 3 853274
+insert 4 843164
+delete 3 -399294
+delete 2 -188419
+delete 5 -611578
+insert 4 -48568
+delete 2 -682540
+delete 5 35603
+delete 2 378886
+delete 3 -365405
+delete 2 757092
+delete 5 -436898
+find 2
+find 4
+delete 1 -943467
+delete 3 686996
+delete 3 87861
+delete 1 584111
+insert 3 -241281
+insert 1 773467
+insert 2 -182863
+delete 5 563616
+delete 2 -489400
+insert 1 319242
+find 2
+find 3
+delete 1 792922
+delete 1 -422576
+insert 3 -10815
+delete 3 520616
+delete 2 29954
+find 5
+delete 5 -3721
+insert 2 -640458
+delete 4 532394
+delete 4 -414173
+delete 3 110782
+delete 5 -301319
+delete 1 371867
+delete 1 -737911
+delete 3 -800513
+find 3
+delete 2 22646
+delete 1 -621616
+delete 1 -655127
+delete 3 315076
+delete 1 -800484
+insert 5 -721021
+insert 1 744318
+delete 1 -959735
+insert 1 931815
+find 2
+delete 2 -96208
+delete 5 224276
+delete 1 470763
+insert 4 -971426
+delete 1 983569
+delete 4 -227292
+delete 1 4675
+delete 5 91665
+delete 4 -156309
+delete 4 -145653
+delete 5 287981
+insert 5 -716982
+delete 4 -265111
+insert 4 -982004
+insert 5 -69654
+delete 4 264049
+delete 2 -962226
+delete 3 -387033
+delete 5 497977
+insert 4 -305287
+insert 1 -30016
+delete 3 -452818
+delete 1 -30016
+insert 5 161411
+find 4
+delete 5 -36073
+delete 3 -918056
+delete 4 328895
+delete 5 -186719
+delete 4 190671
+delete 1 -365606
+delete 2 431286
+delete 3 422923
+insert 5 728256
+find 5
+insert 3 602351
+find 4
+find 4
+insert 2 627588
+delete 2 58634
+delete 1 506524
+insert 2 -215070
+delete 3 709156
+delete 2 376657
+delete 3 -748126
+delete 4 843164
+find 1
+insert 4 -70107
+find 4
+find 3
+delete 2 -79384
+delete 3 729542
+insert 3 -357295
+delete 5 -187439
+delete 1 -204247
+delete 3 279718
+delete 3 -94950
+find 5
+delete 4 -656610
+find 2
+delete 5 -652532
+find 980
+delete 1 -139737
+delete 3 638133
+delete 1 319242
+insert 4 -517997
+insert 3 -30173
+delete 3 -507049
+insert 5 -581978
+find 5
+delete 4 410372
+delete 1 936863
+insert 3 801490
+delete 4 -971426
+find 2
+delete 2 -806904
+delete 3 -686510
+delete 3 59250
+delete 5 -922400
+delete 4 -214040
+delete 3 -643840
+insert 4 -518352
+delete 3 -449647
+delete 1 768981
+delete 2 337723
+insert 5 -33665
+find 1
+delete 1 744318
+find 5
+delete 2 582051
+delete 5 -815529
+delete 1 786906
+insert 2 -661114
+insert 1 246135
+insert 3 -91087
+delete 3 -896096
+delete 2 762410
+delete 4 -48568
+delete 4 8351
+delete 2 -883489
+delete 1 -226159
+delete 2 -429642
+delete 4 648907
+delete 5 782701
+insert 5 374914
+delete 2 -640458
+delete 2 165425
+insert 4 999244
+delete 4 -518352
+delete 3 -10815
+delete 2 -314948
+find 1
+delete 4 -339498
+insert 1 -39573
+delete 5 -123314
+delete 3 -397418
+insert 4 570907
+delete 3 104915
+insert 4 -360043
+delete 5 808976
+delete 5 832925
+delete 5 590274
+insert 5 -269199
+find 4
+delete 1 190827
+find 1
+delete 2 525613
+insert 2 236891
+find 1
+insert 5 193343
+delete 4 -975880
+delete 1 -580044
+delete 1 946742
+find 2
+delete 4 653614
+delete 3 -236400
+delete 3 -985388
+delete 1 835800
+find 3
+insert 3 -687068
+delete 5 -105963
+insert 1 -522029
+insert 3 -82466
+find 1
+delete 4 999244
+insert 4 -751083
+insert 5 -954232
+delete 3 -675153
+delete 4 579247
+delete 1 299450
+delete 5 -174109
+find 3
+insert 2 12507
+insert 2 -218695
+find 4
+delete 1 911083
+delete 5 374914
+delete 5 728256
+delete 2 -483745
+delete 5 -41968
+delete 1 -997965
+delete 2 -402113
+delete 3 921550
+delete 3 757730
+delete 2 891599
+delete 3 -601669
+delete 1 453330
+delete 5 -716982
+find 3
+find 2
+insert 3 -136848
+delete 5 561259
+delete 1 986134
+delete 1 657953
+delete 1 212511
+find 3
+insert 2 733634
+delete 4 -51088
+find 1
+delete 5 -954232
+delete 3 -241281
+delete 4 40474
+delete 1 811818
+delete 2 -661114
+delete 4 -70107
+delete 3 -82466
+insert 5 661813
+delete 5 -33665
+delete 5 845908
+insert 2 -191507
+delete 1 -796985
+delete 3 161002
+delete 2 -750649
+delete 1 812741
+insert 4 657934
+find 2
+delete 4 941192
+find 1
+insert 5 151892
+delete 2 -345521
+find 728
+insert 2 -820609
+insert 2 -439934
+delete 5 -269199
+delete 4 -504527
+find 3
+delete 1 -87651
+delete 1 -111766
+delete 4 954929
+delete 1 641488
+delete 3 855099
+insert 3 -962625
+delete 1 615523
+delete 1 159377
+insert 2 -895394
+delete 3 845538
+delete 1 931815
+insert 1 369499
+insert 4 903668
+find 1
+delete 5 245621
+delete 4 -751083
+insert 5 -746146
+insert 2 -353565
+delete 3 -131120
+delete 2 706600
+find 4
+delete 5 151892
+delete 1 958966
+insert 4 -448412
+insert 3 448934
+delete 3 8144
+delete 2 -924636
+delete 5 16871
+insert 2 322439
+insert 4 511877
+delete 2 -353565
+find 4
+delete 1 -109870
+delete 4 657934
+delete 1 -877822
+find 5
+insert 1 -706993
+delete 1 -608106
+delete 1 564427
+delete 1 882849
+insert 1 404763
+delete 2 -218695
+delete 2 -440339
+delete 5 -951506
+delete 5 773052
+delete 3 223719
+delete 3 -789316
+delete 1 567284
+delete 5 -177634
+insert 2 -456656
+delete 3 -91087
+delete 1 246135
+delete 3 -687068
+insert 1 22878
+find 5
+insert 5 692817
+delete 2 964632
+find 4
+delete 4 -535520
+delete 5 692817
+insert 2 246626
+find 5
+delete 1 -129961
+delete 1 142255
+insert 4 278684
+delete 2 -917285
+insert 3 820131
+insert 1 -952994
+insert 5 863099
+insert 5 -946269
+find 1
+find 3
+delete 2 -818485
+delete 5 -979037
+delete 3 -929395
+delete 4 143134
+delete 3 338135
+delete 5 190753
+insert 1 -777735
+delete 4 -42122
+find 137
+find 2
+delete 2 627588
+delete 3 873969
+delete 1 -307580
+delete 4 -205388
+insert 5 29490
+delete 4 -982004
+insert 5 -201458
+delete 4 903668
+delete 3 597301
+delete 1 638145
+find 4
+insert 3 -812957
+insert 5 649827
+insert 5 216044
+delete 4 570907
+find 5
+delete 5 -119974
+delete 2 943927
+delete 3 -360589
+insert 5 -44569
+delete 4 -502223
+delete 1 -39573
+delete 2 -215070
+delete 5 863099
+delete 2 943586
+insert 1 -44409
+delete 5 -860528
+delete 2 -811789
+delete 3 448934
+delete 1 -61589
+delete 4 -360043
+delete 4 -151957
+insert 5 -660474
+delete 5 193343
+delete 2 -917961
+insert 5 -589384
+delete 3 -962625
+insert 5 457652
+insert 3 -622306
+delete 3 -878596
+insert 2 743765
+find 1
+insert 3 263451
+delete 4 895554
+delete 2 743765
+delete 3 -509222
+delete 4 -517997
+delete 4 712613
+insert 3 380933
+insert 1 -594781
+insert 1 145701
+insert 2 756281
+delete 2 -191507
+insert 3 -735693
+insert 5 -546329
+insert 1 210853
+insert 2 -881379
+insert 4 678510
+delete 3 -342159
+insert 5 946584
+insert 1 -374740
+insert 1 -372262
+insert 5 806183
+insert 3 787898
+insert 2 522424
+find 5
+insert 3 -189382
+find 3
+insert 3 973661
+insert 3 -595946
+find 1
+find 5
+delete 3 -325336
+insert 2 -468696
+insert 5 -245695
+insert 2 -162267
+insert 2 632998
+insert 1 -526196
+insert 4 -152083
+insert 1 -280713
+find 4
+insert 5 -10271
+insert 3 728847
+find 4
+delete 1 -372262
+delete 3 -595946
+insert 5 -577594
+find 4
+delete 3 -189382
+insert 5 344138
+find 2
+insert 5 -970942
+insert 2 78206
+insert 3 221487
+delete 3 -622306
+delete 5 661813
+insert 1 -556950
+insert 4 -289164
+insert 1 -958617
+insert 1 187511
+delete 3 219975
+insert 3 190285
+delete 2 733634
+find 2
+find 2
+delete 3 -151179
+insert 5 -683309
+insert 3 578408
+insert 1 -777271
+delete 4 250505
+insert 4 -202009
+insert 5 -879810
+insert 5 -656687
+insert 5 -712738
+insert 3 -616415
+insert 2 471446
+insert 5 98686
+insert 2 750748
+find 5
+insert 2 61514
+insert 5 -270919
+insert 3 203217
+find 2
+insert 3 111599
+insert 2 805699
+insert 3 838958
+insert 5 -601812
+insert 3 859562
+insert 4 -127448
+insert 5 -694740
+insert 4 -354137
+insert 2 994001
+find 5
+find 5
+insert 3 192693
+insert 3 -858613
+insert 4 -562080
+insert 3 555555
+find 1
+insert 2 963553
+insert 5 -56202
+delete 4 -483276
+insert 2 637874
+find 2
+insert 3 -723172
+delete 5 -633993
+insert 4 -943964
+find 4
+insert 4 525161
+insert 1 -727633
+insert 2 787878
+insert 4 451168
+insert 2 -580810
+insert 4 -867986
+find 5
+insert 1 -212108
+insert 5 987650
+find 1
+insert 5 538525
+insert 4 419228
+find 4
+insert 5 907650
+insert 4 -488849
+insert 4 843016
+insert 2 920728
+delete 5 -44569
+find 3
+find 3
+insert 2 -184430
+insert 3 730985
+insert 3 -919635
+insert 3 126361
+insert 2 -671916
+insert 4 312439
+insert 4 -968983
+insert 2 459031
+insert 5 952638
+delete 3 973661
+find 5
+delete 5 -577594
+insert 3 -567422
+delete 4 -448412
+insert 2 -434986
+find 4
+insert 5 169288
+insert 5 901686
+insert 3 369638
+insert 1 -505589
+insert 5 270549
+find 4
+find 3
+insert 2 788384
+insert 1 -503509
+insert 5 -704735
+delete 2 -881379
+insert 2 -910293
+insert 1 167071
+insert 5 -738627
+insert 2 -448912
+find 5
+insert 2 752871
+insert 1 972261
+insert 4 643862
+insert 1 -339927
+insert 1 404960
+insert 1 -839148
+insert 2 -426208
+delete 4 -202009
+insert 4 -119214
+insert 2 -696043
+insert 2 -456242
+insert 3 -742759
+insert 5 515009
+insert 4 949559
+delete 5 987650
+insert 2 179827
+find 3
+insert 3 519324
+find 3
+insert 2 -679223
+insert 2 620434
+find 1
+insert 3 316767
+insert 4 513816
+insert 5 894416
+insert 5 -877245
+insert 2 406534
+insert 4 142844
+insert 4 149544
+insert 4 340534
+find 1
+insert 4 87676
+delete 1 -280713
+insert 3 714194
+delete 2 788384
+insert 1 73155
+insert 5 145506
+insert 4 -582471
+insert 5 42461
+insert 4 276839
+insert 5 -157032
+insert 1 -935841
+find 3
+find 1
+delete 1 -777735
+insert 1 -246689
+insert 2 166681
+insert 4 -384020
+insert 2 -768505
+delete 2 -895394
+delete 4 142844
+insert 5 963849
+insert 5 685049
+insert 5 521902
+insert 2 378771
+insert 5 -746816
+insert 4 917578
+insert 4 862517
+insert 2 815035
+find 4
+insert 1 812391
+insert 4 -23835
+insert 4 -777213
+insert 3 957688
+insert 3 -257777
+insert 3 -584729
+insert 5 -600578
+insert 4 728100
+insert 1 -629588
+insert 5 -615799
+insert 5 -193907
+insert 4 -141130
+insert 4 121485
+delete 4 843016
+insert 4 407621
+insert 4 -165826
+insert 2 824700
+delete 1 -839148
+insert 5 86071
+insert 5 614448
+insert 3 -942807
+find 4
+find 3
+delete 3 787898
+delete 5 960910
+insert 3 -37639
+insert 2 821493
+insert 4 712122
+insert 5 -481845
+insert 1 -98297
+delete 5 614448
+insert 2 -711164
+insert 4 -52501
+find 5
+insert 2 69891
+insert 3 550979
+delete 1 169259
+insert 4 710831
+insert 2 -528912
+insert 5 -847423
+delete 3 714194
+delete 2 -426208
+insert 2 452557
+insert 3 133673
+insert 3 -473657
+insert 3 -649997
+find 3
+insert 2 289077
+insert 1 212682
+insert 1 -415609
+insert 4 -939510
+insert 5 616185
+insert 3 187910
+insert 5 806400
+delete 4 -289164
+insert 5 -862918
+insert 3 -293076
+insert 2 -799439
+insert 4 946785
+delete 3 -649997
+insert 2 92307
+insert 2 -366334
+insert 2 349371
+find 1
+insert 3 -624964
+insert 4 481805
+insert 5 -499279
+insert 2 -865399
+insert 1 -439400
+insert 5 95735
+insert 2 284007
+insert 4 -118320
+insert 4 525580
+insert 5 631505
+insert 1 -750469
+insert 5 -422770
+insert 3 -696985
+insert 3 421346
+find 2
+insert 4 755044
+find 3
+insert 1 417558
+insert 3 -395657
+delete 3 -30173
+delete 3 393064
+find 811
+insert 1 -501902
+insert 1 442610
+find 3
+delete 5 -746146
+delete 4 946785
+insert 4 488559
+insert 2 -460063
+find 5
+insert 2 -30023
+insert 1 -777714
+insert 1 356903
+find 3
+insert 2 -167915
+insert 4 -740785
+insert 3 -402947
+find 3
+insert 3 13110
+insert 3 129946
+insert 1 -951234
+find 3
+insert 4 382517
+find 3
+insert 5 -162984
+insert 3 -67988
+find 5
+delete 5 -162984
+insert 5 -142027
+delete 2 -410432
+delete 2 61514
+insert 3 293734
+find 4
+insert 2 199433
+insert 1 -983198
+find 3
+insert 1 -888454
+find 5
+delete 2 -344814
+insert 4 706643
+insert 1 -94540
+insert 3 -895657
+insert 1 232019
+delete 3 -616415
+insert 3 -21719
+insert 5 -716505
+insert 4 43105
+insert 2 -354446
+insert 1 946711
+find 3
+insert 1 829701
+delete 3 221487
+insert 5 -705194
+find 2
+insert 2 -38111
+find 1
+delete 2 -460063
+insert 1 -658619
+insert 5 -762524
+find 5
+insert 3 230080
+insert 3 974869
+insert 3 -45815
+insert 4 556767
+insert 5 -735471
+delete 4 -740785
+insert 3 -422998
+insert 3 -321722
+insert 4 -952900
+insert 2 -747375
+insert 4 933390
+insert 2 -423423
+find 3
+insert 5 300857
+insert 5 -546055
+delete 4 433128
+insert 2 557998
+insert 4 -569570
+insert 5 -276324
+insert 1 159204
+insert 4 890734
+insert 4 -326714
+insert 1 230511
+insert 2 -943005
+find 5
+insert 2 -740202
+insert 3 -318621
+insert 3 807809
+delete 2 -580810
+find 4
+insert 2 579869
+insert 3 559316
+insert 4 -219228
+insert 2 -415058
+find 2
+insert 5 -396242
+find 4
+insert 3 -533731
+insert 5 -596377
+insert 2 -138509
+find 4
+insert 3 -748194
+insert 2 -310912
+insert 1 124133
+insert 5 -255236
+insert 1 525624
+delete 4 773911
+insert 3 -215238
+delete 4 -354137
+find 4
+insert 2 -874377
+find 5
+insert 1 -940707
+insert 4 978844
+find 1
+insert 5 632135
+insert 5 -29102
+delete 3 203217
+find 5
+insert 4 -829011
+insert 1 -662463
+insert 4 864707
+find 4
+insert 2 -466345
+insert 4 97461
+insert 2 235036
+insert 1 926606
+insert 4 -221035
+insert 4 -807217
+find 710
+insert 3 815280
+insert 4 -415389
+find 2
+insert 1 958008
+find 3
+find 1
+insert 2 655476
+insert 3 -225089
+insert 3 18040
+find 1
+insert 2 136471
+insert 1 -982231
+insert 2 70655
+insert 5 933724
+insert 5 841989
+delete 1 -501902
+insert 5 -515696
+insert 4 985995
+insert 4 -595168
+insert 3 -791223
+insert 1 814514
+insert 3 877229
+insert 4 98993
+insert 1 -876524
+insert 2 114584
+insert 1 -32078
+insert 1 -424418
+insert 4 570575
+delete 3 578408
+insert 1 -586463
+insert 5 -770763
+insert 3 -924181
+find 1
+insert 2 -530942
+insert 1 -499390
+insert 3 79774
+insert 3 215594
+find 5
+insert 4 391081
+delete 1 -706993
+insert 2 -946290
+insert 1 342684
+insert 4 955779
+insert 5 -992258
+delete 3 -812957
+insert 4 -462844
+find 3
+delete 4 -513967
+insert 3 434599
+insert 3 -581197
+delete 2 166681
+delete 4 200970
+insert 1 528252
+insert 2 823692
+insert 4 -213824
+insert 1 8305
+insert 4 17908
+insert 2 -287186
+find 5
+insert 2 936645
+insert 5 -73912
+insert 2 174722
+delete 5 -157032
+find 1
+delete 2 -910293
+insert 5 68974
+insert 5 -166200
+insert 5 -558117
+insert 5 -128069
+delete 5 -992258
+insert 3 -746572
+delete 3 -735693
+find 4
+insert 1 -690550
+find 5
+insert 2 614494
+insert 4 -140494
+delete 2 -510564
+delete 4 731509
+delete 3 247353
+delete 5 685049
+insert 3 -101035
+delete 5 169288
+delete 5 270549
+insert 4 -276115
+insert 4 862048
+delete 2 -874377
+insert 1 -731775
+delete 5 -716505
+insert 1 547313
+insert 4 612151
+delete 4 706643
+insert 3 -982243
+insert 1 -678323
+delete 3 -473657
+delete 5 -970942
+delete 3 -215238
+delete 5 -270919
+delete 3 -37639
+delete 3 929018
+find 1
+delete 5 538525
+insert 4 933758
+delete 3 126361
+insert 4 985309
+insert 5 -199014
+insert 1 -149408
+delete 2 78206
+find 4
+insert 2 -867598
+delete 3 -624964
+delete 2 614494
+find 4
+delete 1 404763
+find 1
+delete 1 22878
+delete 1 -44409
+delete 5 185756
+delete 3 -919635
+insert 4 314069
+delete 2 -943005
+delete 2 -434986
+delete 1 -662463
+find 3
+delete 3 496371
+delete 1 -246689
+find 5
+delete 3 316767
+delete 3 815280
+insert 1 397245
+find 4
+delete 1 -894009
+delete 5 -847423
+delete 3 559316
+insert 1 471846
+delete 1 -876524
+delete 2 199433
+delete 1 -629588
+insert 1 814931
+delete 5 -694740
+delete 4 -118320
+delete 4 407621
+delete 2 349371
+insert 4 136835
+delete 3 728847
+delete 2 579869
+delete 2 -528912
+delete 3 555555
+insert 5 -257136
+delete 4 -165826
+insert 3 -374344
+delete 1 417558
+find 1
+insert 1 -231950
+find 3
+insert 5 -999049
+insert 3 -73833
+insert 2 -587065
+find 4
+delete 1 356903
+delete 1 -556950
+delete 3 -924181
+delete 2 756281
+delete 4 87676
+delete 3 129946
+find 4
+insert 3 -288489
+delete 4 43105
+delete 5 -656687
+find 3
+insert 3 216
+insert 3 -25188
+delete 4 -219228
+delete 5 -601812
+delete 4 -777213
+insert 5 915528
+delete 1 -526196
+delete 3 -760080
+delete 4 -213824
+insert 2 -757589
+delete 4 -276115
+delete 3 133673
+delete 2 -439934
+delete 2 620434
+delete 2 815035
+delete 5 -166200
+delete 2 -68075
+insert 5 -97254
+insert 3 555632
+find 5
+delete 5 -73912
+find 4
+delete 2 936645
+insert 2 326477
+delete 2 -468696
+find 1
+find 4
+delete 5 -245695
+insert 4 -376896
+find 2
+delete 2 -696043
+find 199
+delete 4 372738
+insert 4 40661
+delete 1 814514
+delete 3 -126942
+find 636
+find 4
+delete 3 550979
+insert 5 -189735
+find 3
+delete 1 -678323
+delete 3 -696985
+delete 2 179827
+delete 5 -56202
+delete 2 12507
+delete 4 755044
+delete 1 926606
+insert 2 616248
+find 2
+insert 2 -533353
+delete 3 -942807
+insert 4 256469
+delete 5 -770763
+delete 5 -29102
+delete 3 79774
+delete 2 -820609
+delete 5 -375728
+delete 3 335826
+delete 1 -499390
+delete 2 452557
+insert 1 224198
+insert 5 280059
+find 3
+delete 5 409491
+insert 4 -561408
+delete 4 -488849
+find 5
+find 4
+insert 5 -274456
+insert 4 -928369
+insert 4 46522
+delete 3 -567422
+insert 1 -903032
+delete 3 293734
+insert 2 131679
+delete 3 -982243
+insert 4 -84950
+insert 1 -516420
+insert 5 -264204
+find 3
+find 2
+delete 2 -456656
+insert 3 345424
+delete 3 877229
+find 403
+delete 5 946584
+delete 2 -378756
+find 5
+delete 4 -297946
+delete 2 693989
+delete 5 300857
+delete 2 -366334
+delete 5 -615799
+delete 3 519324
+insert 5 -55305
+find 5
+insert 4 -775247
+find 945
+insert 1 -876840
+delete 4 -775247
+delete 4 -376896
+delete 4 40661
+insert 3 21484
+delete 1 -415609
+find 3
+insert 5 -722318
+delete 4 712122
+delete 4 -84950
+find 5
+delete 5 457652
+delete 4 -119214
+delete 2 -415058
+insert 1 595333
+delete 4 136835
+find 5
+find 5
+delete 1 -731775
+delete 3 602351
+delete 3 18040
+find 4
+delete 5 -471042
+insert 5 -436112
+delete 1 528252
+insert 1 -743845
+insert 1 51937
+delete 2 -747375
+find 1
+insert 2 203688
+delete 5 -660474
+insert 4 473669
+insert 3 817297
+delete 4 -526893
+delete 4 -140494
+delete 2 284007
+find 3
+delete 4 481805
+delete 4 -23835
+insert 3 81803
+insert 4 -397216
+delete 1 547313
+find 4
+delete 5 907650
+delete 2 -946290
+find 5
+insert 4 -531580
+delete 5 161411
+find 5
+find 4
+delete 1 -958617
+delete 3 263451
+delete 5 216044
+delete 5 616185
+delete 4 570575
+delete 2 429436
+delete 1 -352598
+insert 3 199254
+delete 4 177204
+find 1
+delete 4 -562080
+insert 1 -126375
+delete 4 365811
+delete 3 -374344
+find 5
+insert 3 -392113
+delete 3 421346
+find 2
+delete 1 -777271
+insert 1 -489243
+delete 3 -395657
+find 5
+find 5
+delete 5 -515696
+delete 4 710831
+find 1
+delete 4 890734
+delete 3 974869
+delete 4 256469
+insert 3 -223290
+delete 1 -940707
+delete 4 -829011
+delete 5 34146
+delete 3 215594
+delete 4 -531580
+delete 1 -727633
+delete 1 946711
+delete 3 -962315
+delete 1 -489243
+delete 2 -867598
+insert 1 -390597
+insert 5 -976290
+delete 3 -45815
+insert 3 -121790
+insert 1 -831760
+insert 3 313120
+delete 4 612151
+insert 3 -981006
+delete 1 -594781
+insert 5 -848791
+delete 1 -212108
+insert 1 618748
+find 2
+delete 2 174722
+insert 4 -906103
+delete 1 159204
+find 5
+delete 4 643862
+delete 3 -67988
+find 2
+find 2
+delete 1 -390597
+find 5
+insert 4 432185
+insert 5 195507
+delete 2 824700
+delete 4 -943964
+delete 3 838958
+delete 4 97461
+delete 5 -276324
+find 4
+delete 1 -831760
+insert 2 78981
+delete 4 -582471
+delete 1 145701
+delete 1 -98297
+delete 2 -310912
+insert 1 139823
+find 4
+delete 4 864707
+delete 3 -731604
+find 4
+delete 1 -94540
+delete 3 21484
+delete 5 901686
+delete 1 124133
+delete 1 -164039
+find 3
+find 3
+delete 4 933390
+delete 4 -595168
+delete 4 46522
+delete 2 78981
+insert 3 -188661
+insert 3 407594
+delete 4 276839
+delete 1 -32078
+find 2
+delete 1 -424418
+delete 5 -596377
+find 5
+insert 1 12353
+delete 4 -807217
+delete 1 -516420
+find 5
+delete 5 29490
+insert 1 607589
+find 2
+delete 5 -999049
+delete 5 -683309
+delete 2 -448912
+find 1
+find 1
+find 5
+insert 2 313145
+delete 3 -533731
+delete 1 -951234
+delete 5 42461
+delete 5 -738627
+delete 3 380933
+delete 3 199254
+insert 4 -814116
+delete 4 419228
+delete 2 994001
+delete 4 382517
+delete 1 -750469
+delete 2 124332
+delete 4 -326714
+insert 3 900315
+find 1
+insert 5 736025
+delete 3 407594
+find 5
+delete 3 -858613
+delete 5 -581978
+delete 5 -142027
+delete 4 17908
+delete 3 555632
+delete 4 464471
+delete 4 513816
+insert 3 -709294
+delete 2 246626
+delete 3 -21719
+insert 4 701120
+insert 1 82471
+delete 1 8305
+find 3
+delete 3 -321722
+delete 2 632998
+delete 5 -879810
+delete 5 -946269
+delete 4 917578
+delete 4 978844
+delete 1 -777714
+insert 3 116509
+find 5
+delete 5 -546055
+delete 3 -742759
+find 2
+insert 5 -595309
+delete 5 -481845
+delete 5 195507
+delete 4 278684
+delete 4 -127448
+insert 4 -330742
+delete 5 -762524
+insert 4 560187
+delete 5 98686
+delete 3 -709294
+delete 2 18752
+find 3
+find 455
+insert 3 -942533
+delete 2 -530942
+delete 3 -392113
+delete 3 369638
+delete 5 -396242
+insert 3 -504650
+insert 4 -131368
+delete 5 -722318
+delete 3 -581197
+delete 1 812391
+insert 4 -594913
+delete 3 -288489
+find 726
+delete 4 -330742
+delete 3 190285
+delete 1 773467
+delete 4 -305287
+insert 1 -35156
+delete 2 557998
+delete 5 95735
+delete 2 -182863
+delete 2 -184430
+find 3
+delete 1 -586463
+delete 4 -141130
+delete 4 -415389
+delete 3 -357295
+delete 1 972261
+delete 3 801490
+delete 5 806183
+delete 4 432185
+delete 3 -73833
+delete 3 -504650
+delete 2 -138509
+find 2
+delete 2 616248
+insert 1 354733
+find 1
+find 4
+delete 5 -13412
+delete 2 236891
+delete 5 -199014
+delete 3 -223290
+delete 3 -422998
+delete 5 -10271
+delete 4 952384
+insert 5 393338
+delete 1 -503509
+insert 2 -803729
+delete 3 859562
+delete 4 -52501
+find 5
+delete 2 92307
+delete 1 369499
+delete 1 -658619
+insert 5 -740474
+insert 3 -806592
+insert 2 686993
+insert 3 -87767
+delete 5 -558117
+insert 1 -176912
+delete 2 920728
+delete 4 862048
+find 213
+delete 5 -735471
+delete 4 560187
+delete 3 -746572
+delete 5 -740474
+delete 2 655476
+find 3
+delete 4 -952900
+insert 4 -836740
+delete 2 459031
+delete 2 522424
+delete 2 -533353
+delete 1 404960
+delete 2 -167915
+delete 5 -862918
+delete 1 187511
+delete 4 862517
+delete 3 -584729
+find 5
+delete 5 -255236
+delete 5 806400
+delete 1 -126375
+delete 3 111599
+insert 4 -108957
+delete 3 -136848
+insert 1 -23135
+find 4
+find 2
+insert 1 -60900
+insert 5 -337473
+insert 2 701323
+insert 5 490096
+find 4
+insert 4 283803
+insert 4 -236358
+insert 1 -151569
+insert 5 275656
+find 257
+insert 3 -397919
+delete 5 -976290
+insert 3 595623
+insert 1 -109934
+insert 3 -8161
+insert 1 511400
+insert 1 -105549
+find 4
+insert 5 65474
+insert 3 55746
+insert 4 -752446
+find 1
+insert 4 504362
+insert 5 -292242
+insert 1 453033
+insert 1 -725164
+find 3
+find 3
+insert 3 -777051
+insert 3 513759
+insert 2 902428
+insert 3 66211
+insert 3 -988218
+insert 3 -747530
+insert 5 699071
+insert 3 -911346
+delete 3 614099
+find 2
+find 4
+insert 3 484611
+insert 2 813828
+insert 5 -184079
+insert 1 -823576
+insert 5 982782
+insert 5 -454552
+delete 4 525161
+insert 4 86543
+insert 1 366778
+delete 5 275656
+insert 2 -165892
+insert 4 -593984
+insert 1 -531182
+insert 4 -49945
+insert 3 437873
+insert 1 90468
+find 1
+insert 1 451433
+insert 2 -527307
+insert 1 984929
+insert 2 592376
+insert 1 211515
+insert 5 -644024
+insert 5 -872729
+insert 5 -582825
+insert 2 -915829
+insert 4 -473948
+find 2
+insert 2 -136175
+find 4
+insert 1 693414
+insert 4 371192
+insert 4 317818
+insert 5 -875305
+insert 2 702325
+find 3
+insert 1 648642
+insert 2 481834
+find 4
+insert 2 -378331
+insert 4 121887
+insert 4 -346283
+insert 4 -371805
+insert 3 45253
+insert 2 -811065
+insert 3 -115666
+insert 2 657207
+insert 3 919926
+insert 5 534399
+insert 5 521606
+insert 4 813764
+find 4
+find 3
+find 5
+insert 1 -430031
+insert 3 549188
+delete 4 813764
+delete 1 511400
+delete 3 784268
+insert 1 393462
+delete 2 750748
+insert 3 983501
+insert 4 -325888
+find 2
+insert 3 554925
+insert 3 744846
+find 3
+insert 3 981291
+insert 2 762186
+insert 4 -609463
+find 1
+insert 2 295507
+insert 1 728165
+insert 3 918140
+insert 1 -963977
+insert 1 -165086
+insert 3 -480354
+find 1
+insert 5 867696
+insert 4 -670725
+insert 5 -796907
+insert 1 -576317
+delete 5 -436112
+find 3
+insert 5 326626
+insert 4 -592031
+insert 5 26586
+find 1
+insert 1 -26661
+insert 3 -513843
+insert 2 -898756
+insert 2 -488526
+delete 5 -184079
+find 1
+find 641
+delete 1 -23135
+insert 5 -688040
+insert 5 -500795
+delete 5 -292242
+insert 4 271819
+insert 3 943029
+insert 5 -483730
+insert 4 -313235
+insert 5 994726
+insert 4 676620
+insert 2 -58796
+insert 2 -2132
+insert 4 -889608
+insert 3 -771449
+insert 3 112906
+delete 5 933724
+delete 4 -270812
+insert 1 -58923
+delete 2 378771
+find 3
+find 2
+find 5
+insert 4 968005
+insert 3 -825878
+insert 3 377543
+insert 5 573387
+insert 4 -535135
+insert 1 232554
+insert 2 987029
+insert 3 433778
+insert 3 505961
+find 4
+delete 3 -748194
+delete 1 453033
+find 4
+insert 1 623432
+insert 4 -808453
+find 3
+insert 5 -898107
+insert 5 597908
+delete 4 -313235
+insert 3 258598
+insert 5 -319069
+insert 4 255501
+insert 3 -889221
+delete 1 -876840
+insert 5 -403373
+insert 2 368016
+insert 2 -477345
+insert 2 190809
+delete 4 371192
+find 3
+insert 5 -614412
+insert 3 -642310
+insert 2 -308040
+delete 2 -421544
+insert 3 -204126
+find 2
+insert 4 -198479
+delete 5 649827
+insert 1 -423164
+insert 1 745793
+insert 4 200048
+insert 3 -56648
+insert 4 -992378
+insert 2 -954886
+find 3
+insert 2 -925397
+find 2
+insert 1 -423120
+insert 5 266052
+find 3
+insert 1 -653665
+insert 4 643305
+insert 3 641635
+insert 3 -37366
+delete 3 116509
+insert 1 262767
+insert 1 138604
+insert 5 791433
+insert 2 -486774
+insert 1 923138
+find 358
+insert 2 390868
+find 4
+insert 1 -947642
+find 3
+insert 4 -340106
+insert 2 -850086
+insert 3 196974
+insert 3 532931
+insert 2 834205
+insert 5 757276
+insert 1 412110
+insert 3 -78051
+insert 2 428486
+delete 2 752871
+delete 4 -108957
+delete 2 701323
+insert 5 549172
+insert 4 568551
+insert 3 319990
+delete 4 -473948
+insert 5 -127883
+insert 2 -949360
+insert 1 428151
+insert 1 972908
+insert 1 -460826
+delete 5 -746816
+insert 1 -694110
+insert 4 539916
+insert 3 -607318
+find 2
+insert 3 -37441
+delete 3 81803
+find 1
+insert 4 -552718
+insert 3 755888
+delete 5 597908
+insert 1 -7545
+insert 5 633149
+insert 3 -65098
+insert 3 279518
+insert 2 -859163
+insert 4 934617
+insert 3 -731445
+insert 1 -543404
+insert 4 -844680
+delete 3 981291
+insert 1 -809055
+insert 1 275143
+insert 5 922827
+insert 5 -312025
+insert 5 312571
+insert 4 -438730
+insert 1 803732
+insert 3 -466146
+find 1
+insert 3 43399
+delete 4 -867986
+insert 2 141779
+insert 1 818265
+delete 4 -221035
+insert 5 968245
+insert 5 960210
+delete 3 354708
+insert 2 -310175
+find 1
+insert 5 78359
+delete 2 834205
+insert 4 839110
+find 2
+insert 3 106378
+insert 1 -714049
+insert 5 -361447
+insert 4 534777
+delete 4 -397216
+insert 2 718646
+insert 3 -884729
+find 4
+find 3
+delete 3 -607318
+insert 3 -55714
+find 5
+delete 4 -814116
+insert 5 -959539
+insert 1 692207
+insert 1 346142
+find 4
+find 4
+insert 5 -856265
+insert 2 823117
+insert 3 -55233
+insert 5 167092
+insert 1 640793
+insert 2 476767
+insert 3 760817
+find 1
+insert 4 151066
+insert 2 -741402
+insert 3 862333
+insert 5 -316021
+delete 2 -850086
+find 3
+insert 5 -877699
+insert 1 -508130
+insert 5 -960062
+find 3
+insert 4 -292567
+delete 5 -595309
+delete 1 262767
+insert 1 -784473
+insert 1 -289921
+insert 1 115659
+find 3
+insert 4 628327
+find 3
+insert 4 529759
+insert 4 760398
+find 4
+delete 1 -531182
+delete 1 -543404
+insert 2 -784232
+insert 2 238244
+insert 2 -262749
+insert 2 -325830
+find 630
+insert 2 440246
+find 1
+delete 2 787878
+insert 3 -397360
+insert 3 896976
+insert 5 70535
+insert 2 -381079
+insert 5 606957
+insert 4 380928
+insert 2 -421577
+find 2
+insert 1 -127209
+insert 4 746326
+insert 3 -962183
+find 3
+insert 2 224220
+insert 3 443117
+insert 1 -741366
+insert 4 325915
+find 4
+find 1
+insert 5 206414
+find 5
+insert 3 185205
+insert 3 -652085
+find 3
+insert 1 -216901
+delete 5 86071
+insert 2 -930702
+insert 1 -642018
+insert 2 -265549
+delete 3 505961
+delete 2 805699
+find 2
+find 5
+insert 2 -688970
+insert 4 -964963
+insert 3 -189080
+insert 4 -582660
+insert 1 -426224
+insert 5 348933
+delete 4 -371805
+insert 1 -854422
+insert 2 854778
+find 1
+insert 3 -62479
+find 1
+insert 2 295555
+delete 2 -325830
+insert 3 -428822
+insert 4 -838712
+insert 3 715763
+insert 1 -95904
+insert 3 -632921
+delete 4 -752446
+insert 4 -235555
+insert 5 672612
+delete 4 317818
+insert 2 -496511
+insert 5 387983
+insert 3 -715364
+insert 1 -806479
+delete 4 -152083
+insert 2 -421442
+insert 1 847474
+insert 4 128414
+insert 4 -774649
+delete 2 -671916
+insert 4 -177611
+insert 4 -992327
+delete 1 471846
+delete 1 623432
+delete 5 280059
+find 3
+insert 4 -643116
+delete 1 984929
+delete 2 -381079
+find 3
+find 3
+delete 4 -844680
+find 2
+find 3
+insert 5 -931710
+insert 2 -423841
+insert 2 -198580
+delete 4 678510
+insert 2 438176
+insert 1 658495
+insert 5 -246328
+insert 4 151513
+insert 5 120452
+insert 1 -390080
+insert 3 -762138
+insert 3 188126
+insert 1 -244214
+insert 4 -225820
+delete 3 -55714
+insert 3 -854416
+insert 1 563031
+insert 1 625921
+insert 1 182989
+insert 4 570433
+insert 1 -22866
+insert 4 515883
+insert 2 548116
+insert 5 -425718
+insert 5 -951818
+insert 5 995874
+find 1
+delete 1 692207
+insert 3 -689835
+delete 3 817297
+insert 2 -260390
+find 5
+insert 3 68157
+insert 1 84694
+find 2
+find 5
+delete 4 -384020
+insert 4 965204
+insert 2 -922565
+insert 4 -598501
+find 3
+insert 2 -28983
+delete 3 -318621
+insert 2 -641798
+delete 3 760817
+insert 3 834926
+delete 1 -576317
+insert 5 -240287
+insert 4 491811
+find 5
+delete 5 -316021
+insert 2 -312697
+insert 4 -453070
+delete 3 -981006
+insert 4 -926390
+insert 4 605354
+insert 1 691395
+insert 4 779189
+insert 1 -651034
+find 2
+insert 3 -361941
+insert 1 926277
+insert 5 530922
+insert 4 -171872
+insert 4 803341
+insert 2 637869
+insert 2 458569
+find 4
+insert 2 363656
+insert 5 741727
+insert 2 -341245
+insert 3 477632
+find 1
+delete 1 210853
+delete 3 744846
+delete 2 821493
+insert 3 -873825
+insert 1 594890
+delete 1 346142
+delete 2 -486774
+delete 3 185205
+delete 3 708929
+insert 2 -26171
+insert 1 947601
+delete 1 -963977
+delete 1 -690550
+insert 1 743483
+delete 1 818265
+delete 1 442610
+insert 5 -711487
+delete 1 212682
+delete 2 235036
+delete 1 84694
+insert 4 428333
+delete 1 224198
+delete 5 206414
+delete 1 -982231
+find 1
+insert 3 606159
+delete 1 -109934
+delete 5 -546329
+delete 3 -257777
+insert 3 332568
+find 5
+find 1
+find 679
+delete 5 312571
+delete 2 -310175
+find 2
+delete 4 -593984
+find 4
+delete 3 -25188
+insert 3 -38671
+delete 4 568551
+delete 3 377543
+insert 4 -18647
+find 5
+delete 4 628327
+delete 2 -162267
+find 2
+delete 1 139823
+insert 1 -380308
+insert 4 -589711
+insert 2 763049
+insert 5 -590102
+delete 1 -244214
+insert 2 -94433
+insert 2 -752506
+delete 2 -740202
+delete 2 -925397
+delete 4 985995
+delete 2 203688
+delete 1 -289921
+delete 5 -959539
+delete 5 -337473
+find 5
+find 4
+delete 4 149544
+insert 3 603211
+delete 5 -931710
+delete 3 -731445
+delete 4 -582660
+insert 5 3194
+delete 3 188126
+insert 3 -135450
+delete 3 13110
+delete 4 151513
+find 1
+find 4
+delete 3 -397360
+insert 5 683788
+delete 5 -128069
+delete 4 121887
+insert 3 562275
+delete 4 -928369
+delete 1 -694110
+delete 5 -499279
+insert 3 -713114
+delete 1 803732
+delete 5 -500795
+delete 4 968005
+delete 3 -873825
+delete 5 -189735
+find 2
+delete 1 -743845
+find 3
+delete 5 -422770
+delete 2 476767
+delete 5 -69654
+delete 1 -149408
+delete 5 -960062
+delete 3 919926
+find 3
+find 4
+delete 3 513759
+delete 5 387983
+delete 3 571248
+delete 3 -121790
+insert 5 446597
+insert 1 -573845
+insert 1 -922659
+find 1
+delete 4 -535135
+delete 4 200048
+delete 1 115659
+insert 1 718297
+find 5
+delete 2 114584
+delete 2 313145
+delete 3 391857
+delete 1 -714049
+delete 1 618748
+delete 1 728165
+insert 5 -671927
+insert 5 -665424
+delete 3 -791223
+insert 4 507418
+find 3
+delete 1 -390080
+delete 2 -784232
+insert 3 806754
+delete 1 412110
+delete 4 -131368
+find 3
+insert 4 912389
+insert 2 438813
+delete 3 -818441
+insert 5 676067
+delete 3 68157
+delete 3 66211
+delete 3 595623
+delete 2 224220
+delete 5 -898107
+insert 2 -827015
+delete 5 922827
+insert 5 866759
+find 4
+delete 2 -688970
+insert 4 -674163
+delete 1 451433
+delete 5 -665424
+delete 3 -115666
+find 5
+delete 1 -947642
+delete 1 691395
+insert 4 38771
+insert 1 420144
+delete 3 -480354
+delete 1 -854422
+delete 1 182989
+delete 4 507418
+delete 3 192693
+insert 3 -61205
+delete 1 -60900
+delete 2 295507
+delete 5 -877699
+delete 2 637869
+delete 4 38771
+delete 2 -28983
+delete 5 266052
+find 4
+delete 5 -274456
+insert 4 414548
+insert 5 -814325
+insert 1 -793187
+delete 3 820131
+insert 1 -811693
+insert 4 -207683
+delete 4 -643116
+delete 5 -127883
+insert 2 -178927
+delete 5 344138
+find 3
+delete 2 -799439
+insert 2 207397
+find 4
+delete 3 258598
+delete 5 -875305
+delete 2 -90647
+delete 2 -198580
+insert 3 69683
+delete 4 -561408
+delete 4 985309
+delete 5 -856265
+insert 2 865015
+insert 2 822754
+delete 2 -94433
+delete 1 275143
+delete 3 112906
+delete 5 -590102
+delete 1 -725164
+delete 4 -808453
+find 4
+find 3
+delete 5 963849
+insert 2 913950
+delete 1 420144
+insert 4 485224
+delete 3 562275
+delete 4 570433
+insert 5 63387
+insert 1 587005
+delete 5 968245
+delete 5 -193907
+delete 4 -589711
+delete 5 65474
+delete 2 363656
+insert 2 -447167
+insert 4 -627145
+find 2
+delete 2 -421442
+insert 2 -656678
+delete 1 -26661
+delete 2 702325
+insert 3 510136
+insert 3 -423308
+insert 1 -440303
+delete 5 -872729
+delete 4 -964963
+delete 5 -877245
+delete 2 823117
+delete 4 -177611
+delete 3 230080
+delete 3 106378
+find 5
+find 1
+insert 1 -522546
+insert 4 -555187
+delete 5 -319069
+delete 3 -895657
+delete 2 -447167
+insert 3 557866
+delete 4 -453070
+insert 3 343601
+insert 1 804994
+insert 4 -679030
+delete 5 741727
+insert 3 -202709
+delete 5 757276
+delete 1 232554
+insert 5 84283
+delete 4 -171872
+delete 1 342684
+delete 5 699071
+delete 4 779189
+find 99
+delete 2 763049
+delete 3 957688
+find 981
+find 5
+delete 2 406534
+insert 1 -591540
+delete 3 -825878
+find 2
+delete 2 -656678
+delete 2 440246
+delete 3 -202709
+find 3
+delete 4 380928
+delete 5 -425718
+delete 4 -670725
+delete 1 625921
+delete 1 366778
+insert 5 -290354
+delete 4 485224
+delete 3 918140
+delete 3 -37366
+delete 1 -903032
+delete 4 934617
+delete 5 -582825
+delete 4 539916
+delete 4 376005
+delete 1 -22866
+find 2
+delete 3 806754
+insert 5 789153
+insert 1 -978024
+delete 1 -807918
+delete 3 -771449
+find 4
+insert 4 -965688
+insert 2 248176
+delete 5 -257136
+insert 2 690957
+delete 2 657207
+delete 2 -178927
+delete 2 -308040
+insert 2 78270
+delete 4 98993
+insert 4 848634
+delete 1 640793
+delete 3 -723172
+insert 1 -688584
+delete 4 -569570
+delete 3 -61205
+delete 3 434599
+delete 4 839110
+insert 3 972415
+delete 1 -231950
+delete 1 -922659
+delete 4 949559
+delete 5 -312025
+delete 5 145506
+delete 1 -591540
+delete 1 947601
+find 3
+delete 4 -838712
+insert 5 -209563
+delete 3 -189080
+delete 4 515883
+delete 4 325915
+delete 5 -614412
+insert 2 -678951
+delete 2 428486
+delete 3 -402947
+insert 5 -698454
+delete 5 573387
+insert 1 768414
+delete 4 676620
+delete 2 69891
+delete 2 865015
+delete 5 -721021
+find 2
+delete 3 -632921
+delete 4 -992327
+insert 4 134957
+delete 1 354733
+delete 5 683788
+insert 3 290194
+delete 3 -62479
+delete 4 -609463
+delete 2 -954886
+insert 1 588735
+delete 2 -421577
+delete 1 587005
+delete 1 -430031
+delete 2 289077
+delete 5 521902
+insert 4 305067
+delete 2 238244
+delete 2 207397
+delete 2 -803729
+delete 2 548116
+find 4
+find 3
+delete 2 -38111
+insert 1 304633
+insert 2 -570773
+delete 5 -698454
+delete 5 -246328
+delete 3 549188
+delete 2 913950
+insert 2 453291
+delete 3 557866
+delete 2 -265549
+delete 5 -209563
+delete 1 -440303
+delete 4 121485
+delete 1 718297
+find 4
+find 1
+delete 1 745793
+delete 1 73155
+find 4
+insert 4 76967
+delete 2 458569
+find 5
+find 327
+insert 1 -595774
+find 4
+find 1
+find 1
+delete 1 923138
+insert 1 162779
+delete 5 534399
+delete 1 -935841
+delete 1 -809055
+delete 5 633149
+delete 4 556767
+delete 1 -522029
+find 1
+find 2
+delete 4 504362
+delete 4 -325888
+insert 4 838504
+delete 3 862333
+insert 4 610654
+delete 4 -346283
+delete 3 -87767
+delete 2 686993
+delete 3 -854416
+delete 2 -378331
+insert 1 -570154
+find 3
+insert 2 40277
+find 1
+delete 1 -35156
+delete 5 -240287
+delete 3 -513843
+delete 5 960210
+delete 3 -806592
+find 3
+delete 2 190809
+delete 4 -552718
+delete 5 -792299
+delete 2 -488526
+delete 4 -968983
+delete 2 -165892
+insert 5 150490
+delete 4 283803
+find 205
+find 3
+delete 2 390868
+delete 1 -460826
+delete 5 3194
+insert 3 -351999
+delete 2 762186
+delete 4 643305
+delete 2 438176
+insert 1 230029
+insert 2 989288
+insert 5 632068
+delete 2 -827015
+delete 4 -594913
+insert 5 -328399
+delete 2 -949360
+delete 2 70655
+insert 4 917261
+delete 1 -95904
+insert 2 -782631
+delete 5 521606
+find 1
+insert 1 -809221
+delete 4 -292567
+find 3
+delete 1 563031
+find 3
+insert 4 370633
+delete 3 196974
+find 2
+delete 2 -26171
+find 306
+delete 3 -293076
+delete 4 -438730
+find 5
+delete 1 397245
+delete 3 345424
+delete 5 982782
+delete 1 -823576
+delete 4 529759
+insert 2 -205684
+delete 2 -570773
+insert 2 -646525
+find 1
+delete 3 332568
+insert 3 114118
+delete 5 -55305
+insert 3 457334
+find 4
+find 1
+delete 1 -439400
+find 3
+delete 3 -56648
+delete 1 804994
+delete 5 894416
+delete 2 -496511
+delete 4 -413748
+delete 3 972415
+delete 4 128414
+delete 5 -264204
+delete 4 -674163
+insert 1 -459692
+delete 2 368016
+insert 3 -734255
+insert 3 -635554
+delete 4 965204
+find 3
+delete 5 -704735
+find 2
+delete 5 866759
+delete 2 -782631
+find 5
+delete 3 807809
+delete 4 -679030
+delete 2 822754
+delete 5 -361447
+delete 2 -587065
+delete 3 477632
+find 1
+insert 3 -122156
+insert 2 614732
+delete 4 -49945
+insert 2 585213
+insert 2 -107564
+insert 3 298806
+delete 5 632068
+insert 5 225088
+find 3
+insert 2 -104149
+insert 3 477135
+insert 1 -466780
+insert 4 51606
+delete 3 433778
+delete 5 530922
+insert 3 -229840
+delete 4 -926390
+insert 5 -314391
+insert 2 -370200
+delete 4 -906103
+insert 5 -626852
+insert 3 -560644
+insert 1 -950360
+find 5
+insert 3 588594
+find 2
+insert 3 173155
+delete 1 428151
+insert 1 295008
+insert 2 785070
+insert 4 -24485
+insert 2 117013
+insert 4 961080
+insert 3 -591002
+insert 5 -64313
+delete 4 134957
+insert 4 790444
+insert 2 647168
+delete 1 -809221
+insert 4 -290168
+insert 2 847454
+delete 4 -236358
+insert 3 -786201
+insert 2 418609
+insert 5 -430134
+insert 4 -779110
+delete 2 -641798
+insert 2 -590439
+insert 4 22149
+insert 2 279208
+insert 2 -145194
+find 3
+insert 1 804952
+find 2
+insert 1 -242110
+insert 4 -833706
+delete 3 -351999
+delete 3 69683
+insert 3 383753
+insert 4 -360224
+insert 4 10065
+insert 5 -917624
+delete 3 -225089
+insert 3 -927205
+insert 2 -186112
+insert 3 -713170
+delete 5 -328399
+insert 1 97227
+insert 1 -986591
+delete 4 314069
+insert 2 -938584
+insert 2 -825370
+find 3
+insert 4 -343384
+insert 3 -613784
+insert 1 -625564
+insert 2 -176823
+delete 2 136471
+delete 2 -922565
+insert 1 -746394
+find 3
+insert 5 -108629
+insert 5 -230491
+delete 5 -917624
+insert 5 -221930
+find 4
+insert 5 -380824
+insert 4 62147
+find 5
+insert 5 -499097
+find 1
+insert 4 -941520
+delete 2 -679223
+insert 4 -108150
+insert 5 739976
+insert 1 -885693
+find 429
+insert 1 -45666
+insert 1 -814349
+insert 4 2683
+insert 3 -13059
+insert 3 -125816
+insert 5 -599956
+delete 3 -911346
+insert 4 -420746
+insert 1 -344428
+insert 1 150177
+insert 4 205478
+delete 2 -865399
+insert 1 -119939
+insert 3 -704389
+find 4
+find 3
+find 2
+insert 5 848412
+insert 2 318566
+insert 2 -922815
+insert 4 -957142
+insert 2 -660370
+insert 2 -890042
+insert 3 -397530
+insert 4 140306
+insert 5 442251
+find 1
+insert 2 810052
+insert 1 578001
+insert 5 -428655
+find 3
+insert 1 356337
+find 1
+insert 1 135619
+delete 2 -30023
+insert 4 116636
+delete 1 -380308
+insert 1 540386
+insert 2 -5460
+insert 1 804520
+delete 2 -811065
+delete 2 -660370
+insert 1 -449616
+insert 1 636394
+insert 2 -790930
+delete 4 -360224
+insert 2 -860966
+insert 4 -720652
+insert 5 -548169
+insert 3 -533263
+insert 4 879914
+insert 2 854546
+delete 4 -627145
+insert 2 -334974
+insert 3 -519181
+insert 1 897625
+insert 1 -218657
+insert 5 159323
+insert 1 936019
+delete 1 12353
+delete 4 451168
+insert 1 -345729
+insert 3 150215
+insert 2 -274372
+delete 4 534777
+insert 2 -920320
+insert 4 -821181
+insert 4 -530567
+insert 2 -631870
+insert 1 -579482
+find 3
+insert 5 -858792
+insert 1 -447325
+delete 3 -642310
+insert 2 8242
+find 3
+insert 5 -614753
+insert 3 -621433
+insert 2 444030
+insert 5 -275047
+insert 4 829678
+insert 1 -548789
+insert 1 -313242
+insert 4 578561
+delete 4 -774649
+insert 1 -308199
+delete 1 -806479
+insert 5 555617
+find 3
+insert 3 429547
+insert 1 -508060
+insert 1 -163164
+insert 2 -65592
+insert 5 -432959
+insert 5 -666980
+insert 4 703895
+delete 1 -651034
+insert 5 -207812
+delete 3 -613784
+insert 5 243449
+insert 5 585925
+insert 1 677326
+insert 5 715509
+find 2
+delete 4 838504
+insert 5 237944
+insert 5 -444297
+insert 4 146354
+insert 1 444670
+insert 4 450511
+insert 2 -715521
+insert 3 560158
+find 3
+insert 4 953240
+delete 1 804520
+insert 3 80038
+insert 1 819969
+insert 4 514893
+insert 4 -974525
+delete 1 -313242
+insert 1 -191007
+insert 4 -312945
+insert 1 804638
+insert 3 545275
+insert 4 630448
+find 5
+insert 2 -56726
+insert 4 302757
+delete 3 -762138
+insert 2 -288086
+insert 2 -657633
+insert 3 -32101
+insert 2 398660
+insert 4 237012
+insert 3 -431111
+insert 3 67501
+delete 5 490096
+insert 3 -262387
+insert 2 501687
+insert 5 -448743
+delete 5 -705194
+insert 1 -129578
+delete 1 819969
+insert 5 -657979
+insert 2 806372
+insert 4 -948206
+insert 2 -975871
+insert 3 -169423
+insert 3 -574346
+delete 3 -122156
+insert 5 423977
+insert 3 -708591
+insert 3 74867
+delete 3 -428822
+insert 4 -484184
+insert 2 75772
+insert 5 -864826
+find 2
+insert 4 -50479
+delete 1 -741366
+delete 2 -205684
+insert 5 -458117
+insert 4 -816696
+delete 1 -653665
+insert 1 708529
+delete 2 963553
+insert 1 642752
+find 3
+insert 2 566635
+insert 1 -18391
+delete 3 74867
+insert 1 -519513
+insert 4 503477
+insert 1 998237
+insert 3 -430448
+insert 3 666316
+insert 3 -699126
+insert 3 891376
+insert 3 423210
+insert 4 -74524
+insert 5 880180
+find 5
+insert 4 642016
+insert 3 -185738
+insert 5 440122
+insert 2 -533140
+delete 1 135619
+insert 5 -532282
+insert 2 -893413
+insert 4 -867778
+insert 1 539033
+insert 2 484936
+find 5
+insert 3 -235809
+delete 3 -699126
+insert 4 964120
+insert 4 -278397
+insert 3 186162
+insert 2 -129414
+insert 2 894634
+delete 2 -2132
+insert 1 -618143
+insert 2 -405442
+delete 2 566635
+insert 5 298180
+find 1
+find 2
+delete 1 -119939
+insert 1 -842394
+insert 1 977970
+find 5
+insert 4 -807872
+delete 5 70535
+insert 4 -481708
+insert 1 -929977
+find 1
+insert 1 -307753
+insert 3 -754801
+insert 2 252569
+insert 3 -979269
+insert 4 -48656
+insert 5 379486
+insert 2 -256044
+insert 1 -953787
+insert 1 634631
+find 5
+delete 3 -125816
+insert 4 -926905
+insert 2 -290951
+delete 4 912389
+insert 4 637447
+insert 2 829744
+find 153
+find 4
+insert 3 923760
+find 5
+find 5
+insert 4 231805
+delete 1 -466780
+insert 3 -249589
+insert 2 -726140
+find 4
+insert 2 -549878
+insert 4 491486
+delete 5 225088
+insert 3 462166
+insert 2 -293465
+insert 3 -793256
+find 1
+insert 4 -615818
+insert 2 54852
+insert 4 -297420
+insert 3 966914
+insert 1 -861716
+insert 4 657572
+find 2
+insert 4 973588
+insert 1 -785975
+insert 2 758172
+find 2
+delete 3 -734255
+find 2
+insert 4 -664483
+insert 2 -592858
+insert 3 -649398
+find 4
+insert 1 74944
+insert 5 853608
+insert 4 463423
+insert 4 809253
+find 5
+insert 2 -489137
+delete 3 443117
+insert 1 213332
+insert 5 -800101
+insert 4 48759
+insert 2 -98571
+find 2
+insert 5 -763301
+insert 4 494495
+insert 3 -659511
+insert 2 768346
+find 5
+find 5
+insert 3 -919309
+insert 3 -394088
+delete 5 68974
+insert 1 -935345
+insert 2 -36731
+insert 5 -272730
+insert 3 -652962
+insert 5 475886
+insert 5 49981
+insert 2 137125
+insert 3 233396
+insert 3 -701456
+insert 2 291685
+insert 3 -689399
+find 1
+delete 4 728100
+insert 5 -100439
+insert 5 -823942
+insert 5 -573842
+find 5
+find 2
+insert 4 -552009
+insert 4 460057
+find 5
+delete 1 -522546
+insert 4 -484821
+insert 5 -796289
+insert 1 371758
+insert 3 507972
+find 3
+insert 3 -440958
+delete 5 -808076
+find 2
+insert 2 982674
+insert 5 -873463
+insert 2 -142114
+delete 1 -579482
+insert 4 530024
+find 5
+find 5
+insert 5 989109
+insert 1 992477
+insert 4 -904441
+insert 2 -948773
+insert 1 27620
+insert 4 -692837
+insert 3 726880
+find 3
+delete 4 -598501
+insert 1 951258
+insert 2 -654483
+insert 5 -237845
+insert 4 234893
+insert 3 688318
+delete 2 -312697
+delete 4 933758
+insert 1 73497
+insert 4 154636
+insert 1 148717
+insert 4 368555
+find 3
+insert 5 964318
+insert 4 994082
+find 4
+insert 4 261271
+insert 3 -45495
+find 1
+insert 1 192636
+insert 2 -972226
+insert 1 517627
+delete 2 -290951
+insert 4 -647995
+delete 4 -484184
+insert 1 930620
+insert 3 -495255
+insert 5 -802796
+insert 5 -661513
+delete 1 658495
+insert 1 53290
+insert 1 -719958
+find 2
+insert 2 681974
+insert 5 -696512
+insert 1 79032
+insert 1 -320291
+find 1
+insert 2 684480
+insert 2 -883173
+insert 4 -180616
+insert 2 851999
+insert 4 -456314
+insert 4 -807602
+delete 2 -646525
+find 4
+insert 2 431641
+insert 1 325914
+insert 1 685875
+insert 1 2684
+insert 2 111827
+insert 3 -587057
+insert 5 -634700
+insert 2 -687087
+insert 5 726439
+insert 5 604494
+insert 5 -696589
+insert 4 -821142
+insert 3 213344
+insert 2 -743575
+insert 5 -242168
+insert 1 214023
+find 5
+insert 4 -609535
+find 3
+insert 2 267291
+find 4
+delete 1 634631
+delete 2 823692
+insert 1 -45030
+insert 1 -180140
+find 5
+insert 1 820538
+insert 4 786468
+delete 5 736025
+delete 1 -447325
+find 1
+insert 4 995098
+delete 2 -98571
+delete 4 511877
+delete 4 642016
+delete 2 78270
+delete 3 457334
+find 3
+find 3
+delete 4 48759
+delete 1 -548789
+delete 4 116636
+delete 5 952638
+delete 3 726880
+delete 5 -711487
+find 3
+delete 1 768414
+delete 4 503477
+find 4
+insert 1 -500761
+delete 4 -24485
+delete 2 847454
+delete 5 549172
+find 3
+delete 3 554925
+delete 2 585213
+find 2
+delete 2 322439
+delete 2 431641
+delete 1 53290
+insert 4 367347
+insert 2 377543
+insert 1 60493
+insert 5 -803345
+insert 5 -666113
+find 1
+delete 2 -341245
+delete 3 -704389
+find 5
+delete 1 936019
+find 3
+delete 4 367347
+delete 4 829678
+find 2
+delete 4 701120
+insert 4 -942517
+delete 4 994082
+insert 4 71561
+delete 4 964120
+delete 3 -649398
+delete 2 -631870
+find 4
+delete 5 -858792
+delete 1 -746394
+delete 3 666316
+delete 5 672612
+delete 2 -715521
+delete 1 743483
+delete 3 173155
+delete 4 917261
+find 5
+delete 2 647168
+delete 1 90468
+delete 1 595333
+insert 4 718669
+insert 4 -617533
+delete 3 -713114
+insert 2 -114440
+delete 3 896976
+delete 2 902428
+delete 4 630448
+delete 1 677326
+delete 4 718669
+delete 5 -864826
+delete 4 514893
+insert 4 213389
+delete 3 -397919
+delete 5 989109
+delete 3 507972
+delete 1 607589
+insert 3 -744135
+delete 1 356337
+delete 4 -957142
+delete 4 10065
+delete 5 853608
+delete 5 726439
+delete 3 -235809
+delete 5 -644024
+delete 5 -548169
+delete 3 -747530
+delete 5 -237845
+delete 3 80038
+delete 1 -986591
+delete 2 -711164
+delete 4 -297420
+find 5
+insert 1 -242378
+delete 1 -105549
+delete 2 -354446
+delete 3 -188661
+delete 2 501687
+delete 4 -867778
+delete 4 368555
+delete 5 867696
+delete 2 987029
+delete 1 -374740
+insert 3 43227
+insert 5 -633678
+delete 1 -785975
+delete 2 -456242
+delete 3 -13059
+delete 3 -591002
+find 1
+insert 1 247209
+delete 2 -752506
+find 1
+delete 4 703895
+delete 4 231805
+delete 4 -942517
+insert 2 -872266
+insert 4 -504433
+delete 5 -454552
+delete 3 -884729
+find 3
+delete 5 -634700
+delete 1 693414
+delete 5 715509
+delete 2 854546
+delete 4 491811
+delete 4 -833706
+insert 5 -304266
+delete 3 588594
+delete 3 -689399
+find 1
+delete 4 428333
+delete 2 -930702
+insert 4 883434
+delete 5 -448743
+delete 2 -726140
+delete 3 -185738
+delete 4 610654
+delete 3 -169423
+delete 2 -256044
+find 4
+insert 2 386212
+delete 3 -786201
+delete 5 -666113
+find 2
+delete 4 530024
+insert 5 861148
+delete 4 62147
+delete 2 806372
+delete 2 -489137
+delete 5 515009
+delete 1 539033
+delete 5 -599956
+delete 3 560158
+insert 5 136358
+delete 1 -307753
+delete 4 578561
+insert 5 -533672
+find 4
+delete 4 234893
+delete 3 -715364
+delete 1 847474
+delete 3 45253
+delete 5 393338
+insert 3 -209743
+delete 1 73497
+delete 2 -65592
+insert 1 -907244
+delete 2 -657633
+delete 4 -343384
+delete 1 295008
+delete 5 167092
+delete 5 -432959
+insert 3 -835993
+insert 4 439460
+delete 4 -235555
+insert 3 463165
+find 2
+delete 3 -652085
+find 5
+find 1
+delete 2 295555
+delete 2 851999
+delete 2 117013
+delete 4 76967
+insert 1 678014
+delete 4 -992378
+insert 5 -242581
+delete 2 -590439
+delete 5 964318
+insert 1 -932256
+delete 3 688318
+delete 1 304633
+delete 5 -951818
+delete 1 678014
+find 4
+insert 4 17701
+delete 5 49981
+delete 3 -519181
+delete 4 -456314
+delete 5 -800101
+insert 4 295166
+find 4
+insert 2 72246
+delete 3 -397530
+delete 4 -340106
+delete 2 -948773
+delete 4 146354
+find 4
+delete 5 -796289
+delete 1 -191007
+delete 1 27620
+delete 1 211515
+delete 3 484611
+insert 5 -374072
+insert 3 -434343
+delete 5 -428655
+delete 1 97227
+insert 5 -744699
+find 2
+delete 3 -793256
+insert 1 535799
+delete 5 -626852
+delete 5 -823942
+insert 4 796161
+delete 4 848634
+delete 1 371758
+insert 4 928908
+insert 1 865027
+delete 2 -142114
+delete 1 -151569
+delete 3 290194
+delete 4 86543
+delete 5 -64313
+delete 1 517627
+delete 1 -242110
+delete 2 267291
+delete 1 -216901
+delete 2 -423423
+insert 4 335552
+delete 5 995874
+delete 4 460057
+find 2
+insert 3 957372
+delete 3 -635554
+insert 2 295635
+delete 2 -334974
+delete 5 -802796
+delete 2 684480
+insert 5 497019
+insert 1 -458347
+delete 4 -180616
+delete 4 -18647
+delete 5 379486
+find 3
+delete 2 637874
+delete 3 463165
+insert 5 -544984
+delete 3 -262387
+delete 2 681974
+delete 4 -108150
+delete 5 791433
+delete 5 -100439
+insert 3 -65399
+delete 2 -757589
+delete 5 -290354
+delete 5 -744699
+delete 3 -466146
+insert 4 -407413
+delete 1 -449616
+insert 3 -494441
+delete 3 -38671
+find 4
+delete 3 233396
+insert 5 -509118
+delete 2 -107564
+find 5
+delete 4 -965688
+insert 2 -826115
+insert 1 42952
+delete 1 -18391
+delete 4 995098
+delete 2 -56726
+delete 3 834926
+delete 2 813828
+delete 1 648642
+find 3
+insert 2 -237956
+delete 4 -225820
+find 4
+delete 3 -101035
+delete 2 -176823
+delete 4 786468
+delete 1 804952
+delete 5 -763301
+delete 3 606159
+delete 4 803341
+insert 4 849358
+insert 5 494969
+delete 2 111827
+delete 3 943029
+delete 2 481834
+delete 1 540386
+delete 1 -642018
+delete 1 -218657
+delete 5 440122
+find 5
+delete 2 982674
+insert 1 226308
+delete 4 305067
+find 4
+find 1
+insert 4 -789189
+delete 4 637447
+delete 4 525580
+find 2
+delete 4 -609535
+delete 2 -579231
+delete 2 418609
+delete 4 883434
+find 4
+delete 5 159323
+delete 2 -287186
+delete 1 -180140
+delete 4 -74524
+delete 5 604494
+delete 4 -530567
+find 4
+insert 4 239841
+delete 3 319990
+insert 4 455775
+insert 2 520341
+delete 5 -444297
+delete 4 961080
+insert 5 -814393
+delete 3 -962183
+delete 4 154636
+find 3
+insert 3 578457
+delete 4 239841
+delete 3 -430448
+delete 5 243449
+delete 4 953240
+insert 3 -273980
+delete 2 141779
+find 5
+insert 1 -832542
+find 5
+find 2
+delete 2 444030
+delete 2 -972226
+delete 2 -825370
+find 4
+delete 5 -272730
+find 5
+delete 3 43399
+delete 2 -883173
+delete 1 578001
+delete 4 -48656
+delete 4 -198479
+delete 3 966914
+find 1
+delete 1 -426224
+delete 1 79032
+find 2
+delete 2 -922815
+delete 4 -592031
+insert 3 600106
+insert 5 -30920
+delete 1 -595774
+delete 3 -229840
+delete 1 926277
+insert 1 634776
+delete 5 -509118
+delete 2 768346
+delete 4 -504433
+find 3
+insert 3 142378
+delete 5 84283
+insert 1 622295
+delete 2 -288086
+insert 4 -510936
+delete 3 -652962
+insert 4 166076
+delete 2 131679
+delete 1 -345729
+find 1
+delete 1 -811693
+find 1
+delete 4 -889608
+delete 4 -664483
+delete 5 -573842
+find 269
+insert 4 51135
+insert 1 -723369
+delete 5 585925
+insert 2 636375
+delete 5 -97254
+delete 1 -459692
+delete 1 -308199
+delete 3 -361941
+delete 4 -926905
+delete 5 915528
+delete 5 136358
+delete 2 -592858
+delete 2 -466345
+delete 1 -952994
+delete 1 -45666
+delete 4 -50479
+delete 1 2684
+delete 3 -560644
+delete 4 -974525
+insert 1 -31535
+delete 1 977970
+insert 3 411715
+delete 2 -890042
+find 4
+find 5
+insert 4 822977
+delete 3 957372
+delete 5 26586
+find 3
+delete 3 411715
+find 1
+delete 4 -312945
+insert 1 -213436
+find 4
+delete 4 -278397
+delete 5 348933
+insert 3 623380
+delete 1 594890
+delete 5 -360601
+insert 1 -759417
+delete 3 55746
+delete 1 -176912
+find 3
+delete 2 386212
+delete 5 423977
+delete 2 -549878
+delete 5 -30920
+insert 3 661278
+find 5
+delete 3 -273980
+insert 4 932896
+delete 4 -821142
+insert 1 -29919
+delete 3 923760
+delete 3 -777051
+delete 1 588735
+find 4
+insert 4 -478876
+insert 1 -982884
+delete 1 814931
+insert 3 843370
+find 1
+insert 3 -62602
+find 3
+delete 4 463423
+delete 2 -237956
+delete 1 247209
+delete 2 398660
+insert 3 267613
+delete 1 444670
+delete 1 708529
+delete 5 631505
+find 4
+delete 3 -689835
+delete 1 -950360
+find 3
+delete 4 140306
+delete 3 -55233
+delete 4 932896
+find 5
+find 5
+delete 3 -835993
+delete 4 2683
+insert 2 437501
+insert 2 -193941
+delete 5 446597
+insert 2 -234848
+insert 3 -942894
+find 4
+delete 5 789153
+delete 3 -708591
+find 1
+delete 5 -403373
+find 2
+delete 4 -789189
+delete 4 809253
+delete 3 -621433
+find 3
+delete 1 622295
+delete 4 -720652
+find 1
+insert 2 589512

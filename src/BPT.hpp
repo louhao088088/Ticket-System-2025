@@ -220,6 +220,13 @@ class BPlusTree {
         read_block(parent_block, parent_data);
         parse_internal(parent_data, parent);
 
+        if (parent.num_keys == 0) {
+
+            serialize_leaf(leaf, leaf_data);
+            write_block(leaf_block, leaf_data);
+
+            return;
+        }
         int parent_pos = -1;
         for (int i = 0; i <= parent.num_keys; i++) {
             if (parent.children[i] == leaf_block) {
@@ -484,6 +491,7 @@ class BPlusTree {
                 path.pop_back();
                 coalesce_internal_nodes(path, parent_block, parent_pos);
             }
+            return;
         }
         if (right_sibling != -1) {
             InternalNode right;
@@ -518,15 +526,16 @@ class BPlusTree {
                 path.pop_back();
                 coalesce_internal_nodes(path, parent_block, parent_pos);
             }
+            return;
         }
     }
 
   public:
     BPlusTree(fstream &file) : file(file) {
 
-        if (file) {
-            read_header();
-        } else
+        // if (file) {
+        //     read_header();
+        // } else
 
         {
             file.open("database.bin", ios::out | ios::binary);
@@ -722,7 +731,7 @@ class BPlusTree {
                 break;
             }
         }
-
+        // cout << pos << endl;
         if (pos == -1) {
             return;
         }

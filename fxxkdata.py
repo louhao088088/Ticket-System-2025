@@ -4,7 +4,7 @@ import random
 def generate_commands(num_commands):
     commands = []
     inserted_pairs = []  # 存储已插入的 (index, value) 对
-    segment_size = 300  # 每个阶段的命令数量，可根据需要调整
+    segment_size = 500  # 每个阶段的命令数量，可根据需要调整
     for i in range(0, num_commands, segment_size):
         # 定义阶段性的命令概率
         if (i // segment_size) % 2 == 0:
@@ -58,7 +58,7 @@ if __name__ == '__main__':
     # 要生成的文件数量
     num_files = 1
     # 每个文件的命令数量
-    num_commands_per_file = 500
+    num_commands_per_file = 5000
     # 输出目录
     output_dir = 'test_inputs'
     generate_test_files(num_files, num_commands_per_file, output_dir)
