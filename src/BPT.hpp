@@ -523,6 +523,7 @@ class BPlusTree {
 
   public:
     BPlusTree(fstream &file) : file(file) {
+        // file.open("database.bin", ios::in | ios::out | ios::binary);
         if (file) {
             read_header();
         } else
@@ -721,8 +722,6 @@ class BPlusTree {
                 break;
             }
         }
-
-        assert(pos != -1);
 
         if (pos == -1) {
             return;
