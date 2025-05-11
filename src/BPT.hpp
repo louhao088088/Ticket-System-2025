@@ -377,7 +377,7 @@ class BPlusTree {
                 parent_pos = i - 1;
                 break;
             }
-            assert(i == parent.num_keys);
+            assert(i != parent.num_keys);
         }
         int left_sibling = -1, right_sibling = -1;
 
