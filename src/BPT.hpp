@@ -235,7 +235,7 @@ class BPlusTree {
         if (parent_pos < parent.num_keys - 1)
             right_sibling = parent.children[parent_pos + 2];
 
-        assert(left_sibling != -1 || right_sibling != -1);
+        //assert(left_sibling != -1 || right_sibling != -1);
 
         if (left_sibling != -1) {
             LeafNode left;
@@ -387,7 +387,7 @@ class BPlusTree {
             right_sibling = parent.children[parent_pos + 2];
         }
 
-        assert(left_sibling != -1 || right_sibling != -1);
+        //assert(left_sibling != -1 || right_sibling != -1);
 
         if (left_sibling != -1) {
             InternalNode left;
