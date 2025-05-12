@@ -66,7 +66,7 @@ class BPlusTree {
     }
 
     void read_block(int block_num, char *data) {
-        memset(data, 0, sizeof(char *));
+        memset(data, 0, BLOCK_SIZE);
         file.seekg(block_num * BLOCK_SIZE);
         file.read(data, BLOCK_SIZE);
     }
@@ -94,7 +94,7 @@ class BPlusTree {
     }
 
     void serialize_leaf(const LeafNode &leaf, char *data) {
-        memset(data, 0, sizeof(char *));
+        memset(data, 0, BLOCK_SIZE);
         memcpy(data, &leaf.type, sizeof(int));
         memcpy(data + sizeof(int), &leaf.num_keys, sizeof(int));
         memcpy(data + 2 * sizeof(int), &leaf.next_leaf, sizeof(int));
@@ -116,7 +116,7 @@ class BPlusTree {
     }
 
     void serialize_internal(const InternalNode &node, char *data) {
-        memset(data, 0, sizeof data);
+        memset(data, 0, BLOCK_SIZE);
         memcpy(data, &node.type, sizeof(int));
         memcpy(data + sizeof(int), &node.num_keys, sizeof(int));
         memcpy(data + 2 * sizeof(int), node.children, (node.num_keys + 1) * sizeof(int));
