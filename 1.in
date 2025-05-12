@@ -1,4 +1,4 @@
-955
+5000
 insert 2 254250
 insert 5 274337
 delete 5 274337
@@ -117,6 +117,8 @@ insert 3 -67697
 insert 2 -653403
 find 4
 insert 1 957370
+
+
 insert 4 983752
 delete 2 747365
 insert 2 -486591

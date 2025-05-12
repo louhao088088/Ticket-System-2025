@@ -9,13 +9,15 @@
 
 using namespace std;
 
-const int BLOCK_SIZE = 1024;
-const int KEY_SIZE = 68;
+const int BLOCK_SIZE = 256;
+const int KEY_SIZE = 12;
 
 const int MAX_LEAF_KEYS = (BLOCK_SIZE - 12) / KEY_SIZE - 1;
 const int MAX_INTERNAL_KEYS = (BLOCK_SIZE - 12) / (KEY_SIZE + 4) - 1;
 const int MIN_LEAF_KEYS = max(1, (MAX_LEAF_KEYS + 1) / 2 - 1);
 const int MIN_INTERNAL_KEYS = max(1, MAX_INTERNAL_KEYS / 2 - 1);
+
+const int mod1 = 998244353, mod2 = 1019260817, base1 = 233, base2 = 279;
 
 struct FileHeader {
     int root_block;
@@ -27,15 +29,25 @@ struct InternalNode {
     int type;
     int num_keys;
     int children[MAX_INTERNAL_KEYS + 2];
-    char keys[MAX_INTERNAL_KEYS + 1][KEY_SIZE];
+    long long keys[MAX_INTERNAL_KEYS + 1];
+    int values[MAX_INTERNAL_KEYS + 1];
 };
 
 struct LeafNode {
     int type;
     int num_keys;
     int next_leaf;
-    char keys[MAX_LEAF_KEYS + 1][KEY_SIZE];
+    long long keys[MAX_LEAF_KEYS + 1];
+    int values[MAX_LEAF_KEYS + 1];
 };
+long long Hash(const char *data) {
+    long long res1 = 1, res2 = 1;
+    for (int i = 0; i < 64; i++) {
+        res1 = res1 * base1 + data[i], res1 %= mod1;
+        res2 = res2 * base2 + data[i], res2 %= mod2;
+    }
+    return res1 * mod2 + res2;
+}
 
 class BPlusTree {
   private:
@@ -75,7 +87,9 @@ class BPlusTree {
         memcpy(&leaf.type, data, sizeof(int));
         memcpy(&leaf.num_keys, data + sizeof(int), sizeof(int));
         memcpy(&leaf.next_leaf, data + 2 * sizeof(int), sizeof(int));
-        memcpy(leaf.keys, data + 3 * sizeof(int), (MAX_LEAF_KEYS + 1) * KEY_SIZE);
+        memcpy(leaf.keys, data + 3 * sizeof(int), (MAX_LEAF_KEYS + 1) * sizeof(long long));
+        memcpy(leaf.values, data + 3 * sizeof(int) + (MAX_LEAF_KEYS + 1) * sizeof(long long),
+               (MAX_LEAF_KEYS + 1) * sizeof(int));
     }
 
     void serialize_leaf(const LeafNode &leaf, char *data) {
@@ -83,7 +97,9 @@ class BPlusTree {
         memcpy(data, &leaf.type, sizeof(int));
         memcpy(data + sizeof(int), &leaf.num_keys, sizeof(int));
         memcpy(data + 2 * sizeof(int), &leaf.next_leaf, sizeof(int));
-        memcpy(data + 3 * sizeof(int), leaf.keys, leaf.num_keys * KEY_SIZE);
+        memcpy(data + 3 * sizeof(int), leaf.keys, leaf.num_keys * sizeof(long long));
+        memcpy(data + 3 * sizeof(int) + (MAX_LEAF_KEYS + 1) * sizeof(long long), leaf.values,
+               leaf.num_keys * sizeof(int));
     }
 
     void parse_internal(const char *data, InternalNode &node) {
@@ -91,7 +107,11 @@ class BPlusTree {
         memcpy(&node.num_keys, data + sizeof(int), sizeof(int));
         memcpy(node.children, data + 2 * sizeof(int), (MAX_INTERNAL_KEYS + 2) * sizeof(int));
         memcpy(node.keys, data + 2 * sizeof(int) + (MAX_INTERNAL_KEYS + 2) * sizeof(int),
-               (MAX_INTERNAL_KEYS + 1) * KEY_SIZE);
+               (MAX_INTERNAL_KEYS + 1) * sizeof(long long));
+        memcpy(node.values,
+               data + 2 * sizeof(int) + (MAX_INTERNAL_KEYS + 2) * sizeof(int) +
+                   (MAX_INTERNAL_KEYS + 1) * sizeof(long long),
+               (MAX_INTERNAL_KEYS + 1) * sizeof(int));
     }
 
     void serialize_internal(const InternalNode &node, char *data) {
@@ -100,26 +120,22 @@ class BPlusTree {
         memcpy(data + sizeof(int), &node.num_keys, sizeof(int));
         memcpy(data + 2 * sizeof(int), node.children, (node.num_keys + 1) * sizeof(int));
         memcpy(data + 2 * sizeof(int) + (MAX_INTERNAL_KEYS + 2) * sizeof(int), node.keys,
-               node.num_keys * KEY_SIZE);
+               node.num_keys * sizeof(long long));
+        memcpy(data + 2 * sizeof(int) + (MAX_INTERNAL_KEYS + 2) * sizeof(int) +
+                   (MAX_INTERNAL_KEYS + 1) * sizeof(long long),
+               node.values, node.num_keys * sizeof(int));
     }
 
-    int compare_keys(const char *a, const char *b) {
-        int cmp = memcmp(a, b, 64);
-        if (cmp != 0)
-            return cmp;
-        int val_a, val_b;
-        memcpy(&val_a, a + 64, sizeof(int));
-        memcpy(&val_b, b + 64, sizeof(int));
-        return (val_a < val_b) ? -1 : (val_a > val_b) ? 1 : 0;
-    }
-
-    void insert_into_parent(const vector<int> &path, int child_block, const char *key) {
+    void insert_into_parent(const vector<int> &path, int child_block, long long key, int value) {
         if (path.empty()) {
             InternalNode new_root;
             new_root.type = 0;
             new_root.num_keys = 1;
             new_root.children[0] = header.root_block;
-            memcpy(new_root.keys[0], key, KEY_SIZE);
+
+            new_root.keys[0] = key;
+            new_root.values[0] = value;
+
             new_root.children[1] = child_block;
             int new_root_block = allocate_block();
             char data[BLOCK_SIZE];
@@ -139,14 +155,15 @@ class BPlusTree {
         // assert(parent.type == 0);
 
         int pos = 0;
-        while (pos < parent.num_keys && compare_keys(parent.keys[pos], key) < 0)
+        while (pos < parent.num_keys &&
+               (parent.keys[pos] < key || (parent.keys[pos] == key && parent.values[pos] <= value)))
             pos++;
 
         for (int i = parent.num_keys; i > pos; i--) {
-            memcpy(parent.keys[i], parent.keys[i - 1], KEY_SIZE);
+            parent.keys[i] = parent.keys[i - 1], parent.values[i] = parent.values[i - 1];
             parent.children[i + 1] = parent.children[i];
         }
-        memcpy(parent.keys[pos], key, KEY_SIZE);
+        parent.keys[pos] = key, parent.values[pos] = value;
         parent.children[pos + 1] = child_block;
         parent.num_keys++;
 
@@ -160,7 +177,8 @@ class BPlusTree {
 
             memcpy(new_node.children, parent.children + split + 1,
                    (new_node.num_keys + 1) * sizeof(int));
-            memcpy(new_node.keys, parent.keys + split + 1, new_node.num_keys * KEY_SIZE);
+            memcpy(new_node.keys, parent.keys + split + 1, new_node.num_keys * sizeof(long long));
+            memcpy(new_node.values, parent.values + split + 1, new_node.num_keys * sizeof(int));
 
             int new_block = allocate_block();
             char new_data[BLOCK_SIZE];
@@ -173,7 +191,7 @@ class BPlusTree {
             write_block(parent_block, parent_data);
 
             insert_into_parent(vector<int>(path.begin(), path.end() - 1), new_block,
-                               parent.keys[split]);
+                               parent.keys[split], parent.values[split]);
 
         } else {
             char data[BLOCK_SIZE];
@@ -189,7 +207,8 @@ class BPlusTree {
         parse_leaf(leaf_data, leaf);
 
         for (int i = pos; i < leaf.num_keys - 1; i++) {
-            memcpy(leaf.keys[i], leaf.keys[i + 1], KEY_SIZE);
+            leaf.keys[i] = leaf.keys[i + 1];
+            leaf.values[i] = leaf.values[i + 1];
         }
         leaf.num_keys--;
 
@@ -243,6 +262,8 @@ class BPlusTree {
         if (parent_pos < parent.num_keys - 1)
             right_sibling = parent.children[parent_pos + 2];
 
+        assert(left_sibling != -1 || right_sibling != -1);
+
         if (left_sibling != -1) {
             LeafNode left;
             char left_data[BLOCK_SIZE];
@@ -251,13 +272,17 @@ class BPlusTree {
 
             if (left.num_keys > MIN_LEAF_KEYS) {
                 for (int i = leaf.num_keys; i > 0; i--) {
-                    memcpy(leaf.keys[i], leaf.keys[i - 1], KEY_SIZE);
+                    leaf.keys[i] = leaf.keys[i - 1];
+                    leaf.values[i] = leaf.values[i - 1];
                 }
-                memcpy(leaf.keys[0], left.keys[left.num_keys - 1], KEY_SIZE);
+                leaf.keys[0] = left.keys[left.num_keys - 1];
+                leaf.values[0] = left.values[left.num_keys - 1];
+
                 leaf.num_keys++;
                 left.num_keys--;
 
-                memcpy(parent.keys[parent_pos], leaf.keys[0], KEY_SIZE);
+                parent.keys[parent_pos] = leaf.keys[0];
+                parent.values[parent_pos] = leaf.values[0];
 
                 serialize_leaf(left, left_data);
                 write_block(left_sibling, left_data);
@@ -276,14 +301,18 @@ class BPlusTree {
             parse_leaf(right_data, right);
 
             if (right.num_keys > MIN_LEAF_KEYS) {
-                memcpy(leaf.keys[leaf.num_keys], right.keys[0], KEY_SIZE);
+                leaf.keys[leaf.num_keys] = right.keys[0];
+                leaf.values[leaf.num_keys] = right.values[0];
+
                 leaf.num_keys++;
                 for (int i = 0; i < right.num_keys - 1; i++) {
-                    memcpy(right.keys[i], right.keys[i + 1], KEY_SIZE);
+                    right.keys[i] = right.keys[i + 1];
+                    right.values[i] = right.values[i + 1];
                 }
                 right.num_keys--;
 
-                memcpy(parent.keys[parent_pos + 1], right.keys[0], KEY_SIZE);
+                parent.keys[parent_pos + 1] = right.keys[0];
+                parent.values[parent_pos + 1] = right.values[0];
 
                 serialize_leaf(right, right_data);
                 write_block(right_sibling, right_data);
@@ -302,7 +331,8 @@ class BPlusTree {
             parse_leaf(left_data, left);
 
             for (int i = 0; i < leaf.num_keys; i++) {
-                memcpy(left.keys[left.num_keys + i], leaf.keys[i], KEY_SIZE);
+                left.keys[left.num_keys + i] = leaf.keys[i];
+                left.values[left.num_keys + i] = leaf.values[i];
             }
             left.num_keys += leaf.num_keys;
             left.next_leaf = leaf.next_leaf;
@@ -313,7 +343,8 @@ class BPlusTree {
             write_block(left_sibling, left_data);
 
             for (int i = parent_pos; i < parent.num_keys - 1; i++) {
-                memcpy(parent.keys[i], parent.keys[i + 1], KEY_SIZE);
+                parent.keys[i] = parent.keys[i + 1];
+                parent.values[i] = parent.values[i + 1];
                 parent.children[i + 1] = parent.children[i + 2];
             }
             parent.num_keys--;
@@ -324,7 +355,7 @@ class BPlusTree {
                 path.pop_back();
                 serialize_internal(parent, parent_data);
                 write_block(parent_block, parent_data);
-                coalesce_internal_nodes(path, parent_block, parent_pos);
+                coalesce_internal_nodes(path, parent_block);
             }
         } else if (right_sibling != -1) {
 
@@ -334,7 +365,8 @@ class BPlusTree {
             parse_leaf(right_data, right);
 
             for (int i = 0; i < right.num_keys; i++) {
-                memcpy(leaf.keys[leaf.num_keys + i], right.keys[i], KEY_SIZE);
+                leaf.keys[leaf.num_keys + i] = right.keys[i];
+                leaf.values[leaf.num_keys + i] = right.values[i];
             }
             leaf.num_keys += right.num_keys;
             leaf.next_leaf = right.next_leaf;
@@ -345,7 +377,9 @@ class BPlusTree {
             write_block(leaf_block, leaf_data);
 
             for (int i = parent_pos + 1; i < parent.num_keys - 1; i++) {
-                memcpy(parent.keys[i], parent.keys[i + 1], KEY_SIZE);
+                parent.keys[i] = parent.keys[i + 1];
+                parent.values[i] = parent.values[i + 1];
+
                 parent.children[i + 1] = parent.children[i + 2];
             }
             parent.num_keys--;
@@ -357,12 +391,12 @@ class BPlusTree {
                 path.pop_back();
                 serialize_internal(parent, parent_data);
                 write_block(parent_block, parent_data);
-                coalesce_internal_nodes(path, parent_block, parent_pos + 1);
+                coalesce_internal_nodes(path, parent_block);
             }
         }
     }
 
-    void coalesce_internal_nodes(vector<int> &path, int node_block, int pos) {
+    void coalesce_internal_nodes(vector<int> &path, int node_block) {
         InternalNode node;
         char node_data[BLOCK_SIZE];
         read_block(node_block, node_data);
@@ -394,6 +428,8 @@ class BPlusTree {
             right_sibling = parent.children[parent_pos + 2];
         }
 
+        assert(left_sibling != -1 || right_sibling != -1);
+
         if (left_sibling != -1) {
             InternalNode left;
             char left_data[BLOCK_SIZE];
@@ -404,11 +440,16 @@ class BPlusTree {
 
                 node.children[node.num_keys + 1] = node.children[node.num_keys];
                 for (int i = node.num_keys; i > 0; i--) {
-                    memcpy(node.keys[i], node.keys[i - 1], KEY_SIZE);
+                    node.keys[i] = node.keys[i - 1];
+                    node.values[i] = node.values[i - 1];
                     node.children[i] = node.children[i - 1];
                 }
-                memcpy(node.keys[0], parent.keys[parent_pos], KEY_SIZE);
-                memcpy(parent.keys[parent_pos], left.keys[left.num_keys - 1], KEY_SIZE);
+                node.keys[0] = parent.keys[parent_pos];
+                node.values[0] = parent.values[parent_pos];
+
+                parent.keys[parent_pos] = left.keys[left.num_keys - 1];
+                parent.values[parent_pos] = left.values[left.num_keys - 1];
+
                 node.children[0] = left.children[left.num_keys];
 
                 left.num_keys--;
@@ -431,11 +472,17 @@ class BPlusTree {
             parse_internal(right_data, right);
 
             if (right.num_keys > MIN_INTERNAL_KEYS) {
-                memcpy(node.keys[node.num_keys], parent.keys[parent_pos + 1], KEY_SIZE);
-                memcpy(parent.keys[parent_pos + 1], right.keys[0], KEY_SIZE);
+                node.keys[node.num_keys] = parent.keys[parent_pos + 1];
+                node.values[node.num_keys] = parent.values[parent_pos + 1];
+
+                parent.keys[parent_pos + 1] = right.keys[0];
+                parent.values[parent_pos + 1] = right.values[0];
+
                 node.children[node.num_keys + 1] = right.children[0];
                 for (int i = 0; i < right.num_keys - 1; i++) {
-                    memcpy(right.keys[i], right.keys[i + 1], KEY_SIZE);
+                    right.keys[i] = right.keys[i + 1];
+                    right.values[i] = right.values[i + 1];
+
                     right.children[i] = right.children[i + 1];
                 }
                 right.children[right.num_keys - 1] = right.children[right.num_keys];
@@ -460,19 +507,30 @@ class BPlusTree {
             read_block(left_sibling, left_data);
             parse_internal(left_data, left);
 
-            memcpy(node.keys + left.num_keys + 1, node.keys, node.num_keys * KEY_SIZE);
+            memcpy(node.keys + left.num_keys + 1, node.keys, node.num_keys * sizeof(long long));
+            memcpy(node.values + left.num_keys + 1, node.values, node.num_keys * sizeof(int));
+
             memcpy(node.children + left.num_keys + 1, node.children,
                    (node.num_keys + 1) * sizeof(int));
-            memcpy(node.keys, left.keys, left.num_keys * KEY_SIZE);
+
+            memcpy(node.keys, left.keys, left.num_keys * sizeof(long long));
+            memcpy(node.values, left.values, left.num_keys * sizeof(int));
+
             memcpy(node.children, left.children, (left.num_keys + 1) * sizeof(int));
-            memcpy(node.keys[left.num_keys], parent.keys[parent_pos], KEY_SIZE);
+
+            node.keys[left.num_keys] = parent.keys[parent_pos];
+            node.values[left.num_keys] = parent.values[parent_pos];
+
             node.num_keys += left.num_keys + 1;
 
             assert(node.num_keys <= MAX_INTERNAL_KEYS);
 
             for (int i = parent_pos - 1; i < parent.num_keys - 1; i++) {
-                if (i != parent_pos - 1)
-                    memcpy(parent.keys[i], parent.keys[i + 1], KEY_SIZE);
+                if (i != parent_pos - 1) {
+                    parent.keys[i] = parent.keys[i + 1];
+                    parent.values[i] = parent.values[i + 1];
+                }
+
                 parent.children[i + 1] = parent.children[i + 2];
             }
 
@@ -488,7 +546,7 @@ class BPlusTree {
                 return;
             } else {
                 path.pop_back();
-                coalesce_internal_nodes(path, parent_block, parent_pos);
+                coalesce_internal_nodes(path, parent_block);
             }
             return;
         }
@@ -499,8 +557,12 @@ class BPlusTree {
             read_block(right_sibling, right_data);
             parse_internal(right_data, right);
 
-            memcpy(node.keys[node.num_keys], parent.keys[parent_pos + 1], KEY_SIZE);
-            memcpy(node.keys + node.num_keys + 1, right.keys, right.num_keys * KEY_SIZE);
+            node.keys[node.num_keys] = parent.keys[parent_pos + 1];
+            node.values[node.num_keys] = parent.values[parent_pos + 1];
+
+            memcpy(node.keys + node.num_keys + 1, right.keys, right.num_keys * sizeof(long long));
+            memcpy(node.values + node.num_keys + 1, right.values, right.num_keys * sizeof(int));
+
             memcpy(node.children + node.num_keys + 1, right.children,
                    (right.num_keys + 1) * sizeof(int));
             node.num_keys += right.num_keys + 1;
@@ -508,7 +570,9 @@ class BPlusTree {
             assert(node.num_keys <= MAX_INTERNAL_KEYS);
 
             for (int i = parent_pos + 1; i < parent.num_keys - 1; i++) {
-                memcpy(parent.keys[i], parent.keys[i + 1], KEY_SIZE);
+                parent.keys[i] = parent.keys[i + 1];
+                parent.values[i] = parent.values[i + 1];
+
                 parent.children[i + 1] = parent.children[i + 2];
             }
 
@@ -523,7 +587,7 @@ class BPlusTree {
                 return;
             } else {
                 path.pop_back();
-                coalesce_internal_nodes(path, parent_block, parent_pos);
+                coalesce_internal_nodes(path, parent_block);
             }
             return;
         }
@@ -549,14 +613,15 @@ class BPlusTree {
         }
     }
 
-    void insert(const char *key) {
+    void insert(long long key, int value) {
 
         if (header.root_block == 0) {
             LeafNode root;
             root.type = 1;
             root.num_keys = 1;
             root.next_leaf = 0;
-            memcpy(root.keys[0], key, KEY_SIZE);
+            root.keys[0] = key;
+            root.values[0] = value;
             int new_block = allocate_block();
             char data[BLOCK_SIZE];
             serialize_leaf(root, data);
@@ -580,7 +645,8 @@ class BPlusTree {
                 InternalNode node;
                 parse_internal(data, node);
                 int pos = 0;
-                while (pos < node.num_keys && compare_keys(key, node.keys[pos]) >= 0)
+                while (pos < node.num_keys && (node.keys[pos] < key || (node.keys[pos] == key &&
+                                                                        node.values[pos] <= value)))
                     pos++;
                 path.push_back(current_block);
                 current_block = node.children[pos];
@@ -592,15 +658,20 @@ class BPlusTree {
         parse_leaf(leaf_data, leaf);
 
         int pos = 0;
-        while (pos < leaf.num_keys && compare_keys(leaf.keys[pos], key) < 0)
+        while (pos < leaf.num_keys &&
+               (leaf.keys[pos] < key || (leaf.keys[pos] == key && leaf.values[pos] < value)))
             pos++;
 
-        if (pos < leaf.num_keys && compare_keys(leaf.keys[pos], key) == 0)
+        if (pos < leaf.num_keys && leaf.keys[pos] == key && leaf.values[pos] == value)
             return;
 
-        for (int i = leaf.num_keys; i > pos; i--)
-            memcpy(leaf.keys[i], leaf.keys[i - 1], KEY_SIZE);
-        memcpy(leaf.keys[pos], key, KEY_SIZE);
+        for (int i = leaf.num_keys; i > pos; i--) {
+            leaf.keys[i] = leaf.keys[i - 1];
+            leaf.values[i] = leaf.values[i - 1];
+        }
+
+        leaf.keys[pos] = key;
+        leaf.values[pos] = value;
 
         leaf.num_keys++;
 
@@ -613,15 +684,17 @@ class BPlusTree {
             new_leaf.next_leaf = leaf.next_leaf;
             leaf.next_leaf = allocate_block();
 
-            memcpy(new_leaf.keys, leaf.keys + leaf.num_keys, new_leaf.num_keys * KEY_SIZE);
+            memcpy(new_leaf.keys, leaf.keys + leaf.num_keys, new_leaf.num_keys * sizeof(long long));
+            memcpy(new_leaf.values, leaf.values + leaf.num_keys, new_leaf.num_keys * sizeof(int));
 
             char leaf_data[BLOCK_SIZE], new_leaf_data[BLOCK_SIZE];
             serialize_leaf(leaf, leaf_data);
             serialize_leaf(new_leaf, new_leaf_data);
             write_block(current_block, leaf_data);
             write_block(leaf.next_leaf, new_leaf_data);
-
-            insert_into_parent(path, leaf.next_leaf, new_leaf.keys[0]);
+            // cout << new_leaf.values[0] << " " << leaf.num_keys << " " << new_leaf.num_keys <<
+            // endl;
+            insert_into_parent(path, leaf.next_leaf, new_leaf.keys[0], new_leaf.values[0]);
         } else {
             char data[BLOCK_SIZE];
             serialize_leaf(leaf, data);
@@ -629,18 +702,11 @@ class BPlusTree {
         }
     }
 
-    vector<int> find(const char *index) {
+    vector<int> find(long long key) {
         vector<int> result;
 
         if (header.root_block == 0)
             return result;
-
-        char start_key[KEY_SIZE];
-        memset(start_key, 0, 64);
-        strncpy(start_key, index, 64);
-        int min_val = INT_MIN;
-
-        memcpy(start_key + 64, &min_val, sizeof(int));
 
         int current_block = header.root_block;
 
@@ -653,7 +719,7 @@ class BPlusTree {
             InternalNode node;
             parse_internal(data, node);
             int pos = 0;
-            while (pos < node.num_keys && compare_keys(start_key, node.keys[pos]) >= 0)
+            while (pos < node.num_keys && key > node.keys[pos])
                 pos++;
             current_block = node.children[pos];
         }
@@ -668,10 +734,9 @@ class BPlusTree {
             bool found = false;
             for (int i = 0; i < leaf.num_keys; ++i) {
                 // cout << leaf.keys[i] << " " << index << endl;
-                if (memcmp(leaf.keys[i], index, 64) == 0) {
-                    int value;
-                    memcpy(&value, leaf.keys[i] + 64, sizeof(int));
-                    result.push_back(value);
+                if (leaf.keys[i] == key) {
+
+                    result.push_back(leaf.values[i]);
                     found = true;
                 } else if (found) {
                     break;
@@ -688,7 +753,7 @@ class BPlusTree {
         return result;
     }
 
-    void remove(const char *key) {
+    void remove(long long key, int value) {
         vector<int> path;
         int current_block = header.root_block;
         // cout << header.root_block << endl;
@@ -713,7 +778,8 @@ class BPlusTree {
             int pos = 0;
             // cout << pos << " " << node.type << " " << node.num_keys << " " << node.children[pos]
             //  << endl;
-            while (pos < node.num_keys && compare_keys(key, node.keys[pos]) >= 0)
+            while (pos < node.num_keys &&
+                   (key > node.keys[pos] || (key == node.keys[pos] && value >= node.values[pos])))
                 pos++;
 
             current_block = node.children[pos];
@@ -725,7 +791,7 @@ class BPlusTree {
         parse_leaf(leaf_data, leaf);
         int pos = -1;
         for (int i = 0; i < leaf.num_keys; i++) {
-            if (compare_keys(leaf.keys[i], key) == 0) {
+            if (leaf.keys[i] == key && leaf.values[i] == value) {
                 pos = i;
                 break;
             }
@@ -765,11 +831,8 @@ class BPlusTree {
 
             // 打印所有键值
             for (int i = 0; i < leaf.num_keys; ++i) {
-                char index[65] = {0};
-                int value;
-                memcpy(index, leaf.keys[i], 64);
-                memcpy(&value, leaf.keys[i] + 64, sizeof(int));
-                cout << "[" << index << ":" << value << "] ";
+
+                cout << "[" << leaf.keys[i] << ":" << leaf.values[i] << "] ";
             }
             cout << endl;
         } else { // 内部节点
@@ -782,11 +845,8 @@ class BPlusTree {
             // 打印节点类型和键信息
             cout << "[N" << block_num << "]: ";
             for (int i = 0; i < node.num_keys; ++i) {
-                char index[65] = {0};
-                int value;
-                memcpy(index, node.keys[i], 64);
-                memcpy(&value, node.keys[i] + 64, sizeof(int));
-                cout << "|" << setw(KEY_WIDTH) << left << (string(index) + ":" + to_string(value));
+
+                cout << "|" << setw(KEY_WIDTH) << left << node.keys[i] << ":" << node.values[i];
             }
             cout << "|" << endl;
 

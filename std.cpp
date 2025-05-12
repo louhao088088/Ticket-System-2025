@@ -1,23 +1,22 @@
+#include <algorithm>
 #include <cstdio>
 #include <cstring>
-#include <vector>
-#include <algorithm>
-#include <string>
 #include <fstream>
+#include <string>
+#include <vector>
 using namespace std;
 
 const int HASH_SIZE = 100003;
 const int BLOCK_CAPACITY = 200;
 
 // 原始头文件内容 MemoryRiver.hpp 放在这里
-template<typename T>
-class MemoryRiver {
-private:
+template <typename T> class MemoryRiver {
+  private:
     fstream file;
     string filename;
-    
-public:
-    explicit MemoryRiver(const string& name) : filename(name) {
+
+  public:
+    explicit MemoryRiver(const string &name) : filename(name) {
         file.open(filename, ios::binary | ios::in | ios::out);
         if (!file) {
             file.open(filename, ios::binary | ios::out);
@@ -27,25 +26,26 @@ public:
     }
 
     ~MemoryRiver() {
-        if (file.is_open()) file.close();
+        if (file.is_open())
+            file.close();
     }
 
-    long write(const T& data) {
+    long write(const T &data) {
         file.seekp(0, ios::end);
         long pos = file.tellp();
-        file.write(reinterpret_cast<const char*>(&data), sizeof(T));
+        file.write(reinterpret_cast<const char *>(&data), sizeof(T));
         file.flush();
         return pos;
     }
 
-    void read(T& data, long pos) {
+    void read(T &data, long pos) {
         file.seekg(pos);
-        file.read(reinterpret_cast<char*>(&data), sizeof(T));
+        file.read(reinterpret_cast<char *>(&data), sizeof(T));
     }
 
-    void update(const T& data, long pos) {
+    void update(const T &data, long pos) {
         file.seekp(pos);
-        file.write(reinterpret_cast<const char*>(&data), sizeof(T));
+        file.write(reinterpret_cast<const char *>(&data), sizeof(T));
         file.flush();
     }
 
@@ -60,8 +60,7 @@ struct HashBucket {
     long tail;
 };
 
-template<typename T>
-struct Record {
+template <typename T> struct Record {
     char index[64];
     T value;
 };
@@ -71,19 +70,17 @@ struct BlockHeader {
     long next;
 };
 
-template<typename T>
-struct Block {
+template <typename T> struct Block {
     BlockHeader header;
     Record<T> records[BLOCK_CAPACITY];
 };
 
-template<typename T>
-class Database {
-private:
+template <typename T> class Database {
+  private:
     MemoryRiver<HashBucket> hashRiver;
     MemoryRiver<Block<T>> blockRiver;
 
-    unsigned long hash_str(const char* str) {
+    unsigned long hash_str(const char *str) {
         unsigned long hash = 5381;
         int c;
         while ((c = *str++)) {
@@ -98,7 +95,7 @@ private:
         return blockRiver.write(empty_block);
     }
 
-public:
+  public:
     Database() : hashRiver("data.dat"), blockRiver("data.dat") {
         if (hashRiver.is_new_file()) {
             HashBucket init_bucket = {0, 0};
@@ -108,7 +105,7 @@ public:
         }
     }
 
-    void insert(const char* index, T value) {
+    void insert(const char *index, T value) {
         unsigned long h = hash_str(index) % HASH_SIZE;
         HashBucket bucket;
         hashRiver.read(bucket, h * sizeof(HashBucket));
@@ -120,17 +117,18 @@ public:
         while (current_offset != 0) {
             blockRiver.read(block, current_offset);
             for (int i = 0; i < block.header.count; ++i) {
-                if (strcmp(block.records[i].index, index) == 0 && 
-                    block.records[i].value == value) {
+                if (strcmp(block.records[i].index, index) == 0 && block.records[i].value == value) {
                     exists = true;
                     break;
                 }
             }
-            if (exists) break;
+            if (exists)
+                break;
             current_offset = block.header.next;
         }
 
-        if (exists) return;
+        if (exists)
+            return;
 
         if (bucket.tail == 0) {
             long new_offset = allocate_block();
@@ -147,7 +145,7 @@ public:
         } else {
             Block<T> tail_block;
             blockRiver.read(tail_block, bucket.tail);
-            
+
             if (tail_block.header.count < BLOCK_CAPACITY) {
                 strncpy(tail_block.records[tail_block.header.count].index, index, 64);
                 tail_block.records[tail_block.header.count].value = value;
@@ -172,7 +170,7 @@ public:
         }
     }
 
-    void remove(const char* index, T value) {
+    void remove(const char *index, T value) {
         unsigned long h = hash_str(index) % HASH_SIZE;
         HashBucket bucket;
         hashRiver.read(bucket, h * sizeof(HashBucket));
@@ -185,9 +183,8 @@ public:
         while (current_offset != 0 && !found) {
             blockRiver.read(block, current_offset);
             for (int i = 0; i < block.header.count; ++i) {
-                if (strcmp(block.records[i].index, index) == 0 && 
-                    block.records[i].value == value) {
-                    
+                if (strcmp(block.records[i].index, index) == 0 && block.records[i].value == value) {
+
                     for (int j = i; j < block.header.count - 1; ++j) {
                         block.records[j] = block.records[j + 1];
                     }
@@ -198,7 +195,8 @@ public:
                     if (block.header.count == 0) {
                         if (prev_offset == 0) {
                             bucket.head = block.header.next;
-                            if (bucket.head == 0) bucket.tail = 0;
+                            if (bucket.head == 0)
+                                bucket.tail = 0;
                             hashRiver.update(bucket, h * sizeof(HashBucket));
                         } else {
                             Block<T> prev_block;
@@ -222,7 +220,7 @@ public:
         }
     }
 
-    void find(const char* index) {
+    void find(const char *index) {
         vector<T> values;
         unsigned long h = hash_str(index) % HASH_SIZE;
         HashBucket bucket;
@@ -246,7 +244,8 @@ public:
         } else {
             sort(values.begin(), values.end());
             for (size_t i = 0; i < values.size(); ++i) {
-                if (i > 0) printf(" ");
+                if (i > 0)
+                    printf(" ");
                 printf("%d", values[i]);
             }
             printf("\n");
