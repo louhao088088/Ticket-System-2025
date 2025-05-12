@@ -24,12 +24,14 @@ template <typename T> using vector = sjtu::vector<T>;
 template <typename Key, typename Value, typename Compare = std::less<Key>>
 using map = sjtu::map<Key, Value, Compare>;
 
+//根
 struct FileHeader {
     int root_block;
     int first_leaf_block;
     int block_count;
 };
 
+//内部节点
 struct InternalNode {
     int type;
     int num_keys;
@@ -38,6 +40,7 @@ struct InternalNode {
     int values[MAX_INTERNAL_KEYS + 1];
 };
 
+//叶子节点
 struct LeafNode {
     int type;
     int num_keys;
@@ -46,12 +49,12 @@ struct LeafNode {
     int values[MAX_LEAF_KEYS + 1];
 };
 
+// 缓存
 struct CacheNode {
-    int block_num;         // 块号
-    char data[BLOCK_SIZE]; // 块数据
-    bool is_dirty;         // 脏标记（是否被修改）
+    int block_num;
+    char data[BLOCK_SIZE];
+    bool is_dirty;
 
-    // 双向链表指针
     CacheNode *prev;
     CacheNode *next;
 
@@ -59,19 +62,21 @@ struct CacheNode {
         memset(data, 0, BLOCK_SIZE);
     }
 };
+
+// 缓存
 class LRUCache {
   private:
-    int capacity;                    // 最大缓存块数
-    map<int, CacheNode *> cache_map; // 哈希表：块号 -> 缓存节点
-    CacheNode *head;                 // 链表头（最近使用）
-    CacheNode *tail;                 // 链表尾（最久未用）
+    int capacity;
+    map<int, CacheNode *> cache_map;
+    CacheNode *head;
+    CacheNode *tail;
 
+    //更新访问顺序
     void move_to_head(CacheNode *node) {
         assert(node != nullptr);
         if (node == head)
-            return; // 如果已在头部，无需移动
+            return;
 
-        // 从原位置断开
         if (node->prev)
             node->prev->next = node->next;
         if (node->next)
@@ -80,7 +85,6 @@ class LRUCache {
         if (node == tail)
             tail = node->prev;
 
-        // 插入到头部
         node->prev = nullptr;
         node->next = head;
         if (head)
@@ -91,6 +95,7 @@ class LRUCache {
             tail = head;
     }
 
+    // 淘汰最久未使用节点
     void remove_tail(std::fstream &file) {
         if (!tail)
             return;
@@ -105,11 +110,10 @@ class LRUCache {
 
         cache_map.erase(cache_map.find(old_tail->block_num));
 
-        // 更新链表尾部
         if (prev)
             prev->next = nullptr;
         else
-            head = nullptr; // 如果 prev 是空，说明链表只剩一个节点
+            head = nullptr;
 
         tail = prev;
         old_tail->prev = nullptr;
@@ -147,13 +151,13 @@ class LRUCache {
     void put(int block_num, const char *data, std::fstream &file, bool is_dirty = false) {
         auto it = cache_map.find(block_num);
         if (it != cache_map.end()) {
-            // 更新现有节点
+
             CacheNode *node = it->second;
             memcpy(node->data, data, BLOCK_SIZE);
             node->is_dirty = is_dirty;
             move_to_head(node);
         } else {
-            // 创建新节点
+
             if (cache_map.size() >= capacity) {
                 remove_tail(file);
             }
@@ -187,6 +191,7 @@ class LRUCache {
     }
 };
 
+//哈希
 long long Hash(const char *data) {
     long long res1 = 1, res2 = 1;
     for (int i = 0; i < 64; i++) {
@@ -200,8 +205,9 @@ class BPlusTree {
   private:
     std::fstream &file;
     FileHeader header;
-    LRUCache block_cache; // 新增缓存成员
+    LRUCache block_cache;
 
+    //文件读写操作
     void write_header() {
         file.seekp(0);
         file.write(reinterpret_cast<char *>(&header), sizeof(FileHeader));
@@ -279,6 +285,7 @@ class BPlusTree {
                node.values, node.num_keys * sizeof(int));
     }
 
+    //把键值插入内部点
     void insert_into_parent(vector<int> &path, int child_block, long long key, int value) {
         if (path.empty()) {
             InternalNode new_root;
@@ -304,8 +311,6 @@ class BPlusTree {
         char parent_data[BLOCK_SIZE];
         read_block(parent_block, parent_data);
         parse_internal(parent_data, parent);
-
-        // assert(parent.type == 0);
 
         int pos = 0;
         while (pos < parent.num_keys &&
@@ -352,6 +357,7 @@ class BPlusTree {
         }
     }
 
+    //从叶子中移除某个键值
     void remove_from_leaf(int leaf_block, int pos, vector<int> &path) {
         LeafNode leaf;
         char leaf_data[BLOCK_SIZE];
@@ -416,6 +422,7 @@ class BPlusTree {
 
         assert(left_sibling != -1 || right_sibling != -1);
 
+        //从左右兄弟中借一个值
         if (left_sibling != -1) {
             LeafNode left;
             char left_data[BLOCK_SIZE];
@@ -476,6 +483,7 @@ class BPlusTree {
             }
         }
 
+        //和左右兄弟合并
         if (left_sibling != -1) {
             LeafNode left;
             char left_data[BLOCK_SIZE];
@@ -548,6 +556,7 @@ class BPlusTree {
         }
     }
 
+    //删除内部点的某个键值
     void coalesce_internal_nodes(vector<int> &path, int node_block) {
         InternalNode node;
         char node_data[BLOCK_SIZE];
@@ -582,6 +591,7 @@ class BPlusTree {
 
         assert(left_sibling != -1 || right_sibling != -1);
 
+        //从左右兄弟中借一个值
         if (left_sibling != -1) {
             InternalNode left;
             char left_data[BLOCK_SIZE];
@@ -652,6 +662,7 @@ class BPlusTree {
             }
         }
 
+        //和左右兄弟合并
         if (left_sibling != -1) {
 
             InternalNode left;
@@ -746,8 +757,8 @@ class BPlusTree {
     }
 
   public:
-    BPlusTree(std::fstream &file) : file(file), block_cache(256) {
-
+    BPlusTree(std::fstream &file) : file(file), block_cache(4096) {
+        //初始化文件
         if (file) {
             read_header();
         } else
@@ -764,7 +775,10 @@ class BPlusTree {
             write_header();
         }
     }
+    //清空缓存
     void flush() { block_cache.flush(file); }
+
+    //插入
     void insert(long long key, int value) {
 
         if (header.root_block == 0) {
@@ -821,14 +835,11 @@ class BPlusTree {
             leaf.keys[i] = leaf.keys[i - 1];
             leaf.values[i] = leaf.values[i - 1];
         }
-
         leaf.keys[pos] = key;
         leaf.values[pos] = value;
-
         leaf.num_keys++;
 
         if (leaf.num_keys > MAX_LEAF_KEYS) {
-
             LeafNode new_leaf;
             new_leaf.type = 1;
             new_leaf.num_keys = leaf.num_keys / 2;
@@ -853,6 +864,7 @@ class BPlusTree {
         }
     }
 
+    //查找
     vector<int> find(long long key) {
         vector<int> result;
 
@@ -902,6 +914,7 @@ class BPlusTree {
         return result;
     }
 
+    //删除
     void remove(long long key, int value) {
         vector<int> path;
         int current_block = header.root_block;
@@ -960,36 +973,23 @@ class BPlusTree {
         char data[BLOCK_SIZE];
         file.seekg(block_num * BLOCK_SIZE);
         file.read(data, BLOCK_SIZE);
-
-        // 解析节点类型
         int node_type;
         memcpy(&node_type, data, sizeof(int));
-
-        // 根据节点类型处理
-        if (node_type == 1) { // 叶子节点
+        if (node_type == 1) {
             LeafNode leaf;
             parse_leaf(data, leaf);
-
-            // 打印缩进
             std::cout << std::string(level * PRINT_INDENT, ' ');
-
-            // 打印节点类型和指针信息
             std::cout << "[L" << block_num << "]->" << leaf.next_leaf << ": ";
-
-            // 打印所有键值
             for (int i = 0; i < leaf.num_keys; ++i) {
 
                 std::cout << "[" << leaf.keys[i] << ":" << leaf.values[i] << "] ";
             }
             std::cout << std::endl;
-        } else { // 内部节点
+        } else {
             InternalNode node;
             parse_internal(data, node);
-
-            // 打印缩进
             std::cout << std::string(level * PRINT_INDENT, ' ');
 
-            // 打印节点类型和键信息
             std::cout << "[N" << block_num << "]: ";
             for (int i = 0; i < node.num_keys; ++i) {
 
@@ -997,9 +997,6 @@ class BPlusTree {
                           << node.values[i];
             }
             std::cout << "|" << std::endl;
-
-            // 递归打印子节点
-
             for (int i = 0; i <= node.num_keys; ++i) {
                 print_tree(node.children[i], level + 1, file);
             }
@@ -1016,7 +1013,6 @@ class BPlusTree {
             std::cout << "Empty Tree" << std::endl;
             return;
         }
-
         std::cout << "B+ Tree Structure (Block Size: " << BLOCK_SIZE
                   << ", Max Leaf Keys: " << MAX_LEAF_KEYS << ")" << std::endl
                   << std::string(80, '-') << std::endl;
