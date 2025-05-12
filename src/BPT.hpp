@@ -1,5 +1,5 @@
-#include "map.hpp"
-#include "vector.hpp"
+#include "map/map.hpp"
+#include "vector/vector.hpp"
 
 #include <algorithm>
 #include <cassert>
@@ -8,7 +8,6 @@
 #include <fstream>
 #include <iomanip>
 #include <iostream>
-#include <map>
 
 const int BLOCK_SIZE = 1024;
 const int KEY_SIZE = 12;
@@ -21,6 +20,9 @@ const int MIN_INTERNAL_KEYS = std::max(1, MAX_INTERNAL_KEYS / 2 - 1);
 const int mod1 = 998244353, mod2 = 1019260817, base1 = 233, base2 = 279;
 
 template <typename T> using vector = sjtu::vector<T>;
+
+template <typename Key, typename Value, typename Compare = std::less<Key>>
+using map = sjtu::map<Key, Value, Compare>;
 
 struct FileHeader {
     int root_block;
@@ -59,10 +61,10 @@ struct CacheNode {
 };
 class LRUCache {
   private:
-    int capacity;                         // 最大缓存块数
-    std::map<int, CacheNode *> cache_map; // 哈希表：块号 -> 缓存节点
-    CacheNode *head;                      // 链表头（最近使用）
-    CacheNode *tail;                      // 链表尾（最久未用）
+    int capacity;                    // 最大缓存块数
+    map<int, CacheNode *> cache_map; // 哈希表：块号 -> 缓存节点
+    CacheNode *head;                 // 链表头（最近使用）
+    CacheNode *tail;                 // 链表尾（最久未用）
 
     void move_to_head(CacheNode *node) {
         assert(node != nullptr);
@@ -101,7 +103,7 @@ class LRUCache {
             file.write(old_tail->data, BLOCK_SIZE);
         }
 
-        cache_map.erase(old_tail->block_num);
+        cache_map.erase(cache_map.find(old_tail->block_num));
 
         // 更新链表尾部
         if (prev)
@@ -746,9 +748,9 @@ class BPlusTree {
   public:
     BPlusTree(std::fstream &file) : file(file), block_cache(256) {
 
-        if (file) {
-            read_header();
-        } else
+        // if (file) {
+        //     read_header();
+        // } else
 
         {
             file.open("database.bin", std::ios::out | std::ios::binary);
@@ -762,7 +764,7 @@ class BPlusTree {
             write_header();
         }
     }
-
+    void flush() { block_cache.flush(file); }
     void insert(long long key, int value) {
 
         if (header.root_block == 0) {

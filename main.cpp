@@ -51,6 +51,7 @@ int main() {
             }
         }
     }
+    tree.flush();
 
     return 0;
 }
