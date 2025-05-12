@@ -8,7 +8,7 @@
 #include <iomanip>
 #include <iostream>
 
-const int BLOCK_SIZE = 1024;
+const int BLOCK_SIZE = 512;
 const int KEY_SIZE = 12;
 
 const int MAX_LEAF_KEYS = (BLOCK_SIZE - 12) / KEY_SIZE - 1;
@@ -753,7 +753,9 @@ class BPlusTree {
     void remove(long long key, int value) {
         vector<int> path;
         int current_block = header.root_block;
-
+        if (head.root_block == 0) {
+            return 0;
+        }
         char data[BLOCK_SIZE];
         read_block(current_block, data);
         InternalNode node;
