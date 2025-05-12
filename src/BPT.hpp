@@ -757,7 +757,7 @@ class BPlusTree {
     }
 
   public:
-    BPlusTree(std::fstream &file) : file(file), block_cache(4096) {
+    BPlusTree(std::fstream &file) : file(file), block_cache(8192) {
         //初始化文件
         if (file) {
             read_header();
