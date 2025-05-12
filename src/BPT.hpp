@@ -1,11 +1,12 @@
 #include "vector.hpp"
 
 #include <algorithm>
-#include <bits/stdc++.h>
 #include <climits>
 #include <cstring>
 #include <fstream>
 #include <iostream>
+#include <cassert>
+#include <iomanip>
 
 const int BLOCK_SIZE = 256;
 const int KEY_SIZE = 12;
