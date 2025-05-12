@@ -10,6 +10,7 @@ add_executable(code
     src/exceptions.hpp
     src/utility.hpp
     src/vector.hpp
+    src/map.hpp
     src/BPT.hpp
     main.cpp
 )

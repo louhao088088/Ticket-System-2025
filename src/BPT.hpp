@@ -1,12 +1,12 @@
 #include "vector.hpp"
 
 #include <algorithm>
+#include <cassert>
 #include <climits>
 #include <cstring>
 #include <fstream>
-#include <iostream>
-#include <cassert>
 #include <iomanip>
+#include <iostream>
 
 const int BLOCK_SIZE = 256;
 const int KEY_SIZE = 12;
@@ -66,7 +66,7 @@ class BPlusTree {
     }
 
     void read_block(int block_num, char *data) {
-        memset(data, 0, sizeof data);
+        memset(data, 0, sizeof(char *));
         file.seekg(block_num * BLOCK_SIZE);
         file.read(data, BLOCK_SIZE);
     }
@@ -94,7 +94,7 @@ class BPlusTree {
     }
 
     void serialize_leaf(const LeafNode &leaf, char *data) {
-        memset(data, 0, sizeof data);
+        memset(data, 0, sizeof(char *));
         memcpy(data, &leaf.type, sizeof(int));
         memcpy(data + sizeof(int), &leaf.num_keys, sizeof(int));
         memcpy(data + 2 * sizeof(int), &leaf.next_leaf, sizeof(int));

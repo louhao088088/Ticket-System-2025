@@ -7,7 +7,7 @@ SAMPLE_PROG="./sample"  # Path to the brute-force program executable
 MAIN_PROG="./main"  # Path to your program executable
 
 # 1. Generate test data
-g++ main.cpp -o  main -fsanitize=address,leak,undefined
+g++ main.cpp -o  main -fsanitize=address,leak,undefined -Wall -Warning
 g++ sample.cpp -o  sample -fsanitize=address,leak,undefined
 
 echo "Generating test data..."
