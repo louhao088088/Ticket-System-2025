@@ -8,7 +8,7 @@
 #include <iomanip>
 #include <iostream>
 
-const int BLOCK_SIZE = 256;
+const int BLOCK_SIZE = 1024;
 const int KEY_SIZE = 12;
 
 const int MAX_LEAF_KEYS = (BLOCK_SIZE - 12) / KEY_SIZE - 1;
