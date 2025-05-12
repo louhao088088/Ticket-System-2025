@@ -748,9 +748,9 @@ class BPlusTree {
   public:
     BPlusTree(std::fstream &file) : file(file), block_cache(256) {
 
-        // if (file) {
-        //     read_header();
-        // } else
+        if (file) {
+            read_header();
+        } else
 
         {
             file.open("database.bin", std::ios::out | std::ios::binary);
