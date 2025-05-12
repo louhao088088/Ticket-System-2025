@@ -1,3 +1,4 @@
+#include "map.hpp"
 #include "vector.hpp"
 
 #include <algorithm>
@@ -7,8 +8,9 @@
 #include <fstream>
 #include <iomanip>
 #include <iostream>
+#include <map>
 
-const int BLOCK_SIZE = 512;
+const int BLOCK_SIZE = 1024;
 const int KEY_SIZE = 12;
 
 const int MAX_LEAF_KEYS = (BLOCK_SIZE - 12) / KEY_SIZE - 1;
@@ -41,6 +43,148 @@ struct LeafNode {
     long long keys[MAX_LEAF_KEYS + 1];
     int values[MAX_LEAF_KEYS + 1];
 };
+
+struct CacheNode {
+    int block_num;         // 块号
+    char data[BLOCK_SIZE]; // 块数据
+    bool is_dirty;         // 脏标记（是否被修改）
+
+    // 双向链表指针
+    CacheNode *prev;
+    CacheNode *next;
+
+    CacheNode(int bn) : block_num(bn), is_dirty(false), prev(nullptr), next(nullptr) {
+        memset(data, 0, BLOCK_SIZE);
+    }
+};
+class LRUCache {
+  private:
+    int capacity;                         // 最大缓存块数
+    std::map<int, CacheNode *> cache_map; // 哈希表：块号 -> 缓存节点
+    CacheNode *head;                      // 链表头（最近使用）
+    CacheNode *tail;                      // 链表尾（最久未用）
+
+    void move_to_head(CacheNode *node) {
+        assert(node != nullptr);
+        if (node == head)
+            return; // 如果已在头部，无需移动
+
+        // 从原位置断开
+        if (node->prev)
+            node->prev->next = node->next;
+        if (node->next)
+            node->next->prev = node->prev;
+
+        if (node == tail)
+            tail = node->prev;
+
+        // 插入到头部
+        node->prev = nullptr;
+        node->next = head;
+        if (head)
+            head->prev = node;
+        head = node;
+
+        if (!tail)
+            tail = head;
+    }
+
+    void remove_tail(std::fstream &file) {
+        if (!tail)
+            return;
+
+        CacheNode *old_tail = tail;
+        CacheNode *prev = old_tail->prev;
+
+        if (old_tail->is_dirty) {
+            file.seekp(old_tail->block_num * BLOCK_SIZE);
+            file.write(old_tail->data, BLOCK_SIZE);
+        }
+
+        cache_map.erase(old_tail->block_num);
+
+        // 更新链表尾部
+        if (prev)
+            prev->next = nullptr;
+        else
+            head = nullptr; // 如果 prev 是空，说明链表只剩一个节点
+
+        tail = prev;
+        old_tail->prev = nullptr;
+        old_tail->next = nullptr;
+        delete old_tail;
+    }
+
+  public:
+    LRUCache(int cap) : capacity(cap), head(nullptr), tail(nullptr) {}
+
+    ~LRUCache() {
+        CacheNode *curr = head;
+        while (curr) {
+            CacheNode *next = curr->next;
+            curr->prev = nullptr;
+            curr->next = nullptr;
+            delete curr;
+            curr = next;
+        }
+        head = tail = nullptr;
+        cache_map.clear();
+    }
+
+    // 获取缓存数据，返回nullptr表示未命中
+    char *get(int block_num) {
+        auto it = cache_map.find(block_num);
+        if (it == cache_map.end())
+            return nullptr;
+        CacheNode *node = it->second;
+        move_to_head(node);
+        return node->data;
+    }
+
+    // 添加或更新缓存
+    void put(int block_num, const char *data, std::fstream &file, bool is_dirty = false) {
+        auto it = cache_map.find(block_num);
+        if (it != cache_map.end()) {
+            // 更新现有节点
+            CacheNode *node = it->second;
+            memcpy(node->data, data, BLOCK_SIZE);
+            node->is_dirty = is_dirty;
+            move_to_head(node);
+        } else {
+            // 创建新节点
+            if (cache_map.size() >= capacity) {
+                remove_tail(file);
+            }
+            CacheNode *node = new CacheNode(block_num);
+            memcpy(node->data, data, BLOCK_SIZE);
+            node->is_dirty = is_dirty;
+            cache_map[block_num] = node;
+            move_to_head(node);
+        }
+    }
+
+    // 标记节点为脏
+    void mark_dirty(int block_num) {
+        auto it = cache_map.find(block_num);
+        if (it != cache_map.end()) {
+            it->second->is_dirty = true;
+        }
+    }
+
+    // 将所有脏数据写回磁盘
+    void flush(std::fstream &file) {
+        CacheNode *curr = head;
+        while (curr) {
+            if (curr->is_dirty) {
+                file.seekp(curr->block_num * BLOCK_SIZE);
+                file.write(curr->data, BLOCK_SIZE);
+                curr->is_dirty = false;
+            }
+            curr = curr->next;
+        }
+    }
+};
+
 long long Hash(const char *data) {
     long long res1 = 1, res2 = 1;
     for (int i = 0; i < 64; i++) {
@@ -54,6 +198,7 @@ class BPlusTree {
   private:
     std::fstream &file;
     FileHeader header;
+    LRUCache block_cache; // 新增缓存成员
 
     void write_header() {
         file.seekp(0);
@@ -67,13 +212,18 @@ class BPlusTree {
 
     void read_block(int block_num, char *data) {
         memset(data, 0, BLOCK_SIZE);
-        file.seekg(block_num * BLOCK_SIZE);
-        file.read(data, BLOCK_SIZE);
+        char *cached_data = block_cache.get(block_num);
+        if (cached_data) {
+            memcpy(data, cached_data, BLOCK_SIZE);
+        } else {
+            file.seekg(block_num * BLOCK_SIZE);
+            file.read(data, BLOCK_SIZE);
+            block_cache.put(block_num, data, file);
+        }
     }
 
     void write_block(int block_num, const char *data) {
-        file.seekp(block_num * BLOCK_SIZE);
-        file.write(data, BLOCK_SIZE);
+        block_cache.put(block_num, data, file, true);
     }
 
     int allocate_block() {
@@ -594,7 +744,7 @@ class BPlusTree {
     }
 
   public:
-    BPlusTree(std::fstream &file) : file(file) {
+    BPlusTree(std::fstream &file) : file(file), block_cache(256) {
 
         if (file) {
             read_header();

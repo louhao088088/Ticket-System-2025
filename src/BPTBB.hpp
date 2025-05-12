@@ -887,7 +887,9 @@ class BPlusTree {
     void remove(long long key, int value) {
         vector<int> path;
         int current_block = header.root_block;
-
+        if (header.root_block == 0) {
+            return;
+        }
         char data[BLOCK_SIZE];
         read_block(current_block, data);
         InternalNode node;
