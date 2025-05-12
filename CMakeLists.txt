@@ -7,10 +7,13 @@ add_compile_options(-Wall)
 add_compile_options(-Ofast)
 
 add_executable(code 
-    src/exceptions.hpp
-    src/utility.hpp
-    src/vector.hpp
-    src/map.hpp
+    src/vector/exceptions.hpp
+    src/vector/utility.hpp
+    src/vector/vector.hpp
+    src/map/exceptions.hpp
+    src/map/utility.hpp
+    src/map/map.hpp
+    
     src/BPT.hpp
     main.cpp
 )
