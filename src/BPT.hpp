@@ -7,17 +7,17 @@
 #include <fstream>
 #include <iostream>
 
-using namespace std;
-
-const int BLOCK_SIZE = 1024;
+const int BLOCK_SIZE = 256;
 const int KEY_SIZE = 12;
 
 const int MAX_LEAF_KEYS = (BLOCK_SIZE - 12) / KEY_SIZE - 1;
 const int MAX_INTERNAL_KEYS = (BLOCK_SIZE - 12) / (KEY_SIZE + 4) - 1;
-const int MIN_LEAF_KEYS = max(1, (MAX_LEAF_KEYS + 1) / 2 - 1);
-const int MIN_INTERNAL_KEYS = max(1, MAX_INTERNAL_KEYS / 2 - 1);
+const int MIN_LEAF_KEYS = std::max(1, (MAX_LEAF_KEYS + 1) / 2 - 1);
+const int MIN_INTERNAL_KEYS = std::max(1, MAX_INTERNAL_KEYS / 2 - 1);
 
 const int mod1 = 998244353, mod2 = 1019260817, base1 = 233, base2 = 279;
+
+template <typename T> using vector = sjtu::vector<T>;
 
 struct FileHeader {
     int root_block;
@@ -51,7 +51,7 @@ long long Hash(const char *data) {
 
 class BPlusTree {
   private:
-    fstream &file;
+    std::fstream &file;
     FileHeader header;
 
     void write_header() {
@@ -126,7 +126,7 @@ class BPlusTree {
                node.values, node.num_keys * sizeof(int));
     }
 
-    void insert_into_parent(const vector<int> &path, int child_block, long long key, int value) {
+    void insert_into_parent(vector<int> &path, int child_block, long long key, int value) {
         if (path.empty()) {
             InternalNode new_root;
             new_root.type = 0;
@@ -189,9 +189,8 @@ class BPlusTree {
             char parent_data[BLOCK_SIZE];
             serialize_internal(parent, parent_data);
             write_block(parent_block, parent_data);
-
-            insert_into_parent(vector<int>(path.begin(), path.end() - 1), new_block,
-                               parent.keys[split], parent.values[split]);
+            path.pop_back();
+            insert_into_parent(path, new_block, parent.keys[split], parent.values[split]);
 
         } else {
             char data[BLOCK_SIZE];
@@ -594,16 +593,16 @@ class BPlusTree {
     }
 
   public:
-    BPlusTree(fstream &file) : file(file) {
+    BPlusTree(std::fstream &file) : file(file) {
 
         if (file) {
             read_header();
         } else
 
         {
-            file.open("database.bin", ios::out | ios::binary);
+            file.open("database.bin", std::ios::out | std::ios::binary);
             file.close();
-            file.open("database.bin", ios::in | ios::out | ios::binary);
+            file.open("database.bin", std::ios::in | std::ios::out | std::ios::binary);
             if (!file)
                 throw std::runtime_error("cannot create db file");
             header.root_block = 0;
@@ -692,8 +691,7 @@ class BPlusTree {
             serialize_leaf(new_leaf, new_leaf_data);
             write_block(current_block, leaf_data);
             write_block(leaf.next_leaf, new_leaf_data);
-            // cout << new_leaf.values[0] << " " << leaf.num_keys << " " << new_leaf.num_keys <<
-            // endl;
+
             insert_into_parent(path, leaf.next_leaf, new_leaf.keys[0], new_leaf.values[0]);
         } else {
             char data[BLOCK_SIZE];
@@ -724,7 +722,6 @@ class BPlusTree {
             current_block = node.children[pos];
         }
 
-        // cout << "Find" << current_block << endl;
         bool F = true;
         while (current_block != 0) {
             char data[BLOCK_SIZE];
@@ -733,7 +730,7 @@ class BPlusTree {
             parse_leaf(data, leaf);
             bool found = false;
             for (int i = 0; i < leaf.num_keys; ++i) {
-                // cout << leaf.keys[i] << " " << index << endl;
+
                 if (leaf.keys[i] == key) {
 
                     result.push_back(leaf.values[i]);
@@ -749,21 +746,17 @@ class BPlusTree {
             current_block = leaf.next_leaf;
         }
 
-        // std::sort(result.begin(), result.end());
         return result;
     }
 
     void remove(long long key, int value) {
         vector<int> path;
         int current_block = header.root_block;
-        // cout << header.root_block << endl;
 
         char data[BLOCK_SIZE];
         read_block(current_block, data);
         InternalNode node;
         parse_internal(data, node);
-
-        // cout << " " << node.type << " " << node.num_keys << " " << node.children[0] << endl;
 
         while (true) {
             path.push_back(current_block);
@@ -776,8 +769,7 @@ class BPlusTree {
             InternalNode node;
             parse_internal(data, node);
             int pos = 0;
-            // cout << pos << " " << node.type << " " << node.num_keys << " " << node.children[pos]
-            //  << endl;
+
             while (pos < node.num_keys &&
                    (key > node.keys[pos] || (key == node.keys[pos] && value >= node.values[pos])))
                 pos++;
@@ -796,7 +788,7 @@ class BPlusTree {
                 break;
             }
         }
-        // cout << pos << endl;
+
         if (pos == -1) {
             return;
         }
@@ -809,7 +801,7 @@ class BPlusTree {
     const int KEY_WIDTH = 20;
 
     // 辅助函数：递归打印B+树结构
-    void print_tree(int block_num, int level, fstream &file) {
+    void print_tree(int block_num, int level, std::fstream &file) {
         char data[BLOCK_SIZE];
         file.seekg(block_num * BLOCK_SIZE);
         file.read(data, BLOCK_SIZE);
@@ -824,35 +816,35 @@ class BPlusTree {
             parse_leaf(data, leaf);
 
             // 打印缩进
-            cout << string(level * PRINT_INDENT, ' ');
+            std::cout << std::string(level * PRINT_INDENT, ' ');
 
             // 打印节点类型和指针信息
-            cout << "[L" << block_num << "]->" << leaf.next_leaf << ": ";
+            std::cout << "[L" << block_num << "]->" << leaf.next_leaf << ": ";
 
             // 打印所有键值
             for (int i = 0; i < leaf.num_keys; ++i) {
 
-                cout << "[" << leaf.keys[i] << ":" << leaf.values[i] << "] ";
+                std::cout << "[" << leaf.keys[i] << ":" << leaf.values[i] << "] ";
             }
-            cout << endl;
+            std::cout << std::endl;
         } else { // 内部节点
             InternalNode node;
             parse_internal(data, node);
 
             // 打印缩进
-            cout << string(level * PRINT_INDENT, ' ');
+            std::cout << std::string(level * PRINT_INDENT, ' ');
 
             // 打印节点类型和键信息
-            cout << "[N" << block_num << "]: ";
+            std::cout << "[N" << block_num << "]: ";
             for (int i = 0; i < node.num_keys; ++i) {
 
-                cout << "|" << setw(KEY_WIDTH) << left << node.keys[i] << ":" << node.values[i];
+                std::cout << "|" << std::setw(KEY_WIDTH) << std::left << node.keys[i] << ":"
+                          << node.values[i];
             }
-            cout << "|" << endl;
+            std::cout << "|" << std::endl;
 
             // 递归打印子节点
 
-            // cout << node.num_keys << " " << node.children[0] << endl;
             for (int i = 0; i <= node.num_keys; ++i) {
                 print_tree(node.children[i], level + 1, file);
             }
@@ -860,23 +852,22 @@ class BPlusTree {
     }
 
     // 公开接口函数
-    void print_bptree_structure(fstream &file) {
+    void print_bptree_structure(std::fstream &file) {
         FileHeader header;
         file.seekg(0);
         file.read(reinterpret_cast<char *>(&header), sizeof(FileHeader));
 
         if (header.root_block == 0) {
-            cout << "Empty Tree" << endl;
+            std::cout << "Empty Tree" << std::endl;
             return;
         }
 
-        cout << "B+ Tree Structure (Block Size: " << BLOCK_SIZE
-             << ", Max Leaf Keys: " << MAX_LEAF_KEYS << ")" << endl
-             << string(80, '-') << endl;
+        std::cout << "B+ Tree Structure (Block Size: " << BLOCK_SIZE
+                  << ", Max Leaf Keys: " << MAX_LEAF_KEYS << ")" << std::endl
+                  << std::string(80, '-') << std::endl;
 
         print_tree(header.root_block, 0, file);
 
-        cout << string(80, '-') << endl;
-        // cout << "Legend: [Lx] = Leaf Block x, [Nx] = Internal Node x" << endl;
+        std::cout << std::string(80, '-') << std::endl;
     }
 };

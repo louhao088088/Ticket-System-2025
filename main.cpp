@@ -7,26 +7,22 @@
 #include <string>
 
 int main() {
-    fstream file("database.bin", ios::in | ios::out | ios::binary);
+    std::fstream file("database.bin", std::ios::in | std::ios::out | std::ios::binary);
     BPlusTree tree(file);
 
     int n;
-    cin >> n;
-    // cout << n << endl;
+    std::cin >> n;
     while (n--) {
-        string cmd(64, '\0'), index(64, '\0');
+        std::string cmd(64, '\0'), index(64, '\0');
         int value;
         std::cin >> cmd;
-       // cout << n << endl;
-        //cout << cmd << endl;
-
         if (cmd == "insert") {
             std::cin >> index >> value;
 
             char key[64];
             memset(key, 0, 64);
             strncpy(key, index.c_str(), 64);
-           // cout << Hash(key) << " " << value << endl;
+
             tree.insert(Hash(key), value);
         } else if (cmd == "delete") {
             std::cin >> index >> value;
@@ -34,17 +30,17 @@ int main() {
             char key[64];
             memset(key, 0, 64);
             strncpy(key, index.c_str(), 64);
-           // cout << Hash(key) << " " << value << endl;
+
             tree.remove(Hash(key), value);
         } else if (cmd == "find") {
             std::cin >> index;
             char key[64];
             memset(key, 0, 64);
             strncpy(key, index.c_str(), 64);
-          //  cout << Hash(key) << endl;
+
             vector<int> values = tree.find(Hash(key));
             if (values.empty()) {
-                cout << "null\n";
+                std::cout << "null\n";
             } else {
                 for (size_t i = 0; i < values.size(); ++i) {
                     if (i > 0)
@@ -54,8 +50,6 @@ int main() {
                 std::cout << '\n';
             }
         }
-       // if (n <= 100)
-        //    tree.print_bptree_structure(file);
     }
 
     return 0;

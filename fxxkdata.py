@@ -14,12 +14,12 @@ def generate_commands(num_commands):
         else:
             # 奇数阶段，delete命令概率高
             command_types = ['insert', 'delete', 'find']
-            command_probs = [0.15, 0.45, 0.10]
+            command_probs = [0.10, 0.6, 0.10]
         # 在当前阶段生成命令
         for _ in range(min(segment_size, num_commands - i)):
             cmd_type = random.choices(command_types, weights=command_probs)[0]
             if cmd_type == 'insert':
-                index = random.randint(1, 5)
+                index = random.randint(1, 2)
                 value = random.randint(-1000000,1000000)
                 commands.append(f'insert {index} {value}')
                 inserted_pairs.append((index, value))
@@ -31,7 +31,7 @@ def generate_commands(num_commands):
                     inserted_pairs.remove((index, value))
                 else:
                     # 当没有已插入的项时，跳过或生成其他命令
-                    index = random.randint(1, 5)
+                    index = random.randint(1, 2)
                     value = random.randint(-1000000,1000000)
                     commands.append(f'insert {index} {value}')
                     inserted_pairs.append((index, value))
@@ -58,7 +58,7 @@ if __name__ == '__main__':
     # 要生成的文件数量
     num_files = 1
     # 每个文件的命令数量
-    num_commands_per_file = 5000
+    num_commands_per_file = 50000
     # 输出目录
     output_dir = 'test_inputs'
     generate_test_files(num_files, num_commands_per_file, output_dir)
