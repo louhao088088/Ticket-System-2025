@@ -1,3 +1,7 @@
 main
 database.bin
 TicketSystemData
+*.in
+*.ans
+*.out
+*.bin

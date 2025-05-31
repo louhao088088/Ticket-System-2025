@@ -4,7 +4,7 @@ TabWidth: 4
 UseTab: Never
 BreakBeforeBraces: Attach
 AllowShortIfStatementsOnASingleLine: false
-ColumnLimit: 100
+ColumnLimit: 90
 SpacesInParentheses: false
 SpaceAfterCStyleCast: true
 SortIncludes: true

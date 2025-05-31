@@ -1,8 +1,6 @@
 #pragma once
 #include "BPT.hpp"
-
-#include <bits/stdc++.h>
-using namespace std;
+#include "MemoryRiver.hpp"
 
 // 用户账户结构
 struct User {
@@ -10,16 +8,16 @@ struct User {
     char password[31] = {0};
     char name[31] = {0};
     char mailAddr[31] = {0};
-    int privilege = 0;
-    int next = -1;
+    int privilege = -1;
 
     User() = default;
-    User(const string &id, const string &pwd, const string &Name, const string &mail, int priv)
+    User(const string &id, const string &pwd, const string &Name, const string &mail,
+         int priv)
         : privilege(priv) {
-        strncpy(username, id.c_str(), 20);
-        strncpy(password, pwd.c_str(), 30);
-        strncpy(name, Name.c_str(), 30);
-        strncpy(mailAddr, mailAddr.c_str(), 30);
+        strncpy(username, id.c_str(), 21);
+        strncpy(password, pwd.c_str(), 31);
+        strncpy(name, Name.c_str(), 31);
+        strncpy(mailAddr, mail.c_str(), 31);
     }
 };
 
@@ -28,12 +26,19 @@ class UserSystem {
 
   private:
     int total = 0;
-    BPlusTree Userbase;
+    BPlusTree UserBase;
+    MemoryRiver<User> UserData;
     map<long long, bool> LoginStack;
 
   public:
-    UserSystem(std::fstream &file) : Userbase(file) {}
-    
+    UserSystem(std::string &file1, std::string &file2) : UserBase(file1) {
+
+        UserData.initialise(file2);
+        UserData.get_info(total, 1);
+    }
+
+    ~UserSystem() { UserData.write_info(total, 1); }
+
     void add_user(string &cur_username, string &username, string &password, string &name,
                   string &mailAddr, int &privilege);
 
@@ -43,11 +48,11 @@ class UserSystem {
 
     void query_profile(string &cur_username, string &username);
 
-    void modify_profile(string &cur_username, string &username, string &password, string &name,
-                        string &mailAddr, int &privilege);
+    void modify_profile(string &cur_username, string &username, string &password,
+                        string &name, string &mailAddr, int &privilege);
 
     void clean() {
         std::remove("UserBase.bin");
         LoginStack.clear();
     }
-}
+};
