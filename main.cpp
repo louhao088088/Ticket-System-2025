@@ -34,8 +34,11 @@ void readUser(vector<string> words, string &cur_username, string &username,
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
-    string userfile1_name = "Userbase.bin", userfile12_name = "Userdata.bin";
+    string userfile1_name = "Userbase.bin", userfile2_name = "Userdata.bin";
+    string trainfile1_name = "Trainbase.bin", trainfile2_name = "Traindata.bin";
     UserSystem UserSys(userfile1_name, userfile12_name);
+    TrainSystem TrainSys(trainfile1_name, trainfile2_name);
+
     while (true) {
         std::getline(cin, line);
 
@@ -93,6 +96,37 @@ int main() {
             readUser(words, cur_username, username, password, name, mailAddr, privilege);
             UserSys.modify_profile(cur_username, username, password, name, mailAddr,
                                    privilege);
+        }
+        if (op == "add_train") {
+            string trainID = "", stationNum = "", seatNum = "", stations = "",
+                   prices = "", startTime = "", travelTimes = "", stopoverTimes = "",
+                   saleDate = "", type = "";
+            for (int i = 2; i < int(words.size()); i += 2) {
+                keys = words[i];
+                if (keys[1] == 'i')
+                    trainID = words[i + 1];
+                if (keys[1] == 'n')
+                    stationNum = words[i + 1];
+                if (keys[1] == 'm')
+                    seatNum = words[i + 1];
+                if (keys[1] == 's')
+                    stations = words[i + 1];
+                if (keys[1] == 'p')
+                    prices = words[i + 1];
+                if (keys[1] == 'x')
+                    startTime = words[i + 1];
+                if (keys[1] == 't')
+                    travelTimes = words[i + 1];
+                if (keys[1] == 'o')
+                    stopoverTimes = words[i + 1];
+                if (keys[1] == 'd')
+                    saleDate = words[i + 1];
+                if (keys[1] == 'y')
+                    type = words[i + 1];
+            }
+            TrainSys.add_train(trainID, change_to_int(stationNum), change_to_int(seatNum),
+                               stations, prices, change_to_minute(startTime), travelTimes,
+                               stopoverTimes, saleDate, type);
         }
     }
 

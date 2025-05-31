@@ -18,3 +18,11 @@ long long Hash(const string &data) {
     }
     return res1 * mod2 + res2;
 }
+
+int change_to_int(const string &s) {
+    int x = 0;
+    for (int i = 0; i < s.length(); i++) {
+        x = x * 10 + s[i] - '0';
+    }
+    return x;
+}

@@ -53,6 +53,7 @@ class UserSystem {
 
     void clean() {
         std::remove("UserBase.bin");
+        std::remove("UserData.bin");
         LoginStack.clear();
     }
 };
