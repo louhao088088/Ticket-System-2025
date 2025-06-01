@@ -1,7 +1,7 @@
 #include "User.hpp"
 
 void UserSystem::add_user(string &cur_username, string &username, string &password,
-                          string &name, string &mailAddr, int &privilege) {
+                          string &name, string &mailAddr, int privilege) {
     User new_User(username, password, name, mailAddr, privilege);
     int UserKey = Hash(username), Cur_UserKey = Hash(cur_username);
     if (UserBase.empty()) {
@@ -91,7 +91,7 @@ void UserSystem::query_profile(string &cur_username, string &username) {
 }
 
 void UserSystem::modify_profile(string &cur_username, string &username, string &password,
-                                string &name, string &mailAddr, int &privilege) {
+                                string &name, string &mailAddr, int privilege) {
     int UserKey = Hash(username), Cur_UserKey = Hash(cur_username);
     if (LoginStack[Cur_UserKey] == 0) {
         cout << "-1\n";

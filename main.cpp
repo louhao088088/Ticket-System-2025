@@ -128,6 +128,26 @@ int main() {
                                stations, prices, change_to_minute(startTime), travelTimes,
                                stopoverTimes, saleDate, type);
         }
+        if (op == "delete_train") {
+            string trainID = "";
+            trainID = words[3];
+            TrainSys.delete_train(trainID);
+        }
+        if (op == "release_train") {
+            string trainID = "";
+            trainID = words[3];
+            TrainSys.release_train(trainID);
+        }
+        if (op == "query_train") {
+            string trainID = "", Date = "";
+            for (int i = 2; i < int(words.size()); i += 2) {
+                keys = words[i];
+                if (keys[1] == 'i')
+                    trainID = words[i + 1];
+                if (keys[1] == 'd')
+                    Date = words[i + 1];
+            }
+        }
     }
 
     return 0;

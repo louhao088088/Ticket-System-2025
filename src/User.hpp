@@ -40,7 +40,7 @@ class UserSystem {
     ~UserSystem() { UserData.write_info(total, 1); }
 
     void add_user(string &cur_username, string &username, string &password, string &name,
-                  string &mailAddr, int &privilege);
+                  string &mailAddr, int privilege);
 
     void login(string &username, string &password);
 
@@ -49,7 +49,7 @@ class UserSystem {
     void query_profile(string &cur_username, string &username);
 
     void modify_profile(string &cur_username, string &username, string &password,
-                        string &name, string &mailAddr, int &privilege);
+                        string &name, string &mailAddr, int privilege);
 
     void clean() {
         std::remove("UserBase.bin");
