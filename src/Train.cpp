@@ -73,7 +73,10 @@ void TrainSystem::query_train(const string &trainID, int Date) {
     Train train;
     TrainData.read(train, train1[0]);
     cout << train.trainID << " " << train.Type << "\n";
-    int T = train.Start_time, D = dat;
+    int T = train.Start_time, D = Date;
     for (int i = 0; i < trian.stationNum; i++) {
+        cout<<station[i]<<" ";
+        if(i==0)cout<<"xx-xx xx:xx";
+        else cout<<change_num_to_date(D)<<" "<<change_
     }
 }

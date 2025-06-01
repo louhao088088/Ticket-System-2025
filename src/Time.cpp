@@ -1,13 +1,13 @@
 #include "Time.hpp"
 
-int change_to_minute(const string &s) {
+int change_minute_to_num(const string &s) {
     assert(s.length() >= 5 && s[2] == ':');
     int T = 0, t = 0;
     T = (s[0] - '0') * 10 + s[1] - '0';
     t = (s[3] - '0') * 10 + s[4] - '0';
     return T * 60 + t;
 }
-string change_to_hour(int T) {
+string change_num_to_minute(int T) {
     int hour = T / 60, minute = T % 60;
 
     string Time = "0";
