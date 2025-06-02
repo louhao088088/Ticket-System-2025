@@ -1,7 +1,7 @@
 #pragma once
+#include "Hash.h"
 #include "map/map.hpp"
 #include "vector/vector.hpp"
-#include "Hash.hpp"
 
 #include <algorithm>
 #include <cassert>
@@ -22,8 +22,6 @@ const int MAX_LEAF_KEYS = (BLOCK_SIZE - 12) / KEY_SIZE - 1;
 const int MAX_INTERNAL_KEYS = (BLOCK_SIZE - 12) / (KEY_SIZE + 4) - 1;
 const int MIN_LEAF_KEYS = std::max(1, (MAX_LEAF_KEYS + 1) / 2 - 1);
 const int MIN_INTERNAL_KEYS = std::max(1, MAX_INTERNAL_KEYS / 2 - 1);
-
-
 
 template <typename T> using vector = sjtu::vector<T>;
 
@@ -196,8 +194,6 @@ class LRUCache {
         }
     }
 };
-
-
 
 class BPlusTree {
   private:

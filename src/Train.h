@@ -1,7 +1,7 @@
 #pragma once
 #include "BPT.hpp"
 #include "MemoryRiver.hpp"
-#include "User.hpp"
+#include "Time.hpp"
 
 // 用户账户结构
 struct Train {

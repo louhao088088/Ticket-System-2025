@@ -1,4 +1,4 @@
-#include "User.hpp"
+#include "User.h"
 
 void UserSystem::add_user(string &cur_username, string &username, string &password,
                           string &name, string &mailAddr, int privilege) {

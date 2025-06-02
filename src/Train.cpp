@@ -1,4 +1,4 @@
-#include "Train.hpp"
+#include "Train.h"
 
 void TrainSystem::add_train(const string &trainID, int stationNum, int seatNum,
                             const string &stations, string &price, int startTime,

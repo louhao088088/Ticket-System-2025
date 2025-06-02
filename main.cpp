@@ -1,46 +1,17 @@
 
-#include "src/User.hpp"
-using std::cin;
-using std::cout;
-using std::ios;
-using std::string;
-
+#include "src/Operator.h"
+#include "src/Ticket.h"
 int n;
 string op, Time, keys, line;
-
-void readUser(vector<string> words, string &cur_username, string &username,
-              string &password, string &name, string &mailAddr, int &privilege) {
-    for (int i = 2; i < int(words.size()); i += 2) {
-        keys = words[i];
-        if (keys[1] == 'c')
-            cur_username = words[i + 1];
-        if (keys[1] == 'u')
-            username = words[i + 1];
-        if (keys[1] == 'p')
-            password = words[i + 1];
-        if (keys[1] == 'm')
-            mailAddr = words[i + 1];
-        if (keys[1] == 'n')
-            name = words[i + 1];
-        if (keys[1] == 'g') {
-            if (words[i + 1].length() == 2)
-                privilege = 10;
-            else
-                privilege = words[i + 1][0] - '0';
-        }
-    }
-}
-
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
-    string userfile1_name = "Userbase.bin", userfile2_name = ;
     UserSystem UserSys;
     TrainSystem TrainSys;
+    TicketSystem TicketSys;
 
     while (true) {
         std::getline(cin, line);
-
         std::istringstream iss(line);
         string word;
         vector<string> words;
@@ -59,6 +30,8 @@ int main() {
         }
         if (op == "clean") {
             UserSys.clean();
+            TrainSys.clean();
+            cout << "0\n";
         }
         if (op == "add_user") {
             string cur_username = "", username = "", password = "", name = "",
@@ -183,6 +156,8 @@ int main() {
                 op = 1;
             TrainSys.query_transfer(Start, End, change_date_to_num(Date), op);
         }
+
+        if (op == "")
     }
 
     return 0;

@@ -1,4 +1,4 @@
-#include "Time.hpp"
+#include "Time.h"
 
 int change_minute_to_num(const string &s) {
     assert(s.length() >= 5 && s[2] == ':');
