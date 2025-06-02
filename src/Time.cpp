@@ -25,6 +25,8 @@ int change_date_to_num(const string &s) {
         sum = 30;
     else if (s[1] == '8')
         sum = 61;
+    else if (s[1] == '9')
+        sum = 92;
     sum += (s[3] - '0') * 10 + s[4] - '0' - 1;
     return sum;
 }
@@ -32,6 +34,8 @@ int change_date_to_num(const string &s) {
 string change_num_to_date(int x) {
     string date;
     int m = 6, d = 1;
+    if (sum >= 92)
+        x -= 92, m = 9;
     if (x >= 61)
         x -= 61, m = 8;
     else if (x >= 30)

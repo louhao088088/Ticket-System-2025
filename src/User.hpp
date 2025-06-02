@@ -31,9 +31,8 @@ class UserSystem {
     map<long long, bool> LoginStack;
 
   public:
-    UserSystem(std::string &file1, std::string &file2) : UserBase(file1) {
-
-        UserData.initialise(file2);
+    UserSystem() : UserBase("UserBase.bin") {
+        UserData.initialise("UserData.bin");
         UserData.get_info(total, 1);
     }
 

@@ -1,13 +1,14 @@
 #pragma once
 #include "BPT.hpp"
 #include "MemoryRiver.hpp"
+#include "User.hpp"
 
 // 用户账户结构
 struct Train {
     char trainID[21] = {};
     int stationNum;
     int seatNum;
-    int seat[101];
+    int seat[101][101];
     char stations[101][31] = {};
 
     int price[101] = {};
@@ -32,13 +33,13 @@ struct Train {
         }
         for (int i = 0; i < num - 1; i++) {
             std::getline(Price, token, '|');
-            price[i] = change_to_int(token);
+            price[i + 1] = change_to_int(token) + price[i];
         }
         for (int i = 0; i < num - 1; i++) {
             std::getline(travelTime, token, '|');
             travalTimes[i] = change_to_int(token);
         }
-        for (int i = 0; i < num - 1; i++) {
+        for (int i = 1; i < num - 1; i++) {
             std::getline(stopoverTime, token, '|');
             stopoverTimes[i] = change_to_int(token);
         }
@@ -50,7 +51,8 @@ struct Train {
                 saleDateEnd = change_num_to_data(token);
         }
         for (int i = saleDateStart; i <= saleDateEnd; i++)
-            seat[i] = seatNum;
+            for (int j = 0; j < stationNum - 1; j++)
+                seat[i][j] = seatNum;
         Type = type[0];
     }
 }
@@ -59,18 +61,17 @@ struct Train {
 
 class TrainSystem {
     friend class TicketSystem;
-    friend class UserSystem;
 
   private:
     int total = 0;
-    BPlusTree TrainBase, ReleaseBase, TimeBase, stationBase;
-    MemoryRiver<User> TrainData;
-    // map<long long, bool> RealseStack;
+    BPlusTree TrainBase, stationBase, sta_to_staBase;
+    MemoryRiver<Train> TrainData;
 
   public:
-    TrainSystem(std::string &file1, std::string &file2) : TrainBase(file1) {
-
-        TrainData.initialise(file2);
+    TrainSystem()
+        : TrainBase("TrainBase.bin"), stationBase("stationBase.bin"),
+          sta_to_staBase("sta_to_staBase.bin") {
+        TrainData.initialise("TrainData.bin");
         TrainData.get_info(total, 1);
     }
 
@@ -87,8 +88,14 @@ class TrainSystem {
 
     void query_train(const string &trainID, int Date);
 
+    void query_ticket(const string &Start, const string &End, int Date, int op);
+
+    void query_transfer(const string &Start, const string &End, int Date, int op);
+
     void clean() {
         std::remove("TrainBase.bin");
         std::remove("TrainData.bin");
+        std::remove("stationBase.bin");
+        std::remove("sta_to_staBase.bin");
     }
 };

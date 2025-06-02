@@ -34,10 +34,9 @@ void readUser(vector<string> words, string &cur_username, string &username,
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
-    string userfile1_name = "Userbase.bin", userfile2_name = "Userdata.bin";
-    string trainfile1_name = "Trainbase.bin", trainfile2_name = "Traindata.bin";
-    UserSystem UserSys(userfile1_name, userfile12_name);
-    TrainSystem TrainSys(trainfile1_name, trainfile2_name);
+    string userfile1_name = "Userbase.bin", userfile2_name = ;
+    UserSystem UserSys;
+    TrainSystem TrainSys;
 
     while (true) {
         std::getline(cin, line);
@@ -147,6 +146,42 @@ int main() {
                 if (keys[1] == 'd')
                     Date = words[i + 1];
             }
+            TrainSys.query_train(trainID, change_date_to_num(Date));
+        }
+
+        if (op == "query_ticket") {
+            string Start = "", End = "", Date = "", op = "time";
+            for (int i = 2; i < int(words.size()); i += 2) {
+                keys = words[i];
+                if (keys[1] == 's')
+                    Start = words[i + 1];
+                if (keys[1] == 't')
+                    End = words[i + 1];
+                if (keys[1] == 'd')
+                    Date = words[i + 1];
+                if (keys[1] == 'p')
+                    op = words[i + 1];
+            }
+            TrainSys.query_ticket(Start, End, change_date_to_num(Date), op);
+        }
+
+        if (op == "query_transfer") {
+            string Start = "", End = "", Date = "", type = "time";
+            for (int i = 2; i < int(words.size()); i += 2) {
+                keys = words[i];
+                if (keys[1] == 's')
+                    Start = words[i + 1];
+                if (keys[1] == 't')
+                    End = words[i + 1];
+                if (keys[1] == 'd')
+                    Date = words[i + 1];
+                if (keys[1] == 'p')
+                    type = words[i + 1];
+            }
+            int op = 0;
+            if (type == 'price')
+                op = 1;
+            TrainSys.query_transfer(Start, End, change_date_to_num(Date), op);
         }
     }
 
