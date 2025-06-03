@@ -763,7 +763,7 @@ class BPlusTree {
     }
 
   public:
-    BPlusTree(string &filename) : filename(filename), block_cache(8192) {
+    BPlusTree(const string &filename) : filename(filename), block_cache(8192) {
         file.open(filename, std::ios::in | std::ios::out);
         if (file) {
             read_header();

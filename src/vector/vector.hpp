@@ -94,6 +94,18 @@ template <typename T> class vector {
         bool operator==(const const_iterator &rhs) const {
             return (rhs.parent == parent && rhs.ptr == ptr);
         }
+        bool operator<(const iterator &rhs) const {
+            return rhs.ptr < ptr;
+        }
+        bool operator<=(const iterator &rhs) const{
+            return rhs.ptr <= ptr;
+        }
+        bool operator<(const const_iterator &rhs) const {
+            return rhs.ptr < ptr;
+        }
+        bool operator<=(const const_iterator &rhs) const{
+            return rhs.ptr <= ptr;
+        }
         /**
          * some other operator for iterator.
          */
@@ -173,6 +185,18 @@ template <typename T> class vector {
         }
         bool operator==(const const_iterator &rhs) const {
             return (rhs.parent == parent && rhs.ptr == ptr);
+        }
+        bool operator<(const iterator &rhs) const {
+            return rhs.ptr < ptr;
+        }
+        bool operator<=(const iterator &rhs) const{
+            return rhs.ptr <= ptr;
+        }
+        bool operator<(const const_iterator &rhs) const {
+            return rhs.ptr < ptr;
+        }
+        bool operator<=(const const_iterator &rhs) const{
+            return rhs.ptr <= ptr;
         }
         /**
          * some other operator for iterator.

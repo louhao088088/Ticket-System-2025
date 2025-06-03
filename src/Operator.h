@@ -1,5 +1,5 @@
 #pragma once
-#include "BPT.h"
+#include "BPT.hpp"
 
 #include <algorithm>
 #include <cassert>
@@ -15,4 +15,4 @@ using std::ios;
 using std::string;
 
 void readUser(vector<string> words, string &cur_username, string &username,
-              string &password, string &name, string &mailAddr, int &privilege) ;
+              string &password, string &name, string &mailAddr, int &privilege);

@@ -4,10 +4,10 @@
 
 // 用户账户结构
 struct User {
-    char username[21] = {0};
-    char password[31] = {0};
-    char name[31] = {0};
-    char mailAddr[31] = {0};
+    char username[21] = {};
+    char password[31] = {};
+    char name[31] = {};
+    char mailAddr[31] = {};
     int privilege = -1;
 
     User() = default;

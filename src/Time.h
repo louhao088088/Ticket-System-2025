@@ -1,4 +1,6 @@
 #pragma once
+#include <algorithm>
+#include <cassert>
 #include <string>
 using std::string;
 

@@ -3,7 +3,7 @@
 void UserSystem::add_user(string &cur_username, string &username, string &password,
                           string &name, string &mailAddr, int privilege) {
     User new_User(username, password, name, mailAddr, privilege);
-    int UserKey = Hash(username), Cur_UserKey = Hash(cur_username);
+    long long UserKey = Hash(username), Cur_UserKey = Hash(cur_username);
     if (UserBase.empty()) {
         new_User.privilege = 10;
         UserBase.insert(UserKey, total);
@@ -36,7 +36,7 @@ void UserSystem::add_user(string &cur_username, string &username, string &passwo
 }
 
 void UserSystem::login(string &username, string &password) {
-    int UserKey = Hash(username);
+    long long UserKey = Hash(username);
     if (LoginStack[UserKey]) {
         cout << "-1\n";
         return;
@@ -57,7 +57,7 @@ void UserSystem::login(string &username, string &password) {
 }
 
 void UserSystem::logout(string &username) {
-    int UserKey = Hash(username);
+    long long UserKey = Hash(username);
     if (LoginStack[UserKey] == 0) {
         cout << "-1\n";
         return;
@@ -67,7 +67,7 @@ void UserSystem::logout(string &username) {
 }
 
 void UserSystem::query_profile(string &cur_username, string &username) {
-    int UserKey = Hash(username), Cur_UserKey = Hash(cur_username);
+    long long UserKey = Hash(username), Cur_UserKey = Hash(cur_username);
     if (LoginStack[Cur_UserKey] == 0) {
         cout << "-1\n";
         return;
@@ -92,7 +92,7 @@ void UserSystem::query_profile(string &cur_username, string &username) {
 
 void UserSystem::modify_profile(string &cur_username, string &username, string &password,
                                 string &name, string &mailAddr, int privilege) {
-    int UserKey = Hash(username), Cur_UserKey = Hash(cur_username);
+    long long UserKey = Hash(username), Cur_UserKey = Hash(cur_username);
     if (LoginStack[Cur_UserKey] == 0) {
         cout << "-1\n";
         return;

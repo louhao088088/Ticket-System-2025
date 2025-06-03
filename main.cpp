@@ -1,10 +1,10 @@
-
 #include "src/Operator.h"
 #include "src/Ticket.h"
 int n;
 string op, Time, keys, line;
 int main() {
     ios::sync_with_stdio(0);
+
     cin.tie(0);
     UserSystem UserSys;
     TrainSystem TrainSys;
@@ -96,8 +96,9 @@ int main() {
                 if (keys[1] == 'y')
                     type = words[i + 1];
             }
-            TrainSys.add_train(trainID, change_to_int(stationNum), change_to_int(seatNum),
-                               stations, prices, change_to_minute(startTime), travelTimes,
+            TrainSys.add_train(trainID, change_string_to_int(stationNum),
+                               change_string_to_int(seatNum), stations, prices,
+                               change_minute_to_num(startTime), travelTimes,
                                stopoverTimes, saleDate, type);
         }
         if (op == "delete_train") {
@@ -123,7 +124,8 @@ int main() {
         }
 
         if (op == "query_ticket") {
-            string Start = "", End = "", Date = "", op = "time";
+            string Start = "", End = "", Date = "", type = "time";
+            int flag = 0;
             for (int i = 2; i < int(words.size()); i += 2) {
                 keys = words[i];
                 if (keys[1] == 's')
@@ -133,9 +135,11 @@ int main() {
                 if (keys[1] == 'd')
                     Date = words[i + 1];
                 if (keys[1] == 'p')
-                    op = words[i + 1];
+                    type = words[i + 1];
             }
-            TrainSys.query_ticket(Start, End, change_date_to_num(Date), op);
+            if (type == "price")
+                flag = 1;
+            TrainSys.query_ticket(Start, End, change_date_to_num(Date), flag);
         }
 
         if (op == "query_transfer") {
@@ -151,13 +155,61 @@ int main() {
                 if (keys[1] == 'p')
                     type = words[i + 1];
             }
-            int op = 0;
-            if (type == 'price')
-                op = 1;
-            TrainSys.query_transfer(Start, End, change_date_to_num(Date), op);
+            int flag = 0;
+            if (type == "price")
+                flag = 1;
+            TrainSys.query_transfer(Start, End, change_date_to_num(Date), flag);
         }
 
-        if (op == "")
+        if (op == "buy_ticket") {
+            string username = "", trainID = "", Date = "", Start = "", End = "",
+                   type = "false", ticketNum = "";
+            for (int i = 2; i < int(words.size()); i += 2) {
+                keys = words[i];
+                if (keys[1] == 'u')
+                    username = words[i + 1];
+                if (keys[1] == 'i')
+                    trainID = words[i + 1];
+                if (keys[1] == 'd')
+                    Date = words[i + 1];
+                if (keys[1] == 'f')
+                    Start = words[i + 1];
+                if (keys[1] == 't')
+                    End = words[i + 1];
+                if (keys[1] == 'n')
+                    ticketNum = words[i + 1];
+                if (keys[1] == 'q')
+                    type = words[i + 1];
+            }
+            int flag = 0;
+            if (type == "true")
+                flag = 1;
+            TicketSys.buy_ticket(UserSys, TrainSys, username, trainID,
+                                 change_date_to_num(Date), Start, End,
+                                 change_string_to_int(ticketNum), flag);
+        }
+        if (op == "query_order") {
+            string username = "", trainID = "", Date = "", Start = "", End = "",
+                   type = "false", ticketNum = "";
+            for (int i = 2; i < int(words.size()); i += 2) {
+                keys = words[i];
+                if (keys[1] == 'u')
+                    username = words[i + 1];
+            }
+            TicketSys.query_order(UserSys, TrainSys, username);
+        }
+        if (op == "refund_ticket") {
+            string username = "", number = "1";
+            for (int i = 2; i < int(words.size()); i += 2) {
+                keys = words[i];
+                if (keys[1] == 'u')
+                    username = words[i + 1];
+                if (keys[1] == 'n')
+                    number = words[i + 1];
+            }
+            TicketSys.refund_ticket(UserSys, TrainSys, username,
+                                    change_string_to_int(number));
+        }
     }
 
     return 0;
