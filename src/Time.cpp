@@ -34,14 +34,14 @@ int change_date_to_num(const string &s) {
 string change_num_to_date(int x) {
     string date;
     int m = 6, d = 1;
-    if (sum >= 92)
+    if (x >= 92)
         x -= 92, m = 9;
     if (x >= 61)
         x -= 61, m = 8;
     else if (x >= 30)
         x -= 30, m = 7;
     d += x;
-    data = "0" + char('0' + m) + "-";
+    date = (string) "0" + char('0' + m) + "-";
     if (d < 10)
         date += "0";
     else

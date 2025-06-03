@@ -1,4 +1,4 @@
-#include "Hash.hpp"
+#include "Hash.h"
 
 const int mod1 = 998244353, mod2 = 1019260817, base1 = 233, base2 = 279;
 long long Hash(const char *data) {
@@ -21,7 +21,7 @@ long long Hash(const string &data) {
 
 int change_string_to_int(const string &s) {
     int x = 0;
-    for (int i = 0; i < s.length(); i++) {
+    for (size_t i = 0; i < s.length(); i++) {
         x = x * 10 + s[i] - '0';
     }
     return x;

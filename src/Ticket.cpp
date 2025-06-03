@@ -124,7 +124,7 @@ void TicketSystem::refund_ticket(UserSystem &UserSys, TrainSystem &TrainSys,
         return;
     }
     vector<int> ticket1 = TicketBase.find(UserKey);
-    if (ticket1.size() < num) {
+    if (int(ticket1.size()) < num) {
         cout << "-1\n";
         return;
     }

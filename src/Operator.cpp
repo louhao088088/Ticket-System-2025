@@ -1,10 +1,8 @@
 #include "Operator.h"
 
-int n;
-string op, Time, keys;
-
 void readUser(vector<string> words, string &cur_username, string &username,
               string &password, string &name, string &mailAddr, int &privilege) {
+    string keys;
     for (int i = 2; i < int(words.size()); i += 2) {
         keys = words[i];
         if (keys[1] == 'c')
