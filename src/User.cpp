@@ -41,23 +41,27 @@ void UserSystem::login(string &username, string &password) {
         cout << "-1\n";
         return;
     }
+
     vector<int> Data = UserBase.find(UserKey);
     if (!Data.size()) {
         cout << "-1\n";
         return;
     }
+
     User Cur;
     UserData.read(Cur, Data[0]);
     if (Cur.password != password) {
         cout << "-1\n";
         return;
     }
+
     LoginStack[UserKey] = 1;
     cout << "0\n";
 }
 
 void UserSystem::logout(string &username) {
     long long UserKey = Hash(username);
+
     if (LoginStack[UserKey] == 0) {
         cout << "-1\n";
         return;

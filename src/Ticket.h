@@ -42,7 +42,11 @@ class TicketSystem {
         TicketData.get_info(total, 1);
     }
 
-    ~TicketSystem() { TicketData.write_info(total, 1); }
+    ~TicketSystem() {
+        TicketData.write_info(total, 1);
+        TicketBase.flush();
+        QueueBase.flush();
+    }
     void buy_ticket(UserSystem &UserSys, TrainSystem &TrainSys, const string &username,
                     const string &trainID, int Date, const string &Start,
                     const string &End, int ticketNum, int flag);

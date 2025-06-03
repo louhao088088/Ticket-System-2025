@@ -36,7 +36,10 @@ class UserSystem {
         UserData.get_info(total, 1);
     }
 
-    ~UserSystem() { UserData.write_info(total, 1); }
+    ~UserSystem() {
+        UserData.write_info(total, 1);
+        UserBase.flush();
+    }
 
     void add_user(string &cur_username, string &username, string &password, string &name,
                   string &mailAddr, int privilege);

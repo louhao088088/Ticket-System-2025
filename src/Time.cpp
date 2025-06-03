@@ -12,22 +12,29 @@ string change_num_to_minute(int T) {
 
     string Time = "0";
     if (hour < 10)
-        Time += std::to_string(hour) + ":" + std::to_string(minute);
+        Time += std::to_string(hour) + ":";
     else
-        Time = std::to_string(hour) + ":" + std::to_string(minute);
+        Time = std::to_string(hour) + ":";
+    if (minute < 10)
+        Time += "0";
+    Time += std::to_string(minute);
     return Time;
 }
 
 int change_date_to_num(const string &s) {
-    assert(s.length() >= 5 && s[2] == '-' && s[0] == '0');
+    assert(s.length() >= 5 && s[2] == '-');
     int sum = 0;
-    if (s[1] == '7')
+    if (s[0] != '0' || s[1] < '6')
+        sum = -100;
+    else if (s[1] == '7')
         sum = 30;
     else if (s[1] == '8')
         sum = 61;
     else if (s[1] == '9')
         sum = 92;
     sum += (s[3] - '0') * 10 + s[4] - '0' - 1;
+    if (sum >= 97 || sum < 0)
+        sum = 97;
     return sum;
 }
 

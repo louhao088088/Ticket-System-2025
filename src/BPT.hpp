@@ -1,6 +1,7 @@
 #pragma once
 #include "Hash.h"
 #include "map/map.hpp"
+#include "priority_queue/src/priority_queue.hpp"
 #include "vector/vector.hpp"
 
 #include <algorithm>
@@ -11,6 +12,7 @@
 #include <iomanip>
 #include <iostream>
 
+using std::cerr;
 using std::cin;
 using std::cout;
 using std::string;
@@ -27,6 +29,9 @@ template <typename T> using vector = sjtu::vector<T>;
 
 template <typename Key, typename Value, typename Compare = std::less<Key>>
 using map = sjtu::map<Key, Value, Compare>;
+
+template <typename T, class Compare = std::less<T>>
+using priority_queue = sjtu::priority_queue<T, Compare>;
 
 //根
 struct FileHeader {
@@ -764,21 +769,24 @@ class BPlusTree {
 
   public:
     BPlusTree(const string &filename) : filename(filename), block_cache(8192) {
-        file.open(filename, std::ios::in | std::ios::out);
-        if (file) {
-            read_header();
-        } else
+        file.open(filename, std::ios::in | std::ios::out | std::ios::binary);
 
-        {
-            file.open(filename, std::ios::out | std::ios::binary);
-            file.close();
+        if (!file) {
+            std::ofstream create(filename, std::ios::out | std::ios::binary);
+            if (!create)
+                throw std::runtime_error("cannot create db file");
+            create.close();
+
             file.open(filename, std::ios::in | std::ios::out | std::ios::binary);
             if (!file)
-                throw std::runtime_error("cannot create db file");
+                throw std::runtime_error("cannot reopen created file");
             header.root_block = 0;
             header.first_leaf_block = 0;
             header.block_count = 1;
             write_header();
+        } else {
+            read_header();
+            // std::cerr << header.root_block << " " << filename << "\n";
         }
     }
     //清空缓存

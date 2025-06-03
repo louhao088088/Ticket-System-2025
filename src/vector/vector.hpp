@@ -5,6 +5,7 @@
 
 #include <climits>
 #include <cstddef>
+#include <iostream>
 
 namespace sjtu {
 
@@ -94,18 +95,10 @@ template <typename T> class vector {
         bool operator==(const const_iterator &rhs) const {
             return (rhs.parent == parent && rhs.ptr == ptr);
         }
-        bool operator<(const iterator &rhs) const {
-            return rhs.ptr < ptr;
-        }
-        bool operator<=(const iterator &rhs) const{
-            return rhs.ptr <= ptr;
-        }
-        bool operator<(const const_iterator &rhs) const {
-            return rhs.ptr < ptr;
-        }
-        bool operator<=(const const_iterator &rhs) const{
-            return rhs.ptr <= ptr;
-        }
+        bool operator<(const iterator &rhs) const { return rhs.ptr < ptr; }
+        bool operator<=(const iterator &rhs) const { return rhs.ptr <= ptr; }
+        bool operator<(const const_iterator &rhs) const { return rhs.ptr < ptr; }
+        bool operator<=(const const_iterator &rhs) const { return rhs.ptr <= ptr; }
         /**
          * some other operator for iterator.
          */
@@ -186,18 +179,6 @@ template <typename T> class vector {
         bool operator==(const const_iterator &rhs) const {
             return (rhs.parent == parent && rhs.ptr == ptr);
         }
-        bool operator<(const iterator &rhs) const {
-            return rhs.ptr < ptr;
-        }
-        bool operator<=(const iterator &rhs) const{
-            return rhs.ptr <= ptr;
-        }
-        bool operator<(const const_iterator &rhs) const {
-            return rhs.ptr < ptr;
-        }
-        bool operator<=(const const_iterator &rhs) const{
-            return rhs.ptr <= ptr;
-        }
         /**
          * some other operator for iterator.
          */
@@ -242,13 +223,21 @@ template <typename T> class vector {
      * throw index_out_of_bound if pos is not in [0, size)
      */
     T &at(const size_t &pos) {
-        if (pos >= current_size)
+        if (pos >= current_size) {
+            std::cerr << pos << " " << current_size << "\n";
+            exit(0);
             throw index_out_of_bound();
+        }
+
         return data[pos];
     }
     const T &at(const size_t &pos) const {
-        if (pos >= current_size)
+        if (pos >= current_size) {
+            std::cerr << pos << " " << current_size << "\n";
+            exit(0);
             throw index_out_of_bound();
+        }
+
         return data[pos];
     }
     /**
@@ -339,8 +328,12 @@ template <typename T> class vector {
      * after inserting the size will increase 1.)
      */
     iterator insert(const size_t &ind, const T &value) {
-        if (ind > current_size)
+        if (ind > current_size) {
+            std::cerr << ind << " " << current_size << "\n";
+            exit(0);
             throw index_out_of_bound();
+        }
+
         return insert(begin() + ind, value);
     }
     /**
@@ -364,8 +357,12 @@ template <typename T> class vector {
      * throw index_out_of_bound if ind >= size
      */
     iterator erase(const size_t &ind) {
-        if (ind > current_size)
+        if (ind > current_size) {
+            std::cerr << ind << " " << current_size << "\n";
+            exit(0);
             throw index_out_of_bound();
+        }
+
         return erase(begin() + ind);
     }
     /**

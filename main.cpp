@@ -13,6 +13,7 @@ int main() {
     while (true) {
         std::getline(cin, line);
         std::istringstream iss(line);
+
         string word;
         vector<string> words;
 
@@ -23,10 +24,11 @@ int main() {
         Time = words[0];
         cout << Time << " ";
         op = words[1];
+        cerr << line << "\n";
 
         if (op == "exit") {
             cout << "bye\n";
-            exit(0);
+            return 0;
         }
         if (op == "clean") {
             UserSys.clean();
@@ -137,7 +139,7 @@ int main() {
                 if (keys[1] == 'p')
                     type = words[i + 1];
             }
-            if (type == "price")
+            if (type == "cost")
                 flag = 1;
             TrainSys.query_ticket(Start, End, change_date_to_num(Date), flag);
         }
@@ -156,7 +158,7 @@ int main() {
                     type = words[i + 1];
             }
             int flag = 0;
-            if (type == "price")
+            if (type == "cost")
                 flag = 1;
             TrainSys.query_transfer(Start, End, change_date_to_num(Date), flag);
         }

@@ -1,5 +1,6 @@
 #pragma once
 #include <fstream>
+#include <iostream>
 
 using std::fstream;
 using std::ifstream;
@@ -7,8 +8,6 @@ using std::ofstream;
 using std::string;
 
 template <class T, int info_len = 1> class MemoryRiver {
-    friend class Finance;
-    friend class Blog;
 
   private:
     /* your code here */
@@ -27,11 +26,12 @@ template <class T, int info_len = 1> class MemoryRiver {
     }
 
     void initialise(string FN = "") {
+        
         if (FN != "")
             file_name = FN;
-        file.open(file_name, std::ios::in | std::ios::out);
+        file.open(file_name, std::ios::in | std::ios::out | std::ios::binary);
         if (!file) {
-            file.open(file_name, std::ios::out);
+            file.open(file_name, std::ios::out | std::ios::binary);
             int tmp = 0;
             for (int i = 0; i < info_len; ++i) {
                 file.write(reinterpret_cast<char *>(&tmp), sizeof(int));
@@ -73,8 +73,7 @@ template <class T, int info_len = 1> class MemoryRiver {
     }
 
     void clear() {
-        file.open(file_name);
-        file.clear();
+        file.open(file_name, std::ios::out | std::ios::trunc | std::ios::binary);
         file.close();
     }
 };

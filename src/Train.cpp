@@ -1,5 +1,7 @@
 #include "Train.h"
 
+#include "Time.h"
+
 void TrainSystem::add_train(const string &trainID, int stationNum, int seatNum,
                             const string &stations, string &price, int startTime,
                             string &travelTimes, string &stopoverTimes, string &saleDate,
@@ -60,7 +62,7 @@ void TrainSystem::release_train(const string &trainID) {
     }
     Train train;
     TrainData.read(train, train1[0]);
-    if (train.release_status == 0) {
+    if (train.release_status == 1) {
         cout << "-1\n";
         return;
     }
@@ -80,8 +82,17 @@ void TrainSystem::query_train(const string &trainID, int Date) {
     }
     Train train;
     TrainData.read(train, train1[0]);
+
+    // cout << Date << " " << train.saleDateStart << " " << train.saleDateEnd << "\n";
+
+    if (train.saleDateStart > Date || train.saleDateEnd < Date) {
+        cout << "-1\n";
+        return;
+    }
+    assert(Date >= 0 && Date <= 100);
     cout << train.trainID << " " << train.Type << "\n";
     int T = train.startTime, D = Date;
+
     for (int i = 0; i < train.stationNum; i++) {
         cout << train.stations[i] << " ";
         if (i == 0)
@@ -99,45 +110,47 @@ void TrainSystem::query_train(const string &trainID, int Date) {
         cout << " " << train.price[i] << " ";
         if (i == train.stationNum - 1)
             cout << "x\n";
-        else
+        else {
+            assert(Date >= 0 && Date <= 100);
             cout << train.seat[Date][i] << "\n";
+        }
+
         T += train.travelTimes[i];
         if (T >= 1440)
             T -= 1440, D++;
     }
 }
+
+struct MyCompare {
+    vector<int> &A;
+    vector<string> &trainID;
+    MyCompare(vector<int> &T, vector<string> &TID) : A(T), trainID(TID) {}
+    bool operator()(int a, int b) const {
+        if (A[a] == A[b])
+            return trainID[a] > trainID[b];
+        return A[a] > A[b];
+    }
+};
+
 void TrainSystem::query_ticket(const string &Start, const string &End, int Date,
                                int flag) {
     long long Key = Hash(Start + End);
     vector<int> train1;
     train1 = sta_to_staBase.find(Key);
     int num = train1.size();
-    int tot = 0;
+    int tot = 0, F = 0;
     vector<int> id, Price, Time, Leave, Seat;
     vector<string> TrainId;
+    cerr << num << "\n";
     for (int i = 0; i < num; i++) {
         Train train;
         TrainData.read(train, train1[i]);
+        if (train.release_status == 0)
+            continue;
         int T = train.startTime, startDay = Date, P = 0, passTime = 0,
             seat = train.seatNum;
-
+        // cout << change_num_to_minute(T) << "\n";
         for (int j = 0; j < train.stationNum; j++) {
-            T += train.stopoverTimes[j];
-            passTime += train.stopoverTimes[j];
-
-            if (train.stations[j] == Start) {
-                while (T >= 1440)
-                    T -= 1440, startDay--;
-                if (startDay >= train.saleDateStart && startDay <= train.saleDateEnd) {
-                    passTime = 0;
-                    P = -train.price[j];
-                    seat = train.seat[startDay][j];
-                    id.push_back(tot++);
-                    TrainId.push_back(train.trainID);
-                    Leave.push_back(T);
-                } else
-                    break;
-            }
             if (train.stations[j] == End) {
                 P += train.price[j];
                 Time.push_back(passTime);
@@ -145,32 +158,70 @@ void TrainSystem::query_ticket(const string &Start, const string &End, int Date,
                 Seat.push_back(seat);
                 break;
             }
-            T += train.travelTimes[j];
+            T += train.stopoverTimes[j];
             passTime += train.stopoverTimes[j];
-            seat = std::min(seat, train.seat[startDay][j]);
+            // cout << change_num_to_minute(T) << " " << passTime << "\n";
+            if (train.stations[j] == Start) {
+                while (T >= 1440)
+                    T -= 1440, startDay--;
+                if (startDay >= train.saleDateStart && startDay <= train.saleDateEnd) {
+                    passTime = 0;
+                    F = 1;
+                    P = -train.price[j];
+                    assert(startDay >= 0 && startDay <= 100);
+                    seat = train.seat[startDay][j];
+
+                    id.push_back(tot++);
+                    TrainId.push_back(train.trainID);
+                    Leave.push_back(T);
+                } else
+                    break;
+            }
+
+            T += train.travelTimes[j];
+            passTime += train.travelTimes[j];
+            if (F) {
+                assert(startDay >= 0 && startDay <= 100);
+                seat = std::min(seat, train.seat[startDay][j]);
+            }
+        }
+        // cout << change_num_to_date(startDay) << " \n";
+    }
+    cerr << "A\n"
+         << " " << tot << " " << flag << "\n";
+    for (int i = 0; i < id.size(); i++)
+        cerr << id[i] << "\n";
+
+    cout << tot << "\n";
+
+    if (flag == 0) {
+        MyCompare cmp(Time, TrainId);
+        priority_queue<int, MyCompare> pq(cmp);
+        for (int i = 0; i < tot; i++)
+            pq.push(i);
+        for (int i = 0; i < tot; i++) {
+            id[i] = pq.top();
+            pq.pop();
+        }
+    } else if (flag == 1) {
+        MyCompare cmp(Price, TrainId);
+        priority_queue<int, MyCompare> pq(cmp);
+        for (int i = 0; i < tot; i++)
+            pq.push(i);
+        for (int i = 0; i < tot; i++) {
+            id[i] = pq.top();
+            pq.pop();
         }
     }
-    cout << tot << "\n";
-    if (flag == 0)
-        std::sort(id.begin(), id.end(), [&](const int &a, const int &b) {
-            if (Time[a] == Time[b])
-                return TrainId[a] < TrainId[b];
-            return Time[a] < Time[b];
-        });
-    else if (flag == 1)
-        std::sort(id.begin(), id.end(), [&](const int &a, const int &b) {
-            if (Price[a] == Price[b])
-                return TrainId[a] < TrainId[b];
-            return Price[a] < Price[b];
-        });
+
     for (int i = 0; i < tot; i++) {
         int ID = id[i];
         cout << TrainId[ID] << " " << Start << " " << change_num_to_date(Date) << " ";
-        cout << change_num_to_minute(Leave[ID]) << " -> " << End;
+        cout << change_num_to_minute(Leave[ID]) << " -> " << End << " ";
         int T = Leave[ID] + Time[ID], D = Date;
         while (T >= 1440)
             T -= 1440, D++;
-        cout << change_num_to_date(Date) << " " << change_num_to_minute(T) << " "
+        cout << change_num_to_date(D) << " " << change_num_to_minute(T) << " "
              << Price[ID] << " " << Seat[ID] << "\n";
     }
 }
@@ -189,26 +240,15 @@ void TrainSystem::query_transfer(const string &Start, const string &End, int Dat
     for (int i = 0; i < num; i++) {
         Train Train1;
         TrainData.read(Train1, train1[i]);
+        if (Train1.release_status == 0)
+            continue;
         int T = Train1.startTime, startDay = Date, P = 0, F = 0, seat = Train1.seatNum,
             leave, D = Date;
 
         for (int j = 0; j < Train1.stationNum; j++) {
-            T += Train1.stopoverTimes[j];
 
-            if (Train1.stations[j] == Start) {
-
-                while (T >= 1440)
-                    T -= 1440, startDay--;
-                if (startDay >= Train1.saleDateStart && startDay <= Train1.saleDateEnd) {
-                    F = 1;
-                    P = -Train1.price[j];
-                    seat = Train1.seat[startDay][j];
-                    leave = T;
-                } else
-                    break;
-            }
             if (F) {
-                P += Train1.price[i];
+                P += Train1.price[j];
                 while (T >= 1440)
                     T -= 1440, D++;
                 long long KEY2 = Hash(Train1.stations[j] + End);
@@ -216,33 +256,16 @@ void TrainSystem::query_transfer(const string &Start, const string &End, int Dat
                 int num2 = train2.size();
                 for (int k = 0; k < num2; k++) {
                     Train Train2;
+
                     TrainData.read(Train2, train2[k]);
+                    if (Train2.release_status == 0)
+                        continue;
                     if ((string) Train2.trainID == (string) Train1.trainID)
                         continue;
                     int T2 = Train2.startTime, startDay2 = D, seat2, P2 = P, D2 = D;
-                    int leave2, leaveD2;
+                    int leave2, leaveD2, F2 = 0;
                     for (int l = 0; l < Train2.stationNum; l++) {
-                        T2 += Train2.stopoverTimes[l];
 
-                        if ((string) Train2.stations[l] == (string) Train1.stations[j]) {
-
-                            while (T2 >= 1440)
-                                T2 -= 1440, startDay2--;
-                            if (T2 < T)
-                                startDay++, D2++;
-                            if (startDay < Train2.saleDateStart)
-                                D2 += Train2.saleDateStart - startDay,
-                                    startDay = Train2.saleDateStart;
-
-                            leaveD2 = D2, leave2 = T2;
-                            if (startDay >= Train2.saleDateStart &&
-                                startDay <= Train2.saleDateEnd) {
-                                P2 -= Train2.price[l];
-                                seat2 = Train2.seat[startDay][l];
-
-                            } else
-                                break;
-                        }
                         if (Train2.stations[l] == End) {
                             while (T2 >= 1440)
                                 T2 -= 1440, D2++;
@@ -274,21 +297,68 @@ void TrainSystem::query_transfer(const string &Start, const string &End, int Dat
                                 LeaveMinute1 = leave, ArriveMinute2 = T2;
                                 LeaveMinute2 = leave2, ArriveMinute1 = T;
                                 LeaveDate1 = Date, ArriveDate2 = D2;
-                                LeaveMinute2 = leaveD2, ArriveDate1 = D;
+                                LeaveDate2 = leaveD2, ArriveDate1 = D;
                                 Seat1 = seat, Seat2 = seat2;
                                 ArriveDate2 = D2;
                                 midStation = Train1.stations[j];
                             }
                             break;
                         }
+
+                        T2 += Train2.stopoverTimes[l];
+
+                        if ((string) Train2.stations[l] == (string) Train1.stations[j]) {
+
+                            while (T2 >= 1440)
+                                T2 -= 1440, startDay2--;
+                            if (T2 < T)
+                                startDay++, D2++;
+                            if (startDay < Train2.saleDateStart)
+                                D2 += Train2.saleDateStart - startDay,
+                                    startDay = Train2.saleDateStart;
+
+                            leaveD2 = D2, leave2 = T2;
+                            if (startDay >= Train2.saleDateStart &&
+                                startDay <= Train2.saleDateEnd) {
+                                P2 -= Train2.price[l];
+                                assert(startDay >= 0 && startDay <= 100);
+                                seat2 = Train2.seat[startDay][l];
+                                F2 = 0;
+                            } else
+                                break;
+                        }
+
                         T2 += Train2.travelTimes[l];
-                        seat2 = std::min(seat2, Train2.seat[startDay][l]);
+                        if (F2) {
+                            assert(startDay >= 0 && startDay <= 100);
+                            seat2 = std::min(seat2, Train2.seat[startDay][l]);
+                        }
                     }
                 }
-                P -= Train1.price[i];
+                P -= Train1.price[j];
             }
+
+            T += Train1.stopoverTimes[j];
+
+            if (Train1.stations[j] == Start) {
+
+                while (T >= 1440)
+                    T -= 1440, startDay--;
+                if (startDay >= Train1.saleDateStart && startDay <= Train1.saleDateEnd) {
+                    F = 1;
+                    P = -Train1.price[j];
+                    assert(startDay >= 0 && startDay <= 100);
+                    seat = Train1.seat[startDay][j];
+                    leave = T;
+                } else
+                    break;
+            }
+
             T += Train1.travelTimes[j];
-            seat = std::min(seat, Train1.seat[startDay][j]);
+            if (F) {
+                assert(startDay >= 0 && startDay <= 100);
+                seat = std::min(seat, Train1.seat[startDay][j]);
+            }
         }
     }
     if (Time == -1) {
@@ -298,9 +368,9 @@ void TrainSystem::query_transfer(const string &Start, const string &End, int Dat
     cout << TrainID1 << " " << Start << " " << change_num_to_date(LeaveDate1) << " "
          << change_num_to_minute(LeaveMinute1) << " -> " << midStation << " "
          << change_num_to_date(ArriveDate1) << " " << change_num_to_minute(ArriveMinute1)
-         << Price1 << " " << Seat1 << "\n";
+         << " " << Price1 << " " << Seat1 << "\n";
     cout << TrainID2 << " " << midStation << " " << change_num_to_date(LeaveDate2) << " "
          << change_num_to_minute(LeaveMinute2) << " -> " << End << " "
          << change_num_to_date(ArriveDate2) << " " << change_num_to_minute(ArriveMinute2)
-         << Price2 << " " << Seat2 << "\n";
+         << " " << Price2 << " " << Seat2 << "\n";
 }

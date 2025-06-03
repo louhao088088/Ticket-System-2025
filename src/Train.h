@@ -28,7 +28,7 @@ struct Train {
         string token;
         std::istringstream STATION(station);
         for (int i = 0; i < num; i++) {
-            
+
             std::getline(STATION, token, '|');
             std::strncpy(stations[i], token.c_str(), 31);
         }
@@ -56,6 +56,7 @@ struct Train {
             else
                 saleDateEnd = change_date_to_num(token);
         }
+        assert(saleDateStart >= 0 && saleDateEnd <= 100);
         for (int i = saleDateStart; i <= saleDateEnd; i++)
             for (int j = 0; j < stationNum - 1; j++)
                 seat[i][j] = seatNum;
@@ -81,7 +82,12 @@ class TrainSystem {
         TrainData.get_info(total, 1);
     }
 
-    ~TrainSystem() { TrainData.write_info(total, 1); }
+    ~TrainSystem() {
+        TrainData.write_info(total, 1);
+        TrainBase.flush();
+        stationBase.flush();
+        sta_to_staBase.flush();
+    }
 
     void add_train(const string &trainID, int stationNum, int seatNum,
                    const string &stations, string &price, int startTime,
