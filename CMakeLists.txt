@@ -13,7 +13,24 @@ add_executable(code
     src/map/exceptions.hpp
     src/map/utility.hpp
     src/map/map.hpp
+    src/priority_queue/src/exceptions.hpp
+    src/priority_queue/src/utility.hpp
+    src/priority_queue/src/priority_queue.hpp
     
+    src/MemoryRiver.hpp
+    src/Hash.h
     src/BPT.hpp
+    src/Operator.h
+    src/Ticket.h
+    src/Time.h
+    src/Train.h
+    src/User.h
+
+    src/Hash.cpp
+    src/Operator.cpp
+    src/Ticket.cpp
+    src/Time.cpp
+    src/Train.cpp
+    src/User.cpp
     main.cpp
 )

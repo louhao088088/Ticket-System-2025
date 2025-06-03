@@ -141,7 +141,7 @@ void TrainSystem::query_ticket(const string &Start, const string &End, int Date,
     int tot = 0, F = 0;
     vector<int> id, Price, Time, Leave, Seat;
     vector<string> TrainId;
-    cerr << num << "\n";
+    // cerr << num << "\n";
     for (int i = 0; i < num; i++) {
         Train train;
         TrainData.read(train, train1[i]);
@@ -187,11 +187,6 @@ void TrainSystem::query_ticket(const string &Start, const string &End, int Date,
         }
         // cout << change_num_to_date(startDay) << " \n";
     }
-    cerr << "A\n"
-         << " " << tot << " " << flag << "\n";
-    for (int i = 0; i < id.size(); i++)
-        cerr << id[i] << "\n";
-
     cout << tot << "\n";
 
     if (flag == 0) {
@@ -227,6 +222,7 @@ void TrainSystem::query_ticket(const string &Start, const string &End, int Date,
 }
 void TrainSystem::query_transfer(const string &Start, const string &End, int Date,
                                  int flag) {
+    // cerr << "query_transfer\n";
     long long Key = Hash(Start);
     vector<int> train1;
     train1 = stationBase.find(Key);
@@ -258,29 +254,34 @@ void TrainSystem::query_transfer(const string &Start, const string &End, int Dat
                     Train Train2;
 
                     TrainData.read(Train2, train2[k]);
+
                     if (Train2.release_status == 0)
                         continue;
                     if ((string) Train2.trainID == (string) Train1.trainID)
                         continue;
+
                     int T2 = Train2.startTime, startDay2 = D, seat2, P2 = P, D2 = D;
                     int leave2, leaveD2, F2 = 0;
                     for (int l = 0; l < Train2.stationNum; l++) {
 
                         if (Train2.stations[l] == End) {
+
+                            assert(F2);
                             while (T2 >= 1440)
                                 T2 -= 1440, D2++;
+
                             P2 += Train2.price[l];
                             int totalT = (D2 - Date) * 1440 + T2 - leave;
                             int G = 0;
                             if (Price == -1)
                                 G = 1;
-                            else if (flag == 0 && Time > totalT)
+                            else if (flag == 0 && totalT < Time)
                                 G = 1;
                             else if (flag == 1 && P2 < Price)
                                 G = 1;
                             else if (Time == totalT && P2 < Price)
                                 G = 1;
-                            else if (Time < totalT && P2 == Price)
+                            else if (totalT < Time && P2 == Price)
                                 G = 1;
                             if (Time == totalT && P2 == Price &&
                                 Train1.trainID < TrainID1)
@@ -312,26 +313,27 @@ void TrainSystem::query_transfer(const string &Start, const string &End, int Dat
                             while (T2 >= 1440)
                                 T2 -= 1440, startDay2--;
                             if (T2 < T)
-                                startDay++, D2++;
-                            if (startDay < Train2.saleDateStart)
-                                D2 += Train2.saleDateStart - startDay,
-                                    startDay = Train2.saleDateStart;
+                                startDay2++, D2++;
+                            if (startDay2 < Train2.saleDateStart)
+                                D2 += Train2.saleDateStart - startDay2,
+                                    startDay2 = Train2.saleDateStart;
 
                             leaveD2 = D2, leave2 = T2;
-                            if (startDay >= Train2.saleDateStart &&
-                                startDay <= Train2.saleDateEnd) {
+                            if (startDay2 >= Train2.saleDateStart &&
+                                startDay2 <= Train2.saleDateEnd) {
+
                                 P2 -= Train2.price[l];
-                                assert(startDay >= 0 && startDay <= 100);
-                                seat2 = Train2.seat[startDay][l];
-                                F2 = 0;
+                                assert(startDay2 >= 0 && startDay2 <= 100);
+                                seat2 = Train2.seat[startDay2][l];
+                                F2 = 1;
                             } else
                                 break;
                         }
 
                         T2 += Train2.travelTimes[l];
                         if (F2) {
-                            assert(startDay >= 0 && startDay <= 100);
-                            seat2 = std::min(seat2, Train2.seat[startDay][l]);
+                            assert(startDay2 >= 0 && startDay2 <= 100);
+                            seat2 = std::min(seat2, Train2.seat[startDay2][l]);
                         }
                     }
                 }

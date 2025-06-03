@@ -101,6 +101,7 @@ void UserSystem::modify_profile(string &cur_username, string &username, string &
         cout << "-1\n";
         return;
     }
+
     vector<int> Data = UserBase.find(UserKey);
     vector<int> Cur_Data = UserBase.find(Cur_UserKey);
     if (!Data.size()) {
@@ -115,11 +116,10 @@ void UserSystem::modify_profile(string &cur_username, string &username, string &
         cout << "-1\n";
         return;
     }
-    if (user1.privilege < privilege) {
+    if (user1.privilege <= privilege) {
         cout << "-1\n";
         return;
     }
-
     if (!password.empty())
         strncpy(user2.password, password.c_str(), 31);
 

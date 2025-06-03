@@ -24,7 +24,7 @@ int main() {
         Time = words[0];
         cout << Time << " ";
         op = words[1];
-        cerr << line << "\n";
+        // cerr << line << "\n";
 
         if (op == "exit") {
             cout << "bye\n";

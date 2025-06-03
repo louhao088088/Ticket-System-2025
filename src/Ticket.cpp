@@ -25,7 +25,7 @@ void TicketSystem::buy_ticket(UserSystem &UserSys, TrainSystem &TrainSys,
     }
     Train train;
     TrainSys.TrainData.read(train, train1[0]);
-    if (train.release_status == 0) {
+    if (train.release_status == 0 || train.seatNum < ticketNum) {
         cout << "-1\n";
         return;
     }
@@ -71,7 +71,11 @@ void TicketSystem::buy_ticket(UserSystem &UserSys, TrainSystem &TrainSys,
         cout << "-1\n";
         return;
     }
-    // cerr << P << "\n";
+    /*cerr << flag << " " << F << " " << change_num_to_minute(leave) << " "
+         << change_num_to_date(startDay) << " " << change_num_to_date(D) << " "
+         << train.saleDateStart << " " << train.saleDateEnd << " " << l << " " << r << " "
+         << train.stationNum << "\n";*/
+
     Ticket new_ticket(username, trainID, Start, End, Date, leave, D, T, P, ticketNum,
                       seat >= ticketNum ? 1 : 2, startDay);
     TicketBase.insert(UserKey, total);
