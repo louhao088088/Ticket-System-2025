@@ -10,4 +10,5 @@ code
 *.log
 run-test
 .clang-format
-.cache
+.cache/clangd/index
+
