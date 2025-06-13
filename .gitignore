@@ -11,4 +11,5 @@ code
 run-test
 .clang-format
 .cache/clangd/index
+compile_commands.json
 
