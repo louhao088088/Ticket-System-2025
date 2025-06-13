@@ -8,3 +8,6 @@ TicketSystemData
 build
 code
 *.log
+run-test
+.clang-format
+.cache

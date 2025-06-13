@@ -83,8 +83,6 @@ void TrainSystem::query_train(const string &trainID, int Date) {
     Train train;
     TrainData.read(train, train1[0]);
 
-    // cout << Date << " " << train.saleDateStart << " " << train.saleDateEnd << "\n";
-
     if (train.saleDateStart > Date || train.saleDateEnd < Date) {
         cout << "-1\n";
         return;
@@ -141,7 +139,7 @@ void TrainSystem::query_ticket(const string &Start, const string &End, int Date,
     int tot = 0, F = 0;
     vector<int> id, Price, Time, Leave, Seat;
     vector<string> TrainId;
-    // cerr << num << "\n";
+
     for (int i = 0; i < num; i++) {
         Train train;
         TrainData.read(train, train1[i]);
@@ -149,7 +147,7 @@ void TrainSystem::query_ticket(const string &Start, const string &End, int Date,
             continue;
         int T = train.startTime, startDay = Date, P = 0, passTime = 0,
             seat = train.seatNum;
-        // cout << change_num_to_minute(T) << "\n";
+
         for (int j = 0; j < train.stationNum; j++) {
             if (train.stations[j] == End) {
                 P += train.price[j];
@@ -160,7 +158,7 @@ void TrainSystem::query_ticket(const string &Start, const string &End, int Date,
             }
             T += train.stopoverTimes[j];
             passTime += train.stopoverTimes[j];
-            // cout << change_num_to_minute(T) << " " << passTime << "\n";
+
             if (train.stations[j] == Start) {
                 while (T >= 1440)
                     T -= 1440, startDay--;
@@ -185,7 +183,6 @@ void TrainSystem::query_ticket(const string &Start, const string &End, int Date,
                 seat = std::min(seat, train.seat[startDay][j]);
             }
         }
-        // cout << change_num_to_date(startDay) << " \n";
     }
     cout << tot << "\n";
 
@@ -222,7 +219,7 @@ void TrainSystem::query_ticket(const string &Start, const string &End, int Date,
 }
 void TrainSystem::query_transfer(const string &Start, const string &End, int Date,
                                  int flag) {
-    // cerr << "query_transfer\n";
+
     long long Key = Hash(Start);
     vector<int> train1;
     train1 = stationBase.find(Key);

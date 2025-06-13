@@ -18,7 +18,7 @@ void TicketSystem::buy_ticket(UserSystem &UserSys, TrainSystem &TrainSys,
     }
     long long TrainKey = Hash(trainID);
     vector<int> train1 = TrainSys.TrainBase.find(TrainKey);
-    // cerr << "A";
+
     if (train1.size() == 0) {
         cout << "-1\n";
         return;
@@ -110,7 +110,7 @@ void TicketSystem::query_order(UserSystem &UserSys, TrainSystem &TrainSys,
         return;
     }
     vector<int> ticket1 = TicketBase.find(UserKey);
-    // cerr<<""
+
     cout << ticket1.size() << "\n";
     for (int i = ticket1.size() - 1; i >= 0; i--) {
         Ticket ticket;
@@ -150,7 +150,7 @@ void TicketSystem::refund_ticket(UserSystem &UserSys, TrainSystem &TrainSys,
 
     Ticket ticket;
     TicketData.read(ticket, ticket1[ticket1.size() - num]);
-    // cerr << ticket.status << "\n";
+
     if (ticket.status == 3) {
         cout << "-1\n";
         return;

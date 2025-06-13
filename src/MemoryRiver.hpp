@@ -10,7 +10,6 @@ using std::string;
 template <class T, int info_len = 1> class MemoryRiver {
 
   private:
-    /* your code here */
     fstream file;
     string file_name;
     int sizeofT = sizeof(T);
@@ -26,7 +25,7 @@ template <class T, int info_len = 1> class MemoryRiver {
     }
 
     void initialise(string FN = "") {
-        
+
         if (FN != "")
             file_name = FN;
         file.open(file_name, std::ios::in | std::ios::out | std::ios::binary);

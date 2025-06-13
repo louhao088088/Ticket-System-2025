@@ -3,7 +3,7 @@
 #include "MemoryRiver.hpp"
 #include "Time.h"
 
-// 用户账户结构
+// 火车信息结构
 struct Train {
     char trainID[21] = {};
     int stationNum;
