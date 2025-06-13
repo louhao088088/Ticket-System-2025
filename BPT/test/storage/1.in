@@ -1,9 +1,0 @@
-8
-find CppPrimer
-insert FlowersForAlgernon 1966
-insert CppPrimer 2012
-insert Dune 2021
-insert CppPrimer 2001
-find CppPrimer
-delete Dune 2021
-find Dune
